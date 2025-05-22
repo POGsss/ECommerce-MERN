@@ -1,4 +1,3 @@
-import React from 'react'
 import { assets } from '../assets/assets'
 import { Link, NavLink } from 'react-router-dom'
 import { useState } from 'react'
@@ -6,28 +5,27 @@ import { useState } from 'react'
 const Navbar = () => {
     const [visible, setVisible] = useState(false)
 
-
     return (
-        <div className='flex items-center justify-between py-5 font-medium'>
+        <div className='flex items-center justify-between py-5 font-text'>
             {/* Logo */}
             <img src={assets.logo} className='w-36' alt="" />
 
             {/* Menu */}
-            <ul className='hidden sm:flex gap-5 text-sm text-gray-500'>
+            <ul className='hidden sm:flex gap-5 text-sm text-black'>
                 <NavLink to='/' className='flex flex-col items-center gap-1'>
-                    <p>HOME</p>
+                    <p className='font-text'>HOME</p>
                     <hr className='w-2/4 border-none h-[1.5px] bg-gray-700' hidden/>
                 </NavLink>
                 <NavLink to='/collection' className='flex flex-col items-center gap-1'>
-                    <p>COLLECTION</p>
+                    <p className='font-text'>COLLECTION</p>
                     <hr className='w-2/4 border-none h-[1.5px] bg-gray-700' hidden/>
                 </NavLink>
                 <NavLink to='/about' className='flex flex-col items-center gap-1'>
-                    <p>ABOUT</p>
+                    <p className='font-text'>ABOUT</p>
                     <hr className='w-2/4 border-none h-[1.5px] bg-gray-700' hidden/>
                 </NavLink>
                 <NavLink to='/contact' className='flex flex-col items-center gap-1'>
-                    <p>CONTACT</p>
+                    <p className='font-text'>CONTACT</p>
                     <hr className='w-2/4 border-none h-[1.5px] bg-gray-700' hidden/>
                 </NavLink>
             </ul>
@@ -54,7 +52,7 @@ const Navbar = () => {
 
             {/* Mobile Menu */}
             <div className={`absolute top-0 right-0 bottom-0 overflow-hidden bg-white transition-all ${visible ? 'w-full' : 'w-0'}`}>
-                <div className='flex flex-col text-gray-500'>
+                <div className='flex flex-col text-black'>
                     <div onClick={()=>setVisible(false)} className='flex items-center gap-2 p-8 cursor-pointer'>
                         <img className='w-5 rotate-180' src={assets.dropdown_icon} alt="" />
                         <p>Back</p>
