@@ -6,9 +6,11 @@ const Navbar = () => {
     const [visible, setVisible] = useState(false)
 
     return (
-        <div className='flex items-center justify-between py-5 font-text'>
+        <div className='border-b border-black flex items-center justify-between py-5 font-text'>
             {/* Logo */}
-            <img src={assets.logo} className='w-36' alt="" />
+            <Link to='/'>
+                <img src={assets.logo} className='w-36' alt="" />
+            </Link>
 
             {/* Menu */}
             <ul className='hidden sm:flex gap-5 text-sm text-black'>
@@ -31,7 +33,7 @@ const Navbar = () => {
             </ul>
 
             {/* Icons */}
-            <div className='flex items-center gap-6'>
+            <div className='flex items-center gap-5'>
                 <img src={assets.search_icon} className='w-5 min-w-5 cursor-pointer' alt="" />
                 <div className='group relative'>
                     <img src={assets.profile_icon} className='w-5 min-w-5 cursor-pointer' alt="" />
