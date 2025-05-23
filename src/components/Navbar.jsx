@@ -9,7 +9,7 @@ const Navbar = () => {
         <div className='border-b border-black flex items-center justify-between py-5 font-text'>
             {/* Logo */}
             <Link to='/'>
-                <img src={assets.logo} className='w-36' alt="" />
+                <img className='w-36' src={assets.logo} alt="" />
             </Link>
 
             {/* Menu */}
