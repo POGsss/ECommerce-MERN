@@ -29,3 +29,11 @@
 a.active hr {
   display: block;
 }
+
+@media (max-width: 640px) {
+  a.active {
+    color: #ffffff;
+    background: #000000;
+    text-decoration: none;
+  }
+}
