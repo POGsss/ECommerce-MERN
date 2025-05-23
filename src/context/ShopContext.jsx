@@ -1,10 +1,10 @@
-import { createContext, useContext, useState } from 'react';
-import { products } from '../assets/assets';
+import { createContext, useContext, useState } from "react";
+import { products } from "../assets/assets";
 
 export const ShopContext = createContext();
 
 const ShopContextProvider = (props) => {
-    const currency = '₱';
+    const currency = "₱";
     const deliveryFee = 30;
 
     const value = {
