@@ -32,8 +32,6 @@ const Collection = () => {
 	};
 
 	const applyFilter = () => {
-		console.log(category);
-
 		let productsCopy = products.slice();
 
 		if (showSearch && search) {

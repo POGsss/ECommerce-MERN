@@ -49,7 +49,7 @@ const Product = () => {
         <div className="flex-1">
           <h1 className="font-subtitle text-2xl mt-2">{productData.name}</h1>
           <p className="font-text mt-2 text-gray-500">Sold: 0+</p>
-          <p className="font-subtitle text-3xl my-4">{currency} {productData.price}</p>
+          <p className="font-subtitle text-3xl my-4">{currency}{productData.price}</p>
           <p className="font-text mt-2 text-gray-500">{productData.description}</p>
           <div className="flex flex-col gap-2 my-8">
             <p className="font-subtitle">Select Size:</p>
