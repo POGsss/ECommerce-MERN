@@ -1,4 +1,5 @@
 import { Routes, Route } from "react-router-dom"
+import { ToastContainer, toast } from 'react-toastify';
 import Home from "./pages/Home.jsx"
 import Collection from "./pages/Collection.jsx"
 import About from "./pages/About.jsx"
@@ -15,6 +16,20 @@ import SearchBar from "./components/SearchBar.jsx"
 const App = () => {
   return (
     <div className="px-4 sm:px-[2vw] md:px-[4vw] lg:px-[8vw]">
+
+      <ToastContainer
+        position="top-right"
+        autoClose={3000}
+        hideProgressBar={true}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="dark"
+      />
+
       <Navbar />
       <SearchBar />
       <Routes>
