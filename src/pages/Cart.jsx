@@ -5,7 +5,7 @@ import Title from "../components/Title.jsx";
 import CartTotal from "../components/CartTotal.jsx";
 
 const Cart = () => {
-  const { products, currency, cartItems, updateQuantity } = useContext(ShopContext);
+  const { products, currency, cartItems, updateQuantity, navigate } = useContext(ShopContext);
   const [ cartData, setCartData ] = useState([]);
 
   useEffect(() => {
@@ -60,6 +60,9 @@ const Cart = () => {
         <div className="flex justify-end my-20">
           <div className="w-full sm:w-[450px]">
             <CartTotal />
+            <div className="w-full text-end">
+              <button onClick={() => navigate("/place-order")} className="font-text md:text-base px-8 py-4 mt-8 bg-black text-white cursor-pointer">PROCCED TO CHECKOUT</button>
+            </div>
           </div>
         </div>
     </div>
