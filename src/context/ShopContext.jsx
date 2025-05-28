@@ -15,7 +15,7 @@ const ShopContextProvider = (props) => {
 
     const addToCart = async (itemId, size) => {
         if (!size) {
-            toast("Select a product size.");
+            toast("Please select a product size");
             return;
         }
 
@@ -32,6 +32,7 @@ const ShopContextProvider = (props) => {
             cartData[itemId][size] = 1;
         }
 
+        console.log(cartData);
         setCartItems(cartData);
     }
 
