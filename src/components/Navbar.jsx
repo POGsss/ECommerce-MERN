@@ -58,7 +58,7 @@ const Navbar = () => {
             </div>
 
             {/* Mobile Menu */}
-            <div className={`absolute top-0 right-0 bottom-0 overflow-hidden bg-white transition-all ${visible ? "w-full" : "w-0"}`}>
+            <div className={`fixed top-0 right-0 bottom-0 overflow-hidden bg-white transition-all ${visible ? "w-full" : "w-0"}`}>
                 <div className="flex flex-col text-black">
                     <div onClick={()=>setVisible(false)} className="flex items-center gap-2 p-8 cursor-pointer">
                         <img className="w-5 rotate-90" src={assets.dropdown_icon} alt="" />
