@@ -8,7 +8,7 @@ const About = () => {
       <div className="text-2xl text-center">
         <Title text1={"ABOUT"} text2={"US"} />
       </div>
-      <div className="m-10 flex flex-col items-center md:flex-row gap-16">
+      <div className="my-10 flex flex-col items-center md:flex-row gap-16">
         <img className="w-full sm:max-w-full md:max-w-[450px]" src={assets.about_img} alt="" />
         <div className="flex flex-col justify-center gap-6 md:w-2/4">
           <b>Background</b>
