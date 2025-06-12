@@ -58,7 +58,7 @@ const ShopContextProvider = (props) => {
         let totalAmount = 0;
 
         for (const item in cartItems) {
-            let itemInfo = products.find((product) => product.id === item);
+            let itemInfo = products.find((product) => product._id === item);
 
             for (const size in cartItems[item]) {
                 try {

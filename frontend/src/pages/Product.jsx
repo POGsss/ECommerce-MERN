@@ -13,7 +13,7 @@ const Product = () => {
 
   const fetchProductData = async () => {
     products.map((item) => {
-      if (item.id === productId) {
+      if (item._id === productId) {
         setProductData(item);
         setImage(item.image[0]);
         
@@ -61,7 +61,7 @@ const Product = () => {
               }
             </div>
           </div>
-          <button onClick={() => addToCart(productData.id, size)} className="font-text md:text-base px-8 py-4 bg-black text-white cursor-pointer active:bg-gray-500">ADD TO CART</button>
+          <button onClick={() => addToCart(productData._id, size)} className="font-text md:text-base px-8 py-4 bg-black text-white cursor-pointer active:bg-gray-500">ADD TO CART</button>
           <hr className="mt-8 sm:w-full h-[2px] bg-gray-700" />
           <div className="text-sm mt-6 text-gray-500 flex flex-col gap-1">
             <p>Cash On Delivery</p>
