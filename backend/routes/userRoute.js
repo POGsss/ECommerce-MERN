@@ -3,8 +3,8 @@ import { userSignIn, userSignUp, adminSignIn } from "../controllers/userControll
 
 const userRouter = express.Router();
 
-userRouter.post("/signup", userSignUp);
 userRouter.post("/signin", userSignIn);
+userRouter.post("/signup", userSignUp);
 userRouter.post("/admin", adminSignIn);
 
 export default userRouter;
