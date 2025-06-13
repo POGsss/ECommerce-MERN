@@ -83,4 +83,9 @@ const adminSignIn = async (req, res) => {
 
 }
 
-export { userSignIn, userSignUp, adminSignIn };
+// Route For Staff Login
+const staffSignIn = async (req, res) => {
+
+}
+
+export { userSignIn, userSignUp, adminSignIn, staffSignIn };
