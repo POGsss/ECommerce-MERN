@@ -6,7 +6,7 @@ import userModel from "../models/userModel.js";
 
 // Creating Token
 const createToken = (id) => {
-    return jwt.sign({id}, process.env.JWT_SECRET)
+    return jwt.sign({id}, process.env.JWT_SECRET);
 }
 
 // Route For User Sign In
@@ -14,7 +14,7 @@ const userSignIn = async (req, res) => {
     try {
         // Getting User Input
         const { email, password } = req.body;
-        const user = await userModel.findOne({email})
+        const user = await userModel.findOne({email});
         
         // Checking If User Is Available
         if (!user) {
@@ -31,8 +31,8 @@ const userSignIn = async (req, res) => {
         }
     } catch (error) {
         // Logging Error
-        console.log(error)
-        res.json({success: false, message: error.message})
+        console.log(error);
+        res.json({success: false, message: error.message});
     }
 }
 
@@ -41,7 +41,7 @@ const userSignUp = async (req, res) => {
     try {
         // Getting User Input
         const { name, email, password } = req.body;
-        const exists = await userModel.findOne({email})
+        const exists = await userModel.findOne({email});
         
         // Checking If Email Already Exists
         if (exists) {
@@ -66,15 +66,15 @@ const userSignUp = async (req, res) => {
             email,
             password:hashedPassword
         });
-        const user = await newUser.save()
-        const token = createToken(user._id)
+        const user = await newUser.save();
+        const token = createToken(user._id);
 
         // Returning Success Response
-        res.json({success: true, token})
+        res.json({success: true, token});
     } catch (error) {
         // Logging Error
-        console.log(error)
-        res.json({success: false, message: error.message})
+        console.log(error);
+        res.json({success: false, message: error.message});
     }
 }
 

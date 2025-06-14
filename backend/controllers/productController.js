@@ -3,17 +3,44 @@ import productModel from "../models/productModel.js";
 
 // Product List Function
 const productList = async (req, res) => {
-    
+    try {
+        // Getting All Products Data
+        const products = await productModel.find({});
+        const productsName = products.map((item) => item.name);
+        res.json({success: true, productsName});
+    } catch (error) {
+        // Logging Error
+        console.log(error);
+        res.json({success: false, message: error.message});
+    }
 }
 
 // Product Single Function
 const productSingle = async (req, res) => {
-    
+    try {
+        // Getting Product By Id
+        const { productId } = req.body;
+        const product = await productModel.findById(productId);
+        res.json({success: true, product});
+    } catch (error) {
+        // Logging Error
+        console.log(error);
+        res.json({success: false, message: error.message});
+    }
 }
 
 // Product Remove Function
 const productRemove = async (req, res) => {
-    
+    try {
+        // Deleting Product By Id
+        const { productId } = req.body;
+        const product = await productModel.findByIdAndDelete(productId);
+        res.json({success: true, product});
+    } catch (error) {
+        // Logging Error
+        console.log(error);
+        res.json({success: false, message: error.message});
+    }
 }
 
 // Product Add Function
@@ -49,14 +76,16 @@ const productAdd = async (req, res) => {
             image: imagesUrl,
             date: Date.now()
         }
-        console.log(productData);
         const product = new productModel(productData);
         await product.save();
         res.json({success: true, message: "Product Added"})
+
+        // Logging Request Body
+        console.log(productData);
     } catch (error) {
         // Logging Error
-        console.log(error)
-        res.json({success: false, message: error.message})
+        console.log(error);
+        res.json({success: false, message: error.message});
     }
 }
 
