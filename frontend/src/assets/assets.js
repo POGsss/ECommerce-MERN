@@ -1,60 +1,10 @@
+// Import Product Images
 import p_imgDefault from './p_imgDefault.png'
-import p_img1 from './p_img1.png'
-import p_img2_1 from './p_img2_1.png'
-import p_img2_2 from './p_img2_2.png'
-import p_img2_3 from './p_img2_3.png'
-import p_img2_4 from './p_img2_4.png'
-import p_img3 from './p_img3.png'
-import p_img4 from './p_img4.png'
-import p_img5 from './p_img5.png'
-import p_img6 from './p_img6.png'
-import p_img7 from './p_img7.png'
-import p_img8 from './p_img8.png'
-import p_img9 from './p_img9.png'
-import p_img10 from './p_img10.png'
-import p_img11 from './p_img11.png'
-import p_img12 from './p_img12.png'
-import p_img13 from './p_img13.png'
-import p_img14 from './p_img14.png'
-import p_img15 from './p_img15.png'
-import p_img16 from './p_img16.png'
-import p_img17 from './p_img17.png'
-import p_img18 from './p_img18.png'
-import p_img19 from './p_img19.png'
-import p_img20 from './p_img20.png'
-import p_img21 from './p_img21.png'
-import p_img22 from './p_img22.png'
-import p_img23 from './p_img23.png'
-import p_img24 from './p_img24.png'
-import p_img25 from './p_img25.png'
-import p_img26 from './p_img26.png'
-import p_img27 from './p_img27.png'
-import p_img28 from './p_img28.png'
-import p_img29 from './p_img29.png'
-import p_img30 from './p_img30.png'
-import p_img31 from './p_img31.png'
-import p_img32 from './p_img32.png'
-import p_img33 from './p_img33.png'
-import p_img34 from './p_img34.png'
-import p_img35 from './p_img35.png'
-import p_img36 from './p_img36.png'
-import p_img37 from './p_img37.png'
-import p_img38 from './p_img38.png'
-import p_img39 from './p_img39.png'
-import p_img40 from './p_img40.png'
-import p_img41 from './p_img41.png'
-import p_img42 from './p_img42.png'
-import p_img43 from './p_img43.png'
-import p_img44 from './p_img44.png'
-import p_img45 from './p_img45.png'
-import p_img46 from './p_img46.png'
-import p_img47 from './p_img47.png'
-import p_img48 from './p_img48.png'
-import p_img49 from './p_img49.png'
-import p_img50 from './p_img50.png'
-import p_img51 from './p_img51.png'
-import p_img52 from './p_img52.png'
+import p_imgDefault_1 from './p_imgDefault_1.png'
+import p_imgDefault_2 from './p_imgDefault_2.png'
+import p_imgDefault_3 from './p_imgDefault_3.png'
 
+// Import General Images
 import logo from './logo.png'
 import hero_img from './hero_img.png'
 import cart_icon from './cart_icon.png'
@@ -74,6 +24,7 @@ import razorpay_logo from './razorpay_logo.png'
 import stripe_logo from './stripe_logo.png'
 import cross_icon from './cross_icon.png'
 
+// Export Images
 export const assets = {
     logo,
     hero_img,
@@ -95,629 +46,186 @@ export const assets = {
     cross_icon
 }
 
+// Sample Product Data
 export const products = [
     {
-        _id: "aaaaa",
-        name: "Women Round Neck Top",
-        description: "A lightweight, usually knitted, pullover shirt, close-fitting and with a round neckline and short sleeves, worn as an undershirt or outer garment.",
-        price: 100,
-        image: [p_imgDefault],
+        _id: "1",
+        name: "Women's Stylish Cap",
+        description: "A fashionable cap designed for women, perfect for adding a touch of style to any outfit. Made from breathable materials.",
+        price: 450,
+        image: [p_imgDefault, p_imgDefault_1, p_imgDefault_2, p_imgDefault_3],
         category: "Women",
         subCategory: "Cap",
-        sizes: ["S", "M", "L"],
-        date: 1716634345448,
+        sizes: ["S", "M"],
+        date: 1718360000000,
         bestseller: true
     },
     {
-        _id: "aaaab",
-        name: "Men Round Neck T-shirt",
-        description: "A lightweight, usually knitted, pullover shirt, close-fitting and with a round neckline and short sleeves, worn as an undershirt or outer garment.",
-        price: 200,
-        image: [p_imgDefault,p_imgDefault,p_imgDefault,p_imgDefault],
+        _id: "2",
+        name: "Men's Classic Sneakers",
+        description: "Comfortable and durable sneakers for men, ideal for everyday wear or light sports activities. Features a non-slip sole.",
+        price: 1200,
+        image: [p_imgDefault, p_imgDefault_1, p_imgDefault_2],
         category: "Men",
-        subCategory: "Cap",
+        subCategory: "Shoes",
         sizes: ["M", "L", "XL"],
-        date: 1716621345448,
-        bestseller: true
-    },
-    {
-        _id: "aaaac",
-        name: "Girls Round Neck Top",
-        description: "A lightweight, usually knitted, pullover shirt, close-fitting and with a round neckline and short sleeves, worn as an undershirt or outer garment.",
-        price: 220,
-        image: [p_imgDefault],
-        category: "Kids",
-        subCategory: "Cap",
-        sizes: ["S", "L", "XL"],
-        date: 1716234545448,
-        bestseller: true
-    },
-    {
-        _id: "aaaad",
-        name: "Men Round Neck T-shirt",
-        description: "A lightweight, usually knitted, pullover shirt, close-fitting and with a round neckline and short sleeves, worn as an undershirt or outer garment.",
-        price: 110,
-        image: [p_imgDefault],
-        category: "Men",
-        subCategory: "Cap",
-        sizes: ["S", "M", "XXL"],
-        date: 1716621345448,
-        bestseller: true
-    },
-    {
-        _id: "aaaae",
-        name: "Women Round Neck Top",
-        description: "A lightweight, usually knitted, pullover shirt, close-fitting and with a round neckline and short sleeves, worn as an undershirt or outer garment.",
-        price: 130,
-        image: [p_imgDefault],
-        category: "Women",
-        subCategory: "Cap",
-        sizes: ["M", "L", "XL"],
-        date: 1716622345448,
-        bestseller: true
-    },
-    {
-        _id: "aaaaf",
-        name: "Girls Round Neck Top",
-        description: "A lightweight, usually knitted, pullover shirt, close-fitting and with a round neckline and short sleeves, worn as an undershirt or outer garment.",
-        price: 140,
-        image: [p_imgDefault],
-        category: "Kids",
-        subCategory: "Cap",
-        sizes: ["S", "L", "XL"],
-        date: 1716623423448,
-        bestseller: true
-    },
-    {
-        _id: "aaaag",
-        name: "Men Tapered Fit Trousers",
-        description: "A lightweight, usually knitted, pullover shirt, close-fitting and with a round neckline and short sleeves, worn as an undershirt or outer garment.",
-        price: 190,
-        image: [p_imgDefault],
-        category: "Men",
-        subCategory: "Shoes",
-        sizes: ["S", "L", "XL"],
-        date: 1716621542448,
+        date: 1718360100000,
         bestseller: false
     },
     {
-        _id: "aaaah",
-        name: "Men Round Neck T-shirt",
-        description: "A lightweight, usually knitted, pullover shirt, close-fitting and with a round neckline and short sleeves, worn as an undershirt or outer garment.",
-        price: 140,
-        image: [p_imgDefault],
-        category: "Men",
-        subCategory: "Cap",
-        sizes: ["S", "M", "L", "XL"],
-        date: 1716622345448,
-        bestseller: false
-    },
-    {
-        _id: "aaaai",
-        name: "Girls Round Neck Top",
-        description: "A lightweight, usually knitted, pullover shirt, close-fitting and with a round neckline and short sleeves, worn as an undershirt or outer garment.",
-        price: 100,
-        image: [p_imgDefault],
-        category: "Kids",
-        subCategory: "Cap",
-        sizes: ["M", "L", "XL"],
-        date: 1716621235448,
-        bestseller: false
-    },
-    {
-        _id: "aaaaj",
-        name: "Men Tapered Fit Trousers",
-        description: "A lightweight, usually knitted, pullover shirt, close-fitting and with a round neckline and short sleeves, worn as an undershirt or outer garment.",
-        price: 110,
-        image: [p_imgDefault],
-        category: "Men",
-        subCategory: "Shoes",
-        sizes: ["S", "L", "XL"],
-        date: 1716622235448,
-        bestseller: false
-    },
-    {
-        _id: "aaaak",
-        name: "Men Round Neck T-shirt",
-        description: "A lightweight, usually knitted, pullover shirt, close-fitting and with a round neckline and short sleeves, worn as an undershirt or outer garment.",
-        price: 120,
-        image: [p_imgDefault],
-        category: "Men",
-        subCategory: "Cap",
-        sizes: ["S", "M", "L"],
-        date: 1716623345448,
-        bestseller: false
-    },
-    {
-        _id: "aaaal",
-        name: "Men Round Neck T-shirt",
-        description: "A lightweight, usually knitted, pullover shirt, close-fitting and with a round neckline and short sleeves, worn as an undershirt or outer garment.",
-        price: 150,
-        image: [p_imgDefault],
-        category: "Men",
-        subCategory: "Cap",
-        sizes: ["S", "M", "L", "XL"],
-        date: 1716624445448,
-        bestseller: false
-    },
-    {
-        _id: "aaaam",
-        name: "Women Round Neck Top",
-        description: "A lightweight, usually knitted, pullover shirt, close-fitting and with a round neckline and short sleeves, worn as an undershirt or outer garment.",
-        price: 130,
-        image: [p_imgDefault],
-        category: "Women",
-        subCategory: "Cap",
-        sizes: ["S", "M", "L", "XL"],
-        date: 1716625545448,
-        bestseller: false
-    },
-    {
-        _id: "aaaan",
-        name: "Boy Round Neck T-shirt",
-        description: "A lightweight, usually knitted, pullover shirt, close-fitting and with a round neckline and short sleeves, worn as an undershirt or outer garment.",
-        price: 160,
-        image: [p_imgDefault],
-        category: "Kids",
-        subCategory: "Cap",
-        sizes: ["S", "M", "L", "XL"],
-        date: 1716626645448,
-        bestseller: false
-    },
-    {
-        _id: "aaaao",
-        name: "Men Tapered Fit Trousers",
-        description: "A lightweight, usually knitted, pullover shirt, close-fitting and with a round neckline and short sleeves, worn as an undershirt or outer garment.",
-        price: 140,
-        image: [p_imgDefault],
-        category: "Men",
-        subCategory: "Shoes",
-        sizes: ["S", "M", "L", "XL"],
-        date: 1716627745448,
-        bestseller: false
-    },
-    {
-        _id: "aaaap",
-        name: "Girls Round Neck Top",
-        description: "A lightweight, usually knitted, pullover shirt, close-fitting and with a round neckline and short sleeves, worn as an undershirt or outer garment.",
-        price: 170,
-        image: [p_imgDefault],
-        category: "Kids",
-        subCategory: "Cap",
-        sizes: ["S", "M", "L", "XL"],
-        date: 1716628845448,
-        bestseller: false
-    },
-    {
-        _id: "aaaaq",
-        name: "Men Tapered Fit Trousers",
-        description: "A lightweight, usually knitted, pullover shirt, close-fitting and with a round neckline and short sleeves, worn as an undershirt or outer garment.",
-        price: 150,
-        image: [p_imgDefault],
-        category: "Men",
-        subCategory: "Shoes",
-        sizes: ["S", "M", "L", "XL"],
-        date: 1716629945448,
-        bestseller: false
-    },
-    {
-        _id: "aaaar",
-        name: "Boy Round Neck T-shirt",
-        description: "A lightweight, usually knitted, pullover shirt, close-fitting and with a round neckline and short sleeves, worn as an undershirt or outer garment.",
-        price: 180,
-        image: [p_imgDefault],
-        category: "Kids",
-        subCategory: "Cap",
-        sizes: ["S", "M", "L", "XL"],
-        date: 1716631045448,
-        bestseller: false
-    },
-    {
-        _id: "aaaas",
-        name: "Boy Round Neck T-shirt",
-        description: "A lightweight, usually knitted, pullover shirt, close-fitting and with a round neckline and short sleeves, worn as an undershirt or outer garment.",
-        price: 160,
-        image: [p_imgDefault],
-        category: "Kids",
-        subCategory: "Cap",
-        sizes: ["S", "M", "L", "XL"],
-        date: 1716632145448,
-        bestseller: false
-    },
-    {
-        _id: "aaaat",
-        name: "Women Palazzo Pants Belt",
-        description: "A lightweight, usually knitted, pullover shirt, close-fitting and with a round neckline and short sleeves, worn as an undershirt or outer garment.",
-        price: 190,
-        image: [p_imgDefault],
-        category: "Women",
-        subCategory: "Shoes",
-        sizes: ["S", "M", "L", "XL"],
-        date: 1716633245448,
-        bestseller: false
-    },
-    {
-        _id: "aaaau",
-        name: "Women Zip-Front Jacket",
-        description: "A lightweight, usually knitted, pullover shirt, close-fitting and with a round neckline and short sleeves, worn as an undershirt or outer garment.",
-        price: 170,
-        image: [p_imgDefault],
-        category: "Women",
-        subCategory: "Clothing",
-        sizes: ["S", "M", "L", "XL"],
-        date: 1716634345448,
-        bestseller: false
-    },
-    {
-        _id: "aaaav",
-        name: "Women Palazzo Pants Belt",
-        description: "A lightweight, usually knitted, pullover shirt, close-fitting and with a round neckline and short sleeves, worn as an undershirt or outer garment.",
-        price: 200,
-        image: [p_imgDefault],
-        category: "Women",
-        subCategory: "Shoes",
-        sizes: ["S", "M", "L", "XL"],
-        date: 1716635445448,
-        bestseller: false
-    },
-    {
-        _id: "aaaaw",
-        name: "Boy Round Neck T-shirt",
-        description: "A lightweight, usually knitted, pullover shirt, close-fitting and with a round neckline and short sleeves, worn as an undershirt or outer garment.",
-        price: 180,
-        image: [p_imgDefault],
-        category: "Kids",
-        subCategory: "Cap",
-        sizes: ["S", "M", "L", "XL"],
-        date: 1716636545448,
-        bestseller: false
-    },
-    {
-        _id: "aaaax",
-        name: "Boy Round Neck T-shirt",
-        description: "A lightweight, usually knitted, pullover shirt, close-fitting and with a round neckline and short sleeves, worn as an undershirt or outer garment.",
-        price: 210,
-        image: [p_imgDefault],
-        category: "Kids",
-        subCategory: "Cap",
-        sizes: ["S", "M", "L", "XL"],
-        date: 1716637645448,
-        bestseller: false
-    },
-    {
-        _id: "aaaay",
-        name: "Girls Round Neck Top",
-        description: "A lightweight, usually knitted, pullover shirt, close-fitting and with a round neckline and short sleeves, worn as an undershirt or outer garment.",
-        price: 190,
-        image: [p_imgDefault],
-        category: "Kids",
-        subCategory: "Cap",
-        sizes: ["S", "M", "L", "XL"],
-        date: 1716638745448,
-        bestseller: false
-    },
-    {
-        _id: "aaaaz",
-        name: "Women Zip-Front Jacket",
-        description: "A lightweight, usually knitted, pullover shirt, close-fitting and with a round neckline and short sleeves, worn as an undershirt or outer garment.",
-        price: 220,
-        image: [p_imgDefault],
-        category: "Women",
-        subCategory: "Clothing",
-        sizes: ["S", "M", "L", "XL"],
-        date: 1716639845448,
-        bestseller: false
-    },
-    {
-        _id: "aaaba",
-        name: "Girls Round Neck Top",
-        description: "A lightweight, usually knitted, pullover shirt, close-fitting and with a round neckline and short sleeves, worn as an undershirt or outer garment.",
-        price: 200,
-        image: [p_imgDefault],
-        category: "Kids",
-        subCategory: "Cap",
-        sizes: ["S", "M", "L", "XL"],
-        date: 1716640945448,
-        bestseller: false
-    },
-    {
-        _id: "aaabb",
-        name: "Men Slim Fit Jacket",
-        description: "A lightweight, usually knitted, pullover shirt, close-fitting and with a round neckline and short sleeves, worn as an undershirt or outer garment.",
-        price: 230,
-        image: [p_imgDefault],
-        category: "Men",
-        subCategory: "Clothing",
-        sizes: ["S", "M", "L", "XL"],
-        date: 1716642045448,
-        bestseller: false
-    },
-    {
-        _id: "aaabc",
-        name: "Women Round Neck Top",
-        description: "A lightweight, usually knitted, pullover shirt, close-fitting and with a round neckline and short sleeves, worn as an undershirt or outer garment.",
-        price: 210,
-        image: [p_imgDefault],
-        category: "Women",
-        subCategory: "Cap",
-        sizes: ["S", "M", "L", "XL"],
-        date: 1716643145448,
-        bestseller: false
-    },
-    {
-        _id: "aaabd",
-        name: "Girls Round Neck Top",
-        description: "A lightweight, usually knitted, pullover shirt, close-fitting and with a round neckline and short sleeves, worn as an undershirt or outer garment.",
-        price: 240,
-        image: [p_imgDefault],
-        category: "Kids",
-        subCategory: "Cap",
-        sizes: ["S", "M", "L", "XL"],
-        date: 1716644245448,
-        bestseller: false
-    },
-    {
-        _id: "aaabe",
-        name: "Men Round Neck T-shirt",
-        description: "A lightweight, usually knitted, pullover shirt, close-fitting and with a round neckline and short sleeves, worn as an undershirt or outer garment.",
-        price: 220,
-        image: [p_imgDefault],
-        category: "Men",
-        subCategory: "Cap",
-        sizes: ["S", "M", "L", "XL"],
-        date: 1716645345448,
-        bestseller: false
-    },
-    {
-        _id: "aaabf",
-        name: "Men Round Neck T-shirt",
-        description: "A lightweight, usually knitted, pullover shirt, close-fitting and with a round neckline and short sleeves, worn as an undershirt or outer garment.",
-        price: 250,
-        image: [p_imgDefault],
-        category: "Men",
-        subCategory: "Cap",
-        sizes: ["S", "M", "L", "XL"],
-        date: 1716646445448,
-        bestseller: false
-    },
-    {
-        _id: "aaabg",
-        name: "Girls Round Neck Top",
-        description: "A lightweight, usually knitted, pullover shirt, close-fitting and with a round neckline and short sleeves, worn as an undershirt or outer garment.",
-        price: 230,
-        image: [p_imgDefault],
-        category: "Kids",
-        subCategory: "Cap",
-        sizes: ["S", "M", "L", "XL"],
-        date: 1716647545448,
-        bestseller: false
-    },
-    {
-        _id: "aaabh",
-        name: "Women Round Neck Top",
-        description: "A lightweight, usually knitted, pullover shirt, close-fitting and with a round neckline and short sleeves, worn as an undershirt or outer garment.",
-        price: 260,
-        image: [p_imgDefault],
-        category: "Women",
-        subCategory: "Cap",
-        sizes: ["S", "M", "L", "XL"],
-        date: 1716648645448,
-        bestseller: false
-    },
-    {
-        _id: "aaabi",
-        name: "Women Zip-Front Jacket",
-        description: "A lightweight, usually knitted, pullover shirt, close-fitting and with a round neckline and short sleeves, worn as an undershirt or outer garment.",
-        price: 240,
-        image: [p_imgDefault],
-        category: "Women",
-        subCategory: "Clothing",
-        sizes: ["S", "M", "L", "XL"],
-        date: 1716649745448,
-        bestseller: false
-    },
-    {
-        _id: "aaabj",
-        name: "Women Zip-Front Jacket",
-        description: "A lightweight, usually knitted, pullover shirt, close-fitting and with a round neckline and short sleeves, worn as an undershirt or outer garment.",
-        price: 270,
-        image: [p_imgDefault],
-        category: "Women",
-        subCategory: "Clothing",
-        sizes: ["S", "M", "L", "XL"],
-        date: 1716650845448,
-        bestseller: false
-    },
-    {
-        _id: "aaabk",
-        name: "Women Round Neck Top",
-        description: "A lightweight, usually knitted, pullover shirt, close-fitting and with a round neckline and short sleeves, worn as an undershirt or outer garment.",
-        price: 250,
-        image: [p_imgDefault],
-        category: "Women",
-        subCategory: "Cap",
-        sizes: ["S", "M", "L", "XL"],
-        date: 1716651945448,
-        bestseller: false
-    },
-    {
-        _id: "aaabl",
-        name: "Men Round Neck T-shirt",
-        description: "A lightweight, usually knitted, pullover shirt, close-fitting and with a round neckline and short sleeves, worn as an undershirt or outer garment.",
-        price: 280,
-        image: [p_imgDefault],
-        category: "Men",
-        subCategory: "Cap",
-        sizes: ["S", "M", "L", "XL"],
-        date: 1716653045448,
-        bestseller: false
-    },
-    {
-        _id: "aaabm",
-        name: "Men Printed Plain Shirt",
-        description: "A lightweight, usually knitted, pullover shirt, close-fitting and with a round neckline and short sleeves, worn as an undershirt or outer garment.",
-        price: 260,
-        image: [p_imgDefault],
-        category: "Men",
-        subCategory: "Cap",
-        sizes: ["S", "M", "L", "XL"],
-        date: 1716654145448,
-        bestseller: false
-    },
-    {
-        _id: "aaabn",
-        name: "Men Slim Fit Jacket",
-        description: "A lightweight, usually knitted, pullover shirt, close-fitting and with a round neckline and short sleeves, worn as an undershirt or outer garment.",
-        price: 290,
-        image: [p_imgDefault],
-        category: "Men",
-        subCategory: "Clothing",
-        sizes: ["S", "M", "L", "XL"],
-        date: 1716655245448,
-        bestseller: false
-    },
-    {
-        _id: "aaabo",
-        name: "Men Round Neck T-shirt",
-        description: "A lightweight, usually knitted, pullover shirt, close-fitting and with a round neckline and short sleeves, worn as an undershirt or outer garment.",
-        price: 270,
-        image: [p_imgDefault],
-        category: "Men",
-        subCategory: "Cap",
-        sizes: ["S", "M", "L", "XL"],
-        date: 1716656345448,
-        bestseller: false
-    },
-    {
-        _id: "aaabp",
-        name: "Boy Round Neck T-shirt",
-        description: "A lightweight, usually knitted, pullover shirt, close-fitting and with a round neckline and short sleeves, worn as an undershirt or outer garment.",
+        _id: "3",
+        name: "Kids' Graphic Tee",
+        description: "Fun and colorful graphic t-shirt for kids, made from soft cotton for maximum comfort. Available in various playful designs.",
         price: 300,
-        image: [p_imgDefault],
+        image: [p_imgDefault, p_imgDefault_1],
         category: "Kids",
-        subCategory: "Cap",
-        sizes: ["S", "M", "L", "XL"],
-        date: 1716657445448,
+        subCategory: "Clothing",
+        sizes: ["S"],
+        date: 1718360200000,
         bestseller: false
     },
     {
-        _id: "aaabq",
-        name: "Kid Tapered Slim Trouser",
-        description: "A lightweight, usually knitted, pullover shirt, close-fitting and with a round neckline and short sleeves, worn as an undershirt or outer garment.",
-        price: 280,
-        image: [p_imgDefault],
-        category: "Kids",
-        subCategory: "Shoes",
-        sizes: ["S", "M", "L", "XL"],
-        date: 1716658545448,
-        bestseller: false
-    },
-    {
-        _id: "aaabr",
-        name: "Women Zip-Front Jacket",
-        description: "A lightweight, usually knitted, pullover shirt, close-fitting and with a round neckline and short sleeves, worn as an undershirt or outer garment.",
-        price: 310,
-        image: [p_imgDefault],
+        _id: "4",
+        name: "Women's Elegant Dress",
+        description: "A beautiful and elegant dress for women, suitable for special occasions or evening wear. Flattering silhouette.",
+        price: 1800,
+        image: [p_imgDefault, p_imgDefault_1],
         category: "Women",
         subCategory: "Clothing",
-        sizes: ["S", "M", "L", "XL"],
-        date: 1716659645448,
-        bestseller: false
+        sizes: ["M"],
+        date: 1718360300000,
+        bestseller: true
     },
     {
-        _id: "aaabs",
-        name: "Men Slim Fit Jacket",
-        description: "A lightweight, usually knitted, pullover shirt, close-fitting and with a round neckline and short sleeves, worn as an undershirt or outer garment.",
-        price: 290,
-        image: [p_imgDefault],
+        _id: "5",
+        name: "Men's Running Shoes",
+        description: "High-performance running shoes for men, offering excellent cushioning and support. Designed for optimal performance.",
+        price: 2500,
+        image: [p_imgDefault, p_imgDefault_1, p_imgDefault_2],
         category: "Men",
-        subCategory: "Clothing",
-        sizes: ["S", "M", "L", "XL"],
-        date: 1716660745448,
-        bestseller: false
-    },
-    {
-        _id: "aaabt",
-        name: "Men Slim Fit Jacket",
-        description: "A lightweight, usually knitted, pullover shirt, close-fitting and with a round neckline and short sleeves, worn as an undershirt or outer garment.",
-        price: 320,
-        image: [p_imgDefault],
-        category: "Men",
-        subCategory: "Clothing",
-        sizes: ["S", "M", "L", "XL"],
-        date: 1716661845448,
-        bestseller: false
-    },
-    {
-        _id: "aaabu",
-        name: "Kid Tapered Slim Trouser",
-        description: "A lightweight, usually knitted, pullover shirt, close-fitting and with a round neckline and short sleeves, worn as an undershirt or outer garment.",
-        price: 300,
-        image: [p_imgDefault],
-        category: "Kids",
         subCategory: "Shoes",
-        sizes: ["S", "M", "L", "XL"],
-        date: 1716662945448,
+        sizes: ["L", "XL"],
+        date: 1718360400000,
         bestseller: false
     },
     {
-        _id: "aaabv",
-        name: "Men Slim Fit Jacket",
-        description: "A lightweight, usually knitted, pullover shirt, close-fitting and with a round neckline and short sleeves, worn as an undershirt or outer garment.",
-        price: 330,
-        image: [p_imgDefault],
-        category: "Men",
+        _id: "6",
+        name: "Kids' Winter Jacket",
+        description: "Warm and cozy winter jacket for kids, perfect for cold weather. Features a durable outer shell and soft inner lining.",
+        price: 950,
+        image: [p_imgDefault, p_imgDefault_1],
+        category: "Kids",
         subCategory: "Clothing",
-        sizes: ["S", "M", "L", "XL"],
-        date: 1716664045448,
+        sizes: ["M"],
+        date: 1718360500000,
         bestseller: false
     },
     {
-        _id: "aaabw",
-        name: "Kid Tapered Slim Trouser",
-        description: "A lightweight, usually knitted, pullover shirt, close-fitting and with a round neckline and short sleeves, worn as an undershirt or outer garment.",
-        price: 310,
-        image: [p_imgDefault],
-        category: "Kids",
-        subCategory: "Shoes",
-        sizes: ["S", "M", "L", "XL"],
-        date: 1716665145448,
-        bestseller: false
-    },
-    {
-        _id: "aaabx",
-        name: "Kid Tapered Slim Trouser",
-        description: "A lightweight, usually knitted, pullover shirt, close-fitting and with a round neckline and short sleeves, worn as an undershirt or outer garment.",
-        price: 340,
-        image: [p_imgDefault],
-        category: "Kids",
-        subCategory: "Shoes",
-        sizes: ["S", "M", "L", "XL"],
-        date: 1716666245448, bestseller: false
-    },
-    {
-        _id: "aaaby",
-        name: "Women Zip-Front Jacket",
-        description: "A lightweight, usually knitted, pullover shirt, close-fitting and with a round neckline and short sleeves, worn as an undershirt or outer garment.",
-        price: 320,
-        image: [p_imgDefault],
+        _id: "7",
+        name: "Women's Denim Jeans",
+        description: "Classic denim jeans for women, versatile and comfortable for everyday wear. Available in various washes and fits.",
+        price: 800,
+        image: [p_imgDefault, p_imgDefault_1, p_imgDefault_2, p_imgDefault_3],
         category: "Women",
         subCategory: "Clothing",
-        sizes: ["S", "M", "L", "XL"],
-        date: 1716667345448,
+        sizes: ["S", "M", "L"],
+        date: 1718360600000,
+        bestseller: true
+    },
+    {
+        _id: "8",
+        name: "Men's Formal Shirt",
+        description: "A sophisticated formal shirt for men, ideal for office wear or special events. Made from premium quality fabric.",
+        price: 700,
+        image: [p_imgDefault, p_imgDefault_1],
+        category: "Men",
+        subCategory: "Clothing",
+        sizes: ["M", "L", "XL"],
+        date: 1718360700000,
         bestseller: false
     },
     {
-        _id: "aaabz",
-        name: "Men Slim Fit Jacket",
-        description: "A lightweight, usually knitted, pullover shirt, close-fitting and with a round neckline and short sleeves, worn as an undershirt or outer garment.",
+        _id: "9",
+        name: "Kids' Play Shoes",
+        description: "Durable and comfortable shoes for active kids, designed for playground adventures. Easy to put on and take off.",
+        price: 600,
+        image: [p_imgDefault, p_imgDefault_1],
+        category: "Kids",
+        subCategory: "Shoes",
+        sizes: ["S"],
+        date: 1718360800000,
+        bestseller: false
+    },
+    {
+        _id: "10",
+        name: "Women's Dryfit Shorts",
+        description: "Lightweight and breathable athletic shorts for women, perfect for workouts or casual summer days.",
+        price: 400,
+        image: [p_imgDefault, p_imgDefault_1, p_imgDefault_2],
+        category: "Women",
+        subCategory: "Clothing",
+        sizes: ["S", "M"],
+        date: 1718360900000,
+        bestseller: false
+    },
+    {
+        _id: "11",
+        name: "Men's Casual Cap",
+        description: "A versatile casual cap for men, suitable for everyday wear. Adjustable strap for a comfortable fit.",
         price: 350,
         image: [p_imgDefault],
         category: "Men",
+        subCategory: "Cap",
+        sizes: ["M", "L"],
+        date: 1718361000000,
+        bestseller: false
+    },
+    {
+        _id: "12",
+        name: "Kids' Daily Sandals",
+        description: "Comfortable and open-toe sandals for kids, perfect for warm weather. Easy to clean and durable for active play.",
+        price: 450,
+        image: [p_imgDefault, p_imgDefault_1, p_imgDefault_2, p_imgDefault_3],
+        category: "Kids",
+        subCategory: "Shoes",
+        sizes: ["S"],
+        date: 1718361100000,
+        bestseller: false
+    },
+    {
+        _id: "13",
+        name: "Women's Knit Sweater",
+        description: "A cozy and stylish knit sweater for women, perfect for cooler evenings. Soft and comfortable fabric.",
+        price: 900,
+        image: [p_imgDefault, p_imgDefault_1],
+        category: "Women",
         subCategory: "Clothing",
-        sizes: ["S", "M", "L", "XL"],
-        date: 1716668445448,
+        sizes: ["M", "L"],
+        date: 1718361200000,
+        bestseller: false
+    },
+    {
+        _id: "14",
+        name: "Men's Leather Boots",
+        description: "Rugged and stylish leather boots for men, offering durability and comfort. Ideal for outdoor adventures or casual wear.",
+        price: 2000,
+        image: [p_imgDefault, p_imgDefault_1],
+        category: "Men",
+        subCategory: "Shoes",
+        sizes: ["L", "XL"],
+        date: 1718361300000,
+        bestseller: true
+    },
+    {
+        _id: "15",
+        name: "Kids' Beanie Hat",
+        description: "A cute and warm beanie hat for kids, perfect for keeping them cozy in chilly weather. Soft and stretchable material.",
+        price: 250,
+        image: [p_imgDefault, p_imgDefault_1],
+        category: "Kids",
+        subCategory: "Cap",
+        sizes: ["S"],
+        date: 1718361400000,
         bestseller: false
     }
-
 ]
