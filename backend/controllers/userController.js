@@ -80,12 +80,42 @@ const userSignUp = async (req, res) => {
 
 // Route For Admin Login
 const adminSignIn = async (req, res) => {
+    try {
+        // Getting User Input
+        const { email, password } = req.body;
 
+        // Validating Admin Credentials
+        if (email === process.env.ADMIN_EMAIL && password === process.env.ADMIN_PASSWORD) {
+            const token = jwt.sign(email+password, process.env.JWT_SECRET);
+            res.json({success: true, token});
+        } else {
+            res.json({success: false, message: "Invalid Credentials"});
+        }
+    } catch (error) {
+        // Logging Error
+        console.log(error);
+        res.json({success: false, message: error.message});
+    }
 }
 
 // Route For Staff Login
 const staffSignIn = async (req, res) => {
+    try {
+        // Getting User Input
+        const { email, password } = req.body;
 
+        // Validating Admin Credentials
+        if (email === process.env.ADMIN_EMAIL && password === process.env.STAFF_PASSWORD) {
+            const token = jwt.sign(email+password, process.env.JWT_SECRET);
+            res.json({success: true, token});
+        } else {
+            res.json({success: false, message: "Invalid Credentials"});
+        }
+    } catch (error) {
+        // Logging Error
+        console.log(error);
+        res.json({success: false, message: error.message});
+    }
 }
 
 export { userSignIn, userSignUp, adminSignIn, staffSignIn };
