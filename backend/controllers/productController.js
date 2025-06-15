@@ -32,9 +32,25 @@ const productSingle = async (req, res) => {
 // Product Remove Function
 const productRemove = async (req, res) => {
     try {
-        // Deleting Product By Id
+        // Getting Product By Id
         const { productId } = req.body;
-        const product = await productModel.findByIdAndDelete(productId);
+        const product = await productModel.findById(productId);
+
+        // Deleting Images Of The Product
+        for (const imageUrl of product.image) {
+            // Extracting ImageID From ImageURL
+            const filename = imageUrl.substring(imageUrl.lastIndexOf('/') + 1);
+            const publicId = filename.split('.')[0];
+            
+            // Deleting Images From Cloudinary
+            await cloudinary.uploader.destroy(publicId, { resource_type: "image" });
+
+            // Logging Deleted Images
+            console.log("Deleted Image: " + filename);
+        }
+
+        // Deleting The Product
+        await productModel.findByIdAndDelete(productId);
         res.json({success: true, product});
     } catch (error) {
         // Logging Error
