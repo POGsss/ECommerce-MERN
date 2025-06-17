@@ -6,7 +6,7 @@ import OurPolicy from "../components/OurPolicy";
 
 const Home = () => {
   return (
-    <div className="min-h-[calc(100vh-475px)] max-w-[1280px] m-auto">
+    <div className="max-w-[1280px] m-auto">
         <Hero />
         <BestSeller />
         <LatestCollection />

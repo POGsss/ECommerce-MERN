@@ -15,7 +15,7 @@ import SearchBar from "./components/SearchBar.jsx";
 
 const App = () => {
   return (
-    <div className="px-4 sm:px-[2vw] md:px-[4vw] lg:px-[8vw]">
+    <div className="flex flex-col min-h-screen px-4 sm:px-[2vw] md:px-[4vw] lg:px-[8vw]">
       <ToastContainer
         position="top-right"
         autoClose={3000}
@@ -31,17 +31,19 @@ const App = () => {
 
       <Navbar />
       <SearchBar />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/collection" element={<Collection />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="/product/:productId" element={<Product />} />
-        <Route path="/cart" element={<Cart />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/place-order" element={<PlaceOrder />} />
-        <Route path="/orders" element={<Orders />} />
-      </Routes>
+      <main className="flex-grow">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/collection" element={<Collection />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/product/:productId" element={<Product />} />
+          <Route path="/cart" element={<Cart />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/place-order" element={<PlaceOrder />} />
+          <Route path="/orders" element={<Orders />} />
+        </Routes>
+      </main>
       <Footer />
     </div>
   )

@@ -4,7 +4,7 @@ import Title from "../components/Title";
 
 const Contact = () => {
   return (
-    <div className="min-h-[calc(100vh-475px)] max-w-[1280px] m-auto my-10">
+    <div className="max-w-[1280px] m-auto my-10">
       <div className="text-center text-2xl">
         <Title text1={"CONTACT"} text2={"US"} />
       </div>

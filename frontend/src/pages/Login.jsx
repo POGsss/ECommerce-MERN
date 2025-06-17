@@ -9,7 +9,7 @@ const Login = () => {
   }
 
   return (
-    <form onSubmit={onSubmitHandler} className="flex flex-col items-center min-h-[calc(100vh-475px)] max-w-[640px] mx-auto my-10 gap-4">
+    <form onSubmit={onSubmitHandler} className="flex flex-col items-center max-w-[640px] mx-auto my-10 gap-4">
       <div className="font-subtitle text-2xl pb-4">
         <Title text1={currentState} text2={""} />
       </div>

@@ -20,7 +20,7 @@ const App = () => {
   }, [token]);
 
   return (
-    <div className="px-4 sm:px-[2vw] md:px-[4vw] lg:px-[8vw]">
+    <div className="flex flex-col min-h-screen px-4 sm:px-[2vw] md:px-[4vw] lg:px-[8vw]">
 
       <ToastContainer
         position="top-right"
@@ -37,7 +37,7 @@ const App = () => {
 
       { token === "" ? <Login setToken={setToken} /> : <>
         <Navbar setToken={setToken} />
-        <div className="flex w-full h-[100%]">
+        <div className="flex-grow flex w-full">
           <Sidebar />
           <div className="w-[calc(100%-75px)] md:w-[calc(100%-250px)] ml-4 md:ml-8 my-8 text-gray-500 text-base">
             <Routes>
