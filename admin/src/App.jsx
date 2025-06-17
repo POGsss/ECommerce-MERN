@@ -1,14 +1,19 @@
+import { Routes, Route } from "react-router-dom";
+import { useState } from "react";
 import Navbar from "./components/Navbar.jsx";
 import Sidebar from "./components/Sidebar.jsx";
 import Footer from "./components/Footer.jsx";
 import Add from "./pages/Add.jsx";
 import List from "./pages/List.jsx";
 import Orders from "./pages/Orders.jsx";
-import { Routes, Route } from "react-router-dom";
+import Login from "../../frontend/src/components/Login.jsx";
 
 const App = () => {
+  const [ token, setToken ] = useState("");
+
   return (
     <div className="px-4 sm:px-[2vw] md:px-[4vw] lg:px-[8vw]">
+      { token === "" ? <Login /> : <>
         <Navbar />
         <div className="flex w-full h-[100%]">
           <Sidebar />
@@ -21,6 +26,7 @@ const App = () => {
           </div>
         </div>
         <Footer />
+      </>}
     </div>
   )
 }

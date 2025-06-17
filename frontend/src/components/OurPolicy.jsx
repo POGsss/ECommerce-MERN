@@ -26,4 +26,4 @@ const OurPolicy = () => {
     )
 }
 
-export default OurPolicy
+export default OurPolicy;
