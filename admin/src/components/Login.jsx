@@ -33,7 +33,7 @@ const Login = ({ setToken }) => {
 		<div className="flex flex-col min-h-screen">
 			<div className="border-b border-black flex items-center justify-between py-5 font-text">
 				<img className="w-36" src={assets.logo} alt="" />
-				<p className="font-text">ADMIN PANEL</p>
+				<p className="font-text text-sm">ADMIN PANEL</p>
 			</div>
 
 			<form onSubmit={onSubmitHandler} className="flex flex-col flex-grow items-center w-full max-w-[640px] mx-auto my-10 gap-4">

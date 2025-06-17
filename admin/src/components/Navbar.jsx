@@ -7,7 +7,7 @@ const Navbar = ({ setToken }) => {
 			<img className="w-36" src={assets.logo} alt="" />
 
 			{/* Menu */}
-			<p className="font-text">ADMIN PANEL</p>
+			<p className="font-text text-sm">ADMIN PANEL</p>
 
 			{/* Icons */}
 			<button onClick={() => setToken("")} className="flex items-center gap-4 font-text md:text-base px-4 sm:px-8 py-4 bg-black text-white cursor-pointer">
