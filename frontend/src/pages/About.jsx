@@ -1,10 +1,10 @@
-import { assets } from "../assets/assets"
-import NewsLetterBox from "../components/NewsLetterBox"
-import Title from "../components/Title"
+import { assets } from "../assets/assets";
+import NewsLetterBox from "../components/NewsLetterBox";
+import Title from "../components/Title";
 
 const About = () => {
   return (
-    <div className="max-w-[1280px] m-auto my-10">
+    <div className="min-h-[calc(100vh-475px)] max-w-[1280px] m-auto my-10">
       <div className="text-2xl text-center">
         <Title text1={"ABOUT"} text2={"US"} />
       </div>

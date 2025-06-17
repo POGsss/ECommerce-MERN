@@ -1,10 +1,10 @@
-import { assets } from "../assets/assets"
-import NewsLetterBox from "../components/NewsLetterBox"
-import Title from "../components/Title"
+import { assets } from "../assets/assets";
+import NewsLetterBox from "../components/NewsLetterBox";
+import Title from "../components/Title";
 
 const Contact = () => {
   return (
-    <div className="max-w-[1280px] m-auto my-10">
+    <div className="min-h-[calc(100vh-475px)] max-w-[1280px] m-auto my-10">
       <div className="text-center text-2xl">
         <Title text1={"CONTACT"} text2={"US"} />
       </div>
@@ -18,7 +18,6 @@ const Contact = () => {
         </div>
         <img className="w-full sm:max-w-full md:max-w-[450px]" src={assets.contact_img} alt="" />
       </div>
-
       <NewsLetterBox />
     </div>
   )

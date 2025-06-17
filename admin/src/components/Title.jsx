@@ -1,5 +1,6 @@
 
-const Title = () => {
+
+const Title = ({ text1, text2 }) => {
     return (
         <div className="flex justify-center items-center mb-3">
 			<div className="flex flex-col gap-2 items-center">

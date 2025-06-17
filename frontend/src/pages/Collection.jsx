@@ -1,5 +1,5 @@
-import { useContext, useState, useEffect, use } from "react"
-import { ShopContext } from "../context/ShopContext.jsx"
+import { useContext, useState, useEffect, use } from "react";
+import { ShopContext } from "../context/ShopContext.jsx";
 import { assets } from "../assets/assets.js";
 import Title from "../components/Title.jsx";
 import ProductItem from "../components/ProductItem.jsx";
@@ -74,7 +74,7 @@ const Collection = () => {
 	}, [sortType]);
 
 	return (
-		<div className="max-w-[1280px] m-auto flex flex-col sm:flex-row gap-1 sm:gap-10 my-10">
+		<div className="min-h-[calc(100vh-475px)] max-w-[1280px] m-auto flex flex-col sm:flex-row gap-1 sm:gap-10 my-10">
 			{/* Left Side */}
 			<div className="min-w-[200px] md:min-w-[250px]">
 			<p onClick={() => setShowFilter(!showFilter)} className="my-2 text-xl flex items-center cursor-pointer gap-2 font-subtitle">

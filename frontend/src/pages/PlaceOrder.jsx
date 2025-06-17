@@ -1,16 +1,15 @@
-import { useState } from "react"
-import { assets } from "../assets/assets"
-import { useContext } from "react"
-import { ShopContext } from "../context/ShopContext"
-import CartTotal from "../components/CartTotal"
-import Title from "../components/Title"
+import { useState } from "react";
+import { useContext } from "react";
+import { ShopContext } from "../context/ShopContext";
+import CartTotal from "../components/CartTotal";
+import Title from "../components/Title";
 
 const PlaceOrder = () => {
   const { navigate } = useContext(ShopContext);
   const [ method, setMethod ] = useState("cod");
 
   return (
-    <div className="max-w-[1280px] mx-auto my-10">
+    <div className="min-h-[calc(100vh-475px)] max-w-[1280px] mx-auto my-10">
       <div className="font-subtitle text-2xl pb-4">
         <Title text1={"DELIVERY"} text2={"DETAILS"} />
       </div>
