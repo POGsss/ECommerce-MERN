@@ -42,7 +42,7 @@ const Login = ({ setToken }) => {
 				</div>
 
 				<input onChange={(e) => setEmail(e.target.value)} value={email} type="text" className="w-full px-4 py-2 border border-black" placeholder="Email" required />
-				<input onChange={(e) => setPassword(e.target.value)} value={password} type="text" className="w-full px-4 py-2 border border-black" placeholder="Password" required />
+				<input onChange={(e) => setPassword(e.target.value)} value={password} type="password" className="w-full px-4 py-2 border border-black" placeholder="Password" required />
 
 				<div className="w-full flex flex-col items-center gap-2 mt-4">
 					<button type="submit" className="w-full font-text md:text-base px-8 py-4 bg-black text-white cursor-pointer">SIGN IN</button>
