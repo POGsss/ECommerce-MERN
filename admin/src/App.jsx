@@ -37,9 +37,9 @@ const App = () => {
 
       { token === "" ? <Login setToken={setToken} /> : <>
         <Navbar setToken={setToken} />
-        <div className="flex-grow flex w-full">
+        <div className="flex-grow flex w-full max-w-[1280px] mx-auto">
           <Sidebar />
-          <div className="w-[calc(100%-75px)] md:w-[calc(100%-250px)] ml-4 md:ml-8 my-8 text-gray-500 text-base">
+          <div className="w-[calc(100%-75px)] md:w-[calc(100%-250px)] ml-4 md:ml-8 my-8 text-base">
             <Routes>
               <Route path="/add" element={<Add token={token} />} />
               <Route path="/list" element={<List token={token} />} />

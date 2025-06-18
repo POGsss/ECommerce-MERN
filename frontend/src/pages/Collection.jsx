@@ -117,11 +117,11 @@ const Collection = () => {
 
 			{/* Right Side */}
 			<div className="w-full flex-2">
-				<div className="flex flex-col sm:flex-row justify-between text-2xl mb-4">
+				<div className="flex flex-col sm:flex-row justify-between items-stretch sm:items-center text-2xl mb-4">
 					<Title text1={"ALL"} text2={"COLLECTIONS"} />
 					
 					{/* Product Sort */}
-					<select className="border border-black text-sm px-2 py-2" onChange={(e) => setSortType(e.target.value)}>
+					<select className="border border-black text-sm px-4 py-2 pr-10" onChange={(e) => setSortType(e.target.value)}>
 						<option value="relevant">Relevant</option>
 						<option value="low-high">Low-High</option>
 						<option value="high-low">High-Low</option>
