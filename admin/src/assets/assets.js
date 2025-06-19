@@ -6,6 +6,7 @@ import upload_area from "./upload_area.png";
 import parcel_icon from "./parcel_icon.png";
 import signout_icon from "./signout_icon.png";
 import bin_icon from "./bin_icon.png";
+import cross_icon from "./cross_icon.png";
 
 export const assets = {
     logo,
@@ -15,6 +16,7 @@ export const assets = {
     upload_area,
     parcel_icon,
     signout_icon,
-    bin_icon
+    bin_icon,
+    cross_icon,
 }
 

@@ -3,9 +3,12 @@ import { useEffect, useState } from "react";
 import { backendUrl, currency } from "../App";
 import { toast } from "react-toastify";
 import { assets } from "../assets/assets";
+import Dialog from "../components/Dialog";
 
 const List = ({ token }) => {
   const [ list, setList ] = useState([]);
+  const [showDialog, setShowDialog] = useState(false);
+  const [productToDelete, setProductToDelete] = useState(null);
 
   const fetchList = async () => {
     try {
@@ -49,8 +52,33 @@ const List = ({ token }) => {
     fetchList();
   }, []);
 
+  // Dialog Confirmation
+  const handleDeleteClick = (id) => {
+    setProductToDelete(id);
+    setShowDialog(true);
+  };
+
+  const handleCancelDelete = () => {
+    setProductToDelete(null);
+    setShowDialog(false);
+  };
+
+  const handleConfirmDelete = async () => {
+    if (productToDelete) {
+      await removeProduct(productToDelete);
+      setProductToDelete(null);
+      setShowDialog(false);
+    }
+  };
+
   return (
     <div>
+      <Dialog 
+        text={"Are you sure you want to delete this product? This action cannot be undone."}
+        visible={showDialog}
+        onCancel={handleCancelDelete}
+        onConfirm={handleConfirmDelete}
+      />
       <p className="mb-2 font-title text-black">All Product List</p>
       <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-3 lg:flex md:flex-col gap-2">
         {/* List Header */}
@@ -70,7 +98,7 @@ const List = ({ token }) => {
               <p className="">{item.name}</p>
               <p className="">{item.category}</p>
               <p className="">{currency}{item.price}</p>
-              <img onClick={() => removeProduct(item._id)} className="absolute right-2 bottom-2 w-6 p-0 lg:relative lg:right-0 lg:bottom-0 lg:w-full lg:p-[14px] cursor-pointer" src={assets.bin_icon} alt="" />
+              <img onClick={() => handleDeleteClick(item._id)} className="absolute right-2 bottom-2 w-5 p-0 lg:relative lg:right-0 lg:bottom-0 lg:w-full lg:p-[14px] cursor-pointer" src={assets.bin_icon} alt="" />
             </div>
           ))
         }

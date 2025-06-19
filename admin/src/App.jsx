@@ -1,5 +1,5 @@
 import { Routes, Route } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { ToastContainer } from "react-toastify";
 import Navbar from "./components/Navbar.jsx";
 import Sidebar from "./components/Sidebar.jsx";
@@ -8,7 +8,6 @@ import Login from "./components/Login.jsx";
 import Add from "./pages/Add.jsx";
 import List from "./pages/List.jsx";
 import Orders from "./pages/Orders.jsx";
-import { useEffect } from "react";
 
 export const backendUrl = import.meta.env.VITE_BACKEND_URL;
 export const currency = "$";
