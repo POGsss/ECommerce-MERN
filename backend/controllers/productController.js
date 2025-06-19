@@ -7,7 +7,8 @@ const productList = async (req, res) => {
         // Getting All Products Data
         const products = await productModel.find({});
         const productsName = products.map((item) => item.name);
-        res.json({success: true, productsName});
+        console.log(productsName);
+        res.json({success: true, products});
     } catch (error) {
         // Logging Error
         console.log(error);
@@ -51,7 +52,7 @@ const productRemove = async (req, res) => {
 
         // Deleting The Product
         await productModel.findByIdAndDelete(productId);
-        res.json({success: true, product});
+        res.json({success: true, message: "Product Deleted"});
     } catch (error) {
         // Logging Error
         console.log(error);

@@ -11,6 +11,7 @@ import Orders from "./pages/Orders.jsx";
 import { useEffect } from "react";
 
 export const backendUrl = import.meta.env.VITE_BACKEND_URL;
+export const currency = "$";
 
 const App = () => {
   const [ token, setToken ] = useState(localStorage.getItem("token") ? localStorage.getItem("token") : "");
@@ -37,7 +38,7 @@ const App = () => {
 
       { token === "" ? <Login setToken={setToken} /> : <>
         <Navbar setToken={setToken} />
-        <div className="flex-grow flex w-full max-w-[1280px] mx-auto">
+        <div className="flex-grow flex w-full max-w-[1440px] mx-auto">
           <Sidebar />
           <div className="w-[calc(100%-75px)] md:w-[calc(100%-250px)] ml-4 md:ml-8 my-8 text-base">
             <Routes>

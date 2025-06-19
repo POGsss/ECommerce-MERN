@@ -74,7 +74,7 @@ const Collection = () => {
 	}, [sortType]);
 
 	return (
-		<div className="max-w-[1280px] m-auto flex flex-col sm:flex-row gap-1 sm:gap-10 my-10">
+		<div className="max-w-[1440px] m-auto flex flex-col sm:flex-row gap-1 sm:gap-10 my-10">
 			{/* Left Side */}
 			<div className="min-w-[200px] md:min-w-[250px]">
 			<p onClick={() => setShowFilter(!showFilter)} className="my-2 text-xl flex items-center cursor-pointer gap-2 font-subtitle">
