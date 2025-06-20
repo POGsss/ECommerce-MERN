@@ -26,6 +26,7 @@ const Login = ({ setToken }) => {
 			// Logging Error
 			console.log(error);
 			toast(error.message);
+			toast(backendUrl);
 		}
   	}
 
@@ -33,7 +34,8 @@ const Login = ({ setToken }) => {
 		<div className="flex flex-col min-h-screen">
 			<div className="border-b border-black flex items-center justify-between py-5 font-text">
 				<img className="w-36" src={assets.logo} alt="" />
-				<p className="font-text text-sm">ADMIN PANEL</p>
+				<p className="hidden xs:block font-text text-sm">ADMIN PANEL</p>
+				<p className="block xs:hidden font-text text-sm">ADMIN</p>
 			</div>
 
 			<form onSubmit={onSubmitHandler} className="flex flex-col flex-grow items-center w-full max-w-[640px] mx-auto my-10 gap-4">

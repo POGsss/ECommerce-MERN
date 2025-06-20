@@ -8,7 +8,8 @@ import productRouter from "./routes/productRoute.js";
 
 // App Config
 const app = express()
-const port = process.env.PORT || 4000
+const port = process.env.PORT || 4000;
+const host = process.env.HOST || "0.0.0.0";
 connectDB()
 connectCloudinary()
 
@@ -23,6 +24,7 @@ app.use("/api/product", productRouter);
 app.get("/", (req, res) => {
     res.send("API Working")
 })
-app.listen(port, () => {
+app.listen(port, host, () => {
     console.log("Server started on PORT: " + port)
+    console.log("Server started on HOST: " + host)
 })
