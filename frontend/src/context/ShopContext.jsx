@@ -1,18 +1,27 @@
-import { createContext, useEffect, useState } from "react";
-import { products } from "../assets/assets";
+import { products } from "../assets/assets"; // Sample Products Data
+import { createContext, use, useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 export const ShopContext = createContext();
 
 const ShopContextProvider = (props) => {
+    // Variables
     const currency = "₱";
     const deliveryFee = 30;
+
+    // Environment Variables
+    const backendUrl = import.meta.env.VITE_BACKEND_URL;
+    const [products, setProducts] = useState([]);
+
+    // State Variables
     const [search, setSearch] = useState("");
     const [showSearch, setShowSearch] = useState(false);
     const [ cartItems, setCartItems ] = useState({});
     const navigate = useNavigate();
-
+    
+    // Add to Cart Functionality
     const addToCart = async (itemId, size) => {
         if (!size) {
             toast("Please select a product size");
@@ -36,6 +45,7 @@ const ShopContextProvider = (props) => {
         setCartItems(cartData);
     }
 
+    // Get Cart Count Functionality
     const getCartCount = () => {
         let totalCount = 0;
 
@@ -54,6 +64,7 @@ const ShopContextProvider = (props) => {
         return totalCount;
     }
 
+    // Get Cart Amount Functionality
     const getCartAmount = () => {
         let totalAmount = 0;
 
@@ -74,17 +85,38 @@ const ShopContextProvider = (props) => {
         return totalAmount;
     }
 
+    // Update Cart Quantity Functionality
     const updateQuantity = async (itemId, size, quantity) => {
         let cartData = structuredClone(cartItems);
         cartData[itemId][size] = quantity;
         setCartItems(cartData);
     }
 
+    // Fetch Products Data from Backend
+    const getProductsData = async () => {
+        try {
+            const response = await axios.get(backendUrl + "/api/product/list");
+            if (response.data.success) {
+                setProducts(response.data.products);
+            } else {
+                toast("Failed to fetch products");
+            }
+        } catch (error) {
+            console.error("Error fetching products:", error);
+        }
+    }
+
+    // Call Functions On Component Mount
+    useEffect(() => {
+        getProductsData();
+    }, []);
+    
+    // Context Value Variables
     const value = {
         products, currency, deliveryFee, 
         search, setSearch, showSearch, setShowSearch, 
         cartItems, addToCart, getCartCount, updateQuantity,
-        getCartAmount, navigate
+        getCartAmount, navigate, backendUrl
     };
 
     return (

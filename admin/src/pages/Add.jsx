@@ -117,9 +117,9 @@ const Add = ({ token }) => {
         <div>
           <p className="mb-2 font-title text-black">Type</p>
           <select onChange={(e) => setSubCategory(e.target.value)} value={subCategory} className="w-full sm:w-[125px] px-4 py-2 border border-black">
-            <option value="Men">Cap</option>
-            <option value="Women">Shoes</option>
-            <option value="Kids">Clothing</option>
+            <option value="Cap">Cap</option>
+            <option value="Shoes">Shoes</option>
+            <option value="Clothing">Clothing</option>
           </select>
         </div>
         <div>
