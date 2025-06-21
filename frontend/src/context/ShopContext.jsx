@@ -19,6 +19,7 @@ const ShopContextProvider = (props) => {
     const [search, setSearch] = useState("");
     const [showSearch, setShowSearch] = useState(false);
     const [ cartItems, setCartItems ] = useState({});
+    const [ token, setToken ] = useState("");
     const navigate = useNavigate();
     
     // Add to Cart Functionality
@@ -110,13 +111,22 @@ const ShopContextProvider = (props) => {
     useEffect(() => {
         getProductsData();
     }, []);
+
+    // Check for Token in Local Storage
+    useEffect(() => {
+        if (!token && localStorage.getItem("token")) {
+            setToken(localStorage.getItem("token"));
+        } else {
+            setToken("");
+        }
+    }, []);
     
     // Context Value Variables
     const value = {
         products, currency, deliveryFee, 
         search, setSearch, showSearch, setShowSearch, 
-        cartItems, addToCart, getCartCount, updateQuantity,
-        getCartAmount, navigate, backendUrl
+        cartItems, setCartItems, addToCart, getCartCount, updateQuantity,
+        getCartAmount, navigate, backendUrl, token, setToken
     };
 
     return (
