@@ -9,6 +9,8 @@ const List = ({ token }) => {
   const [ list, setList ] = useState([]);
   const [showDialog, setShowDialog] = useState(false);
   const [productToDelete, setProductToDelete] = useState(null);
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 10;
 
   const fetchList = async () => {
     try {
@@ -71,14 +73,22 @@ const List = ({ token }) => {
     }
   };
 
+  // Pagination Logic
+  const totalPages = Math.ceil(list.length / itemsPerPage);
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const paginatedList = list.slice(startIndex, startIndex + itemsPerPage);
+
   return (
     <div>
+      {/* Dialog Component */}
       <Dialog 
         text={"Are you sure you want to delete this product? This action cannot be undone."}
         visible={showDialog}
         onCancel={handleCancelDelete}
         onConfirm={handleConfirmDelete}
       />
+
+      {/* List Header */}
       <p className="mb-2 font-title text-black">All Product List</p>
       <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-3 lg:flex md:flex-col gap-2">
         {/* List Header */}
@@ -89,19 +99,25 @@ const List = ({ token }) => {
           <b className="">Price</b>
           <b className="text-center">Action</b>
         </div>
-
         {/* List Data */}
-        {
-          list.map((item, index) => (
-            <div className="relative grid lg:grid-cols-[100px_5fr_2fr_1fr_50px] items-center gap-2 p-2 border border-black text-sm" key={index}>
-              <img className="w-full border border-black" src={item.image[0]} alt="" />
-              <p className="">{item.name}</p>
-              <p className="">{item.category}</p>
-              <p className="">{currency}{item.price}</p>
-              <img onClick={() => handleDeleteClick(item._id)} className="absolute right-2 bottom-2 w-5 p-0 lg:relative lg:right-0 lg:bottom-0 lg:w-full lg:p-[14px] cursor-pointer" src={assets.bin_icon} alt="" />
-            </div>
-          ))
-        }
+        {paginatedList.map((item, index) => (
+          <div className="relative grid lg:grid-cols-[100px_5fr_2fr_1fr_50px] items-center gap-2 p-2 border border-black text-sm" key={index}>
+            <img className="w-full border border-black" src={item.image[0]} alt="" />
+            <p>{item.name}</p>
+            <p>{item.category}</p>
+            <p>{currency}{item.price}</p>
+            <img onClick={() => handleDeleteClick(item._id)} className="absolute right-2 bottom-2 w-5 p-0 lg:relative lg:right-0 lg:bottom-0 lg:w-full lg:p-[14px] cursor-pointer" src={assets.bin_icon} alt="" />
+          </div>
+        ))}
+      </div>
+
+      {/* Pagination Controls */}
+      <div className="flex justify-between items-center gap-4 mt-4">
+        <span className="px-2 py-1 border border-black">{currentPage} / {totalPages}</span>
+        <div className="flex gap-2">
+          <button onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))} disabled={currentPage === 1} className="px-2 py-1 border border-black disabled:opacity-50">Prev</button>
+          <button onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))} disabled={currentPage === totalPages} className="px-2 py-1 border border-black disabled:opacity-50">Next</button>
+        </div>
       </div>
     </div>
   )

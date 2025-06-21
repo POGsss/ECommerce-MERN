@@ -27,7 +27,7 @@ const Product = () => {
   }, [productId]);
   
   return productData ? (
-    <div className="max-w-[1440px] m-auto my-10 transition-opacity ease-in duration-500 opacity-100">
+    <div className="max-w-[1440px] m-auto my-10">
       {/* Product Data */}
       <div className="flex gap-12 sm:gap-12 flex-col sm:flex-row">
 
