@@ -44,6 +44,24 @@ const ShopContextProvider = (props) => {
 
         console.log(cartData);
         setCartItems(cartData);
+
+        if (token) {
+            try {
+                // Sending Request To Backend
+                const response = await axios.post(backendUrl + "/api/cart/add", { itemId, size }, { headers: {token} });
+
+                // Check Response
+                if (response.data.success) {
+                    toast("Product added to cart");
+                } else {
+                    toast(response.data.message);
+                }
+            } catch (error) {
+                // Logging Error
+                console.error(error);
+                toast(error.message);
+            }
+        }
     }
 
     // Get Cart Count Functionality
@@ -57,7 +75,9 @@ const ShopContextProvider = (props) => {
                         totalCount += cartItems[item][size];
                     }
                 } catch (error) {
-                    
+                    // Logging Error
+                    console.error(error);
+                    toast(error.message);
                 }
             }
         }
@@ -78,7 +98,9 @@ const ShopContextProvider = (props) => {
                         totalAmount += itemInfo.price * cartItems[item][size];
                     }
                 } catch (error) {
-                    console.error("Error calculating cart amount:", error);
+                    // Logging Error
+                    console.error(error);
+                    toast(error.message);
                 }
             }
         }
@@ -86,14 +108,7 @@ const ShopContextProvider = (props) => {
         return totalAmount;
     }
 
-    // Update Cart Quantity Functionality
-    const updateQuantity = async (itemId, size, quantity) => {
-        let cartData = structuredClone(cartItems);
-        cartData[itemId][size] = quantity;
-        setCartItems(cartData);
-    }
-
-    // Fetch Products Data from Backend
+    // Fetch Products Functionality
     const getProductsData = async () => {
         try {
             const response = await axios.get(backendUrl + "/api/product/list");
@@ -103,7 +118,48 @@ const ShopContextProvider = (props) => {
                 toast("Failed to fetch products");
             }
         } catch (error) {
-            console.error("Error fetching products:", error);
+            // Logging Error
+            console.error(error);
+            toast(error.message);
+        }
+    }
+
+    // Get Cart Data Functionality
+    const getCartData = async ( token ) => {
+        if (token) {
+            try {
+                // Sending Request To Backend
+                const response = await axios.post(backendUrl + "/api/cart/get", {}, { headers: { token } });
+
+                // Check Response
+                if (response.data.success) {
+                    setCartItems(response.data.cartData);
+                } else {
+                    toast(response.data.message);
+                }
+            } catch (error) {
+                // Logging Error
+                console.error(error);
+                toast(error.message);
+            }
+        }
+    }
+
+    // Update Cart Quantity Functionality
+    const updateQuantity = async (itemId, size, quantity) => {
+        let cartData = structuredClone(cartItems);
+        cartData[itemId][size] = quantity;
+        setCartItems(cartData);
+
+        if (token) {
+            try {
+                // Sending Request To Backend
+                const response = await axios.post(backendUrl + "/api/cart/update", { itemId, size, quantity }, { headers: { token } });
+            } catch (error) {
+                // Logging Error
+                console.error(error);
+                toast(error.message);
+            }
         }
     }
 
@@ -116,6 +172,7 @@ const ShopContextProvider = (props) => {
     useEffect(() => {
         if (!token && localStorage.getItem("token")) {
             setToken(localStorage.getItem("token"));
+            getCartData(localStorage.getItem("token"));
         } else {
             setToken("");
         }

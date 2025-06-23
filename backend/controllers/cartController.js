@@ -1,3 +1,4 @@
+import userModel from "../models/userModel.js";
 
 // Cart Add Function
 const addToCart = async (req, res) => {
@@ -14,7 +15,7 @@ const addToCart = async (req, res) => {
             // Checking If Size Exists
             if (cartData[itemId][size]) {
                 // Increase Quantity
-                cartData[itemId][size].quantity += 1;
+                cartData[itemId][size] += 1;
             } else {
                 // Add New Size
                 cartData[itemId][size] = 1;

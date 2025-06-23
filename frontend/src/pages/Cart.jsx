@@ -9,22 +9,25 @@ const Cart = () => {
   const [ cartData, setCartData ] = useState([]);
 
   useEffect(() => {
-    const tempData = [];
-    
-    for (const items in cartItems) {
-      for (const size in cartItems[items]) {
-        if (cartItems[items][size] > 0) {
-          tempData.push({
-            _id: items,
-            size: size,
-            quantity: cartItems[items][size]
-          });
+    // Check Products If Available
+    if (products.length > 0) {
+      // Filter Cart Items
+      const tempData = [];
+      for (const items in cartItems) {
+        for (const size in cartItems[items]) {
+          if (cartItems[items][size] > 0) {
+            tempData.push({
+              _id: items,
+              size: size,
+              quantity: cartItems[items][size]
+            });
+          }
         }
       }
+      // Set Cart Data
+      setCartData(tempData);
     }
-    
-    setCartData(tempData);
-  }, [cartItems]);
+  }, [cartItems, products]);
 
   return (
     <div className="max-w-[1440px] mx-auto my-10">
