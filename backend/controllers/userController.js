@@ -4,12 +4,12 @@ import validator from "validator";
 import userModel from "../models/userModel.js";
 
 
-// Creating Token
+// Create Token Function
 const createToken = (id) => {
     return jwt.sign({id}, process.env.JWT_SECRET);
 }
 
-// Route For User Sign In
+// Sign In Function
 const userSignIn = async (req, res) => {
     try {
         // Getting User Input
@@ -36,7 +36,7 @@ const userSignIn = async (req, res) => {
     }
 }
 
-// Route For User Sign Up
+// Sign Up Function
 const userSignUp = async (req, res) => {
     try {
         // Getting User Input
@@ -78,7 +78,7 @@ const userSignUp = async (req, res) => {
     }
 }
 
-// Route For Admin Login
+// Admin Sign In Function
 const adminSignIn = async (req, res) => {
     try {
         // Getting User Input
@@ -98,7 +98,7 @@ const adminSignIn = async (req, res) => {
     }
 }
 
-// Route For Staff Login
+// Staff Sign In Function
 const staffSignIn = async (req, res) => {
     try {
         // Getting User Input

@@ -1,6 +1,6 @@
 import jwt from "jsonwebtoken";
 
-const authStaff = async (req, res, next) => {
+const authUser = async (req, res, next) => {
     try {
         // Getting User Input
         const { token } = req.headers;
@@ -12,9 +12,7 @@ const authStaff = async (req, res, next) => {
 
         // Decoding Token
         const decodedToken = jwt.verify(token, process.env.JWT_SECRET);
-        if (decodedToken !== process.env.STAFF_EMAIL + process.env.STAFF_PASSWORD) {
-            return res.json({ success: false, message: "Invalid Credentials" });
-        }
+        req.body.userId = decodedToken.id;
 
         // Calling Callback Function
         next();
@@ -25,4 +23,4 @@ const authStaff = async (req, res, next) => {
     }
 }
 
-export default authStaff;
+export default authUser;
