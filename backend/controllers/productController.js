@@ -106,4 +106,4 @@ const productAdd = async (req, res) => {
     }
 }
 
-export { productList, productSingle, productRemove, productAdd }
+export { productList, productSingle, productRemove, productAdd };

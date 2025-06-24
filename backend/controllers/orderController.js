@@ -1,0 +1,62 @@
+import orderModel from "../models/orderModel.js";
+import userModel from "../models/userModel.js";
+
+// Place Order Functionality COD
+const placeOrderCOD = async (req, res) => {
+    try {
+        // Getting User Data
+        const { userId, items, amount, address } = req.body;
+
+        // Creating Order Data
+        const orderData = {
+            userId,
+            items,
+            amount,
+            address,
+            paymentMethod: "COD",
+            payment: false,
+            date: Date.now()
+        };
+
+        // Creating Order
+        const newOrder = await orderModel.create(orderData);
+        await newOrder.save();
+
+        // Creating Cart Data
+        await userModel.findByIdAndUpdate(userId, { cartData: {} });
+
+        // Sending Response
+        res.json({ success: true, message: "Order Placed"});
+    } catch (error) {
+        // Logging Error
+        console.log(error);
+        res.json({success: false, message: error.message});
+    }
+}
+
+// Place Order Functionality Stripe
+const placeOrderStripe = async (req, res) => {
+
+}
+
+// Place Order Functionality Razorpay
+const placeOrderRazorpay = async (req, res) => {
+    
+}
+
+// User Orders Functionality
+const userOrders = async (req, res) => {
+    
+}
+
+// All Orders Functionality
+const allOrders = async (req, res) => {
+
+}
+
+// Update Status Functionality
+const updateStatus = async (req, res) => {
+
+}
+
+export { placeOrderCOD, placeOrderStripe, placeOrderRazorpay, userOrders, allOrders, updateStatus };
