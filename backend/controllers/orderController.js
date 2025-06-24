@@ -46,7 +46,20 @@ const placeOrderRazorpay = async (req, res) => {
 
 // User Orders Functionality
 const userOrders = async (req, res) => {
-    
+    try {
+        // Getting User ID
+        const { userId } = req.body;
+
+        // Fetching User Orders
+        const orders = await orderModel.find({ userId });
+
+        // Sending Response
+        res.json({ success: true, orders });
+    } catch (error) {
+        // Logging Error
+        console.log(error);
+        res.json({success: false, message: error.message});
+    }
 }
 
 // All Orders Functionality

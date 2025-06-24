@@ -67,7 +67,9 @@ const PlaceOrder = () => {
           break;
       }
     } catch (error) {
-      
+        // Logging Error
+        console.log(error);
+        res.json({success: false, message: error.message});
     }
   };
 
