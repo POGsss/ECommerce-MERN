@@ -46,7 +46,7 @@ const List = ({ token }) => {
     } catch (error) {
 			// Logging Error
 			console.log(error);
-			toast.error(error.message);
+			toast(error.message);
     }
   }
 

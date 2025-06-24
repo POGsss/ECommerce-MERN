@@ -63,8 +63,16 @@ const userOrders = async (req, res) => {
 }
 
 // All Orders Functionality
-const allOrders = async (req, res) => {
-
+const adminOrders = async (req, res) => {
+    try {
+        // Getting All Orders
+        const orders = await orderModel.find({});
+        res.json({ success: true, orders });
+    } catch (error) {
+        // Logging Error
+        console.log(error);
+        res.json({success: false, message: error.message});
+    }
 }
 
 // Update Status Functionality
@@ -72,4 +80,4 @@ const updateStatus = async (req, res) => {
 
 }
 
-export { placeOrderCOD, placeOrderStripe, placeOrderRazorpay, userOrders, allOrders, updateStatus };
+export { placeOrderCOD, placeOrderStripe, placeOrderRazorpay, userOrders, adminOrders, updateStatus };
