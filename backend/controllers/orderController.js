@@ -77,7 +77,18 @@ const adminOrders = async (req, res) => {
 
 // Update Status Functionality
 const updateStatus = async (req, res) => {
+    try {
+        // Getting Order ID & Status
+        const { orderId, status } = req.body; 
 
+        // Updating The Order Status
+        await orderModel.findByIdAndUpdate(orderId, { status });
+        res.json({ success: true, message: "Status Updated" });
+    } catch (error) {
+        // Logging Error
+        console.log(error);
+        res.json({success: false, message: error.message});
+    }
 }
 
 export { placeOrderCOD, placeOrderStripe, placeOrderRazorpay, userOrders, adminOrders, updateStatus };

@@ -29,6 +29,28 @@ const Orders = ({ token }) => {
     }
   };
 
+  const statusHandler = async (event, orderId) => {
+    if (!token) {
+      return null;
+    }
+
+    try {
+      // Sending Request To Backend
+      const response = await axios.post(backendUrl + "/api/order/status", { orderId, status: event.target.value }, { headers: { token } });
+
+      // Checking Response
+      if (response.data.success) {
+        await fetchAllOrders();
+      } else {
+        toast(response.data.message);
+      }
+    } catch (error) {
+      // Logging Error
+      console.log(error);
+      toast(error.message);
+    }
+  }
+
   useEffect(() => {
     fetchAllOrders();
   }, [token]);
@@ -63,7 +85,7 @@ const Orders = ({ token }) => {
               <p>Date: {new Date(order.date).toLocaleDateString()}</p>
             </div>
             <p className="font-subtitle">{currency}{order.amount}</p>
-            <select value={order.status} className="col-span-1 sm:col-span-2 lg:col-span-1 w-full px-4 py-2 border border-black">
+            <select onChange={(e) => statusHandler(e, order._id)} value={order.status} className="col-span-1 sm:col-span-2 lg:col-span-1 w-full px-4 py-2 border border-black">
               <option value="Order Placed">Order Placed</option>
               <option value="Packing">Packing</option>
               <option value="Shipped">Shipped</option>
