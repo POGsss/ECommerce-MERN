@@ -63,7 +63,7 @@ const Orders = ({ token }) => {
               <p>Date: {new Date(order.date).toLocaleDateString()}</p>
             </div>
             <p className="font-subtitle">{currency}{order.amount}</p>
-            <select className="col-span-1 sm:col-span-2 lg:col-span-1 w-full px-4 py-2 border border-black">
+            <select value={order.status} className="col-span-1 sm:col-span-2 lg:col-span-1 w-full px-4 py-2 border border-black">
               <option value="Order Placed">Order Placed</option>
               <option value="Packing">Packing</option>
               <option value="Shipped">Shipped</option>
