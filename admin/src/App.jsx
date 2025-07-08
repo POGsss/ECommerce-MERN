@@ -6,7 +6,6 @@ import Sidebar from "./components/Sidebar.jsx";
 import Footer from "./components/Footer.jsx";
 import Login from "./components/Login.jsx";
 import Analytics from "./pages/Analytics.jsx";
-import Promotion from "./pages/Promotion.jsx";
 import Add from "./pages/Add.jsx";
 import List from "./pages/List.jsx";
 import Orders from "./pages/Orders.jsx";
@@ -44,7 +43,6 @@ const App = () => {
           <div className="w-[calc(100%-75px)] md:w-[calc(100%-250px)] ml-4 md:ml-8 my-8 text-base">
             <Routes>
               <Route path="/analytics" element={<Analytics token={token} />} />
-              <Route path="/promotion" element={<Promotion token={token} />} />
               <Route path="/add" element={<Add token={token} />} />
               <Route path="/list" element={<List token={token} />} />
               <Route path="/orders" element={<Orders token={token} />} />

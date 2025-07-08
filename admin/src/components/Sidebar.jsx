@@ -21,10 +21,6 @@ const Sidebar = () => {
 					<img className="w-6 h-6" src={assets.order_icon} alt="" />
 					<p className="hidden md:block">Order Items</p>
 				</NavLink>
-				<NavLink className="flex items-center gap-3 border border-black border-r-0 px-4 py-2" to="/promotion">
-					<img className="w-6 h-6" src={assets.promo_icon} alt="" />
-					<p className="hidden md:block">Promotion</p>
-				</NavLink>
 			</div>
 		</div>
 	)

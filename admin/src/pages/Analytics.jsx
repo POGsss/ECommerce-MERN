@@ -11,24 +11,24 @@ const Analytics = ({ token }) => {
     <div className="flex flex-col w-full items-start gap-6">
       <div className="w-full">
       <p className="mb-2 font-title text-black">Analytics</p>
-        <div className="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          <div className="relative p-4 border border-black text-sm">
-            <b>Total Sales</b>
+        <div className="w-full flex items-center justify-start gap-6">
+          <div className="relative p-4 border border-black text-sm min-w-[225px] w-[100%]">
+            <b className="">Total Orders</b>
             <p className="text-xl">000</p>
             <img className="absolute w-[45px] border border-black p-2 top-4 right-4" src={assets.analytics_icon} alt="" />
           </div>
-          <div className="relative p-4 border border-black text-sm">
-            <b>Online Sales</b>
+          <div className="relative p-4 border border-black text-sm min-w-[225px] w-[100%]">
+            <b className="">Online Orders</b>
             <p className="text-xl">000</p>
             <img className="absolute w-[45px] border border-black p-2 top-4 right-4" src={assets.analytics_icon} alt="" />
           </div>
-          <div className="relative p-4 border border-black text-sm">
-            <b>Store Sales</b>
+          <div className="relative p-4 border border-black text-sm min-w-[225px] w-[100%]">
+            <b className="">Store Orders</b>
             <p className="text-xl">000</p>
             <img className="absolute w-[45px] border border-black p-2 top-4 right-4" src={assets.analytics_icon} alt="" />
           </div>
-          <div className="relative p-4 border border-black text-sm">
-            <b>Pending Orders</b>
+          <div className="relative p-4 border border-black text-sm min-w-[225px] w-[100%]">
+            <b className="">Pending Orders</b>
             <p className="text-xl">000</p>
             <img className="absolute w-[45px] border border-black p-2 top-4 right-4" src={assets.analytics_icon} alt="" />
           </div>
@@ -39,13 +39,13 @@ const Analytics = ({ token }) => {
         <div className="w-full flex grid-cols-1 lg:grid-cols-2 gap-6">
           <div className="relative w-2/3 p-4 border border-black text-sm">
             <b>Recent Activity</b>
+            <p className="">Latest Customer Orders</p>
             <p className="text-xl">000</p>
-            <img className="absolute w-[45px] border border-black p-2 top-4 right-4" src={assets.analytics_icon} alt="" />
           </div>
           <div className="relative w-1/3 p-4 border border-black text-sm">
             <b>Monthly Revenue</b>
+            <p className="">Total Sales For This Month</p>
             <p className="text-xl">000</p>
-            <img className="absolute w-[45px] border border-black p-2 top-4 right-4" src={assets.analytics_icon} alt="" />
           </div>
         </div>
       </div>
