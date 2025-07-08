@@ -5,7 +5,14 @@ import axios from "axios";
 import { assets } from "../assets/assets";
 
 const Orders = ({ token }) => {
+  const [showItemDialog, setShowItemDialog] = useState(false);
+  const [selectedItems, setSelectedItems] = useState([]);
   const [orders, setOrders] = useState([]);
+
+  const handleImageClick = (items) => {
+    setSelectedItems(items);
+    setShowItemDialog(true);
+  };
 
   const fetchAllOrders = async () => {
     if (!token) {
@@ -61,18 +68,10 @@ const Orders = ({ token }) => {
       <div>
         {orders.map((order, index) => (
           <div className="relative grid grid-cols-1 sm:grid-cols-[75px_2fr_1fr] lg:grid-cols-[75px_2fr_1fr_0.5fr_200px] gap-4 items-start border border-black p-4 my-4 text-sm" key={index} >
-            <img className="w-full xs:absolute xs:w-[100px] xs:bottom-[70px] xs:right-4 sm:relative sm:right-0 sm:bottom-0 border border-black p-2" src={assets.parcel_icon} alt="" />
+            <img onClick={() => handleImageClick(order.items)} className="w-full xs:absolute xs:w-[100px] xs:bottom-[70px] xs:right-4 sm:relative sm:right-0 sm:bottom-0 border border-black p-2" src={assets.parcel_icon} alt="" />
             <div>
-              <div>
-                {order.items.map((item, index) => {
-                  if (index === order.items.length - 1) {
-                    return <p key={index}>{item.name} x {item.quantity} <span>{item.size}</span></p>
-                  } else {
-                    return <p key={index}>{item.name} x {item.quantity} <span>{item.size}</span>,</p>
-                  }
-                })}
-              </div>
-              <p className="py-2 font-subtitle">{order.address.firstName + " " + order.address.lastName}</p>
+              <p className="font-subtitle">{order.address.firstName + " " + order.address.lastName}</p>
+              <p className="break-all">{new String(order._id).toString()}</p>
               <div>
                 <p>{order.address.street + ", " + order.address.city + ", " + order.address.state + ", " + order.address.zipCode}</p>
               </div>
@@ -95,6 +94,22 @@ const Orders = ({ token }) => {
           </div>
         ))}
       </div>
+      {showItemDialog && (
+        <div className="fixed top-0 left-0 bg-[rgba(0,0,0,0.5)] w-full h-full flex items-center justify-center p-8 z-50">
+          <div className="flex flex-col w-full max-w-[400px] bg-white gap-4 p-4">
+            <h1 className="font-title text-xl">Order Items</h1>
+            <div className="pb-2">
+              {selectedItems.map((item, index) => (
+                <div key={index} className="flex justify-between border-b py-1 border-black">
+                  <p>{item.name} ({item.size})</p>
+                  <p>x {item.quantity}</p>
+                </div>
+              ))}
+            </div>
+            <button onClick={() => setShowItemDialog(false)} className="flex-1 w-full font-text md:text-base px-8 py-4 bg-black text-white cursor-pointer active:bg-gray-500">Close</button>
+          </div>
+        </div>
+      )}
     </div>
   )
 }

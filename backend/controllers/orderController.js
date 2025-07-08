@@ -66,7 +66,20 @@ const userOrders = async (req, res) => {
 const adminOrders = async (req, res) => {
     try {
         // Getting All Orders
-        const orders = await orderModel.find({});
+        const orders = await orderModel.find({}).sort({date: -1});
+        res.json({ success: true, orders });
+    } catch (error) {
+        // Logging Error
+        console.log(error);
+        res.json({success: false, message: error.message});
+    }
+}
+
+// Getting Recent Orders
+const recentOrders = async (req, res) => {
+    try {
+        // Getting All Orders
+        const orders = await orderModel.find({}).sort({date: -1}).limit(3);
         res.json({ success: true, orders });
     } catch (error) {
         // Logging Error
@@ -91,4 +104,4 @@ const updateStatus = async (req, res) => {
     }
 }
 
-export { placeOrderCOD, placeOrderStripe, placeOrderRazorpay, userOrders, adminOrders, updateStatus };
+export { placeOrderCOD, placeOrderStripe, placeOrderRazorpay, userOrders, adminOrders, recentOrders, updateStatus };
