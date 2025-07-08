@@ -44,22 +44,22 @@ const Analytics = ({ token }) => {
           <div className="relative p-4 border border-black text-sm">
             <b className="">Total Orders</b>
             <p className="text-xl">000</p>
-            <img className="absolute w-[45px] border border-black p-2 top-4 right-4" src={assets.analytics_icon} alt="" />
+            <img className="absolute w-[40px] border border-black p-2 top-4 right-4" src={assets.analytics_icon} alt="" />
           </div>
           <div className="relative p-4 border border-black text-sm">
             <b className="">Online Orders</b>
             <p className="text-xl">000</p>
-            <img className="absolute w-[45px] border border-black p-2 top-4 right-4" src={assets.analytics_icon} alt="" />
+            <img className="absolute w-[40px] border border-black p-2 top-4 right-4" src={assets.analytics_icon} alt="" />
           </div>
           <div className="relative p-4 border border-black text-sm">
             <b className="">Store Orders</b>
             <p className="text-xl">000</p>
-            <img className="absolute w-[45px] border border-black p-2 top-4 right-4" src={assets.analytics_icon} alt="" />
+            <img className="absolute w-[40px] border border-black p-2 top-4 right-4" src={assets.analytics_icon} alt="" />
           </div>
           <div className="relative p-4 border border-black text-sm">
             <b className="">Pending Orders</b>
             <p className="text-xl">000</p>
-            <img className="absolute w-[45px] border border-black p-2 top-4 right-4" src={assets.analytics_icon} alt="" />
+            <img className="absolute w-[40px] border border-black p-2 top-4 right-4" src={assets.analytics_icon} alt="" />
           </div>
         </div>
       </div>
@@ -73,13 +73,13 @@ const Analytics = ({ token }) => {
               {orders.map((order, index) => (
                 <div onClick={() => navigate("/orders")} className="flex flex-row justify-between items-center gap-4 cursor-pointer">
                   <div className="flex flex-row items-center justify-center gap-4">
-                    <img className="w-[80px] h-[80px] border border-black p-2" src={assets.parcel_icon} alt="" />
+                    <img className="w-[60px] h-[60px] border border-black p-2" src={assets.parcel_icon} alt="" />
                     <div>
                       <p className="font-subtitle text-start">{order.address.firstName + " " + order.address.lastName}</p>
                       <p className="text-start">{new Date(order.date).toLocaleDateString()}</p>
                     </div>
                   </div>
-                  <p className="text-center px-4 py-2 w-[100px] border border-black">{currency}{order.amount}</p>
+                  <p className="text-center px-4 py-2 w-[75px] border border-black">{currency}{order.amount}</p>
                 </div>
               ))}
             </div>
