@@ -71,9 +71,9 @@ const Analytics = ({ token }) => {
             <p className="">Latest Customer Orders</p>
             <div className="flex flex-col mt-4 gap-4">
               {orders.map((order, index) => (
-                <div onClick={() => navigate("/orders")} className="bg-transparent flex flex-row justify-between items-center gap-4 cursor-pointer">
+                <div onClick={() => navigate("/orders")} className="flex flex-row justify-between items-center gap-4 cursor-pointer">
                   <div className="flex flex-row items-center justify-center gap-4">
-                    <img className="w-[80px] border border-black p-2" src={assets.parcel_icon} alt="" />
+                    <img className="w-[80px] h-[80px] border border-black p-2" src={assets.parcel_icon} alt="" />
                     <div>
                       <p className="font-subtitle text-start">{order.address.firstName + " " + order.address.lastName}</p>
                       <p className="text-start">{new Date(order.date).toLocaleDateString()}</p>
