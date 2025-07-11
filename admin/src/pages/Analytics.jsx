@@ -87,7 +87,7 @@ const Analytics = ({ token }) => {
           <div className="relative col-span-1 p-4 border border-black text-sm">
             <b>Monthly Revenue</b>
             <p className="">Total Sales For This Month</p>
-            <p className="text-xl">000</p>
+            <p className="text-xl">{currency}000</p>
           </div>
         </div>
       </div>
