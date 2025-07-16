@@ -23,7 +23,8 @@ const placeOrderCOD = async (req, res) => {
             address,
             paymentMethod: "COD",
             payment: false,
-            date: Date.now()
+            date: Date.now(),
+            source: "online"
         };
 
         // Creating Order
@@ -103,6 +104,30 @@ const placeOrderStripe = async (req, res) => {
     }
 }
 
+// Verify Stripe Payment
+const verifyStripe = async (req, res) => {
+    // Getting Order Data
+    const { orderId, success, userId } = req.body;
+
+    // Checking If Payment Is Successful
+    try {
+        if (success === "true" || success === true) {
+            // Updating Payment Status And User Cart
+            await orderModel.findByIdAndUpdate(orderId, { payment: true });
+            await userModel.findByIdAndUpdate(userId, { cartData: {} });
+            res.json({success: true});
+        } else {
+            // Deleting The Unsuccessful Order Data
+            await orderModel.findByIdAndDelete(orderId);
+            res.json({success: false});
+        }
+    } catch (error) {
+        // Logging Error
+        console.log(error);
+        res.json({success: false, message: error.message});
+    }
+}
+
 // Place Order Functionality Razorpay
 const placeOrderRazorpay = async (req, res) => {
     
@@ -126,11 +151,17 @@ const userOrders = async (req, res) => {
     }
 }
 
+// -------------------- ADMIN -------------------- //
+
 // All Orders Functionality
 const adminOrders = async (req, res) => {
     try {
+        // Adding Filter For Online Orders
+        const { source } = req.query;
+        const filter = source ? { source } : {};
+
         // Getting All Orders
-        const orders = await orderModel.find({}).sort({date: -1});
+        const orders = await orderModel.find(filter).sort({date: -1});
         res.json({ success: true, orders });
     } catch (error) {
         // Logging Error
@@ -142,9 +173,64 @@ const adminOrders = async (req, res) => {
 // Getting Recent Orders
 const recentOrders = async (req, res) => {
     try {
+        // Adding Filter For Online Orders
+        const { source } = req.query;
+        const filter = source ? { source } : {};
+
         // Getting All Orders
-        const orders = await orderModel.find({}).sort({date: -1}).limit(3);
+        const orders = await orderModel.find(filter).sort({date: -1}).limit(3);
         res.json({ success: true, orders });
+    } catch (error) {
+        // Logging Error
+        console.log(error);
+        res.json({success: false, message: error.message});
+    }
+}
+
+// Getting Sales Count
+const salesCount = async (req, res) => {
+    try {
+        // Getting Individual Count For Each
+        const totalSales = await orderModel.countDocuments({ payment: true });
+        const onlineSales = await orderModel.countDocuments({ payment: true, source: "online" });
+        const storeSales = await orderModel.countDocuments({ payment: true, source: "store" });
+        const pendingSales = await orderModel.countDocuments({ payment: false });
+
+        // Sending Back Results
+        res.json({ success: true, totalSales, onlineSales, storeSales, pendingSales });
+    } catch (error) {
+        // Logging Error
+        console.log(error);
+        res.json({success: false, message: error.message});
+    }
+}
+
+// Getting Revenue Total
+const revenueTotal = async (req, res) => {
+    try {
+        // Get Current Month Range
+        const now = new Date();
+        const startOfMonth = new Date(now.getFullYear(), now.getMonth(), 1).getTime();
+        const endOfMonth = new Date(now.getFullYear(), now.getMonth() + 1, 0, 23, 59, 59, 999).getTime();
+
+        // Total revenue
+        const totalRevenueAgg = await orderModel.aggregate([
+            { $match: { payment: true } },
+            { $group: { _id: null, total: { $sum: "$amount" } } }
+        ]);
+
+        // Monthly revenue
+        const monthlyRevenueAgg = await orderModel.aggregate([
+            { $match: { payment: true, date: { $gte: startOfMonth, $lte: endOfMonth } } },
+            { $group: { _id: null, total: { $sum: "$amount" } } }
+        ]);
+
+        // Setting Revenue
+        const totalRevenue = totalRevenueAgg[0]?.total || 0;
+        const monthlyRevenue = monthlyRevenueAgg[0]?.total || 0;
+
+        // Sending Back Results
+        res.json({ success: true, totalRevenue, monthlyRevenue });
     } catch (error) {
         // Logging Error
         console.log(error);
@@ -168,4 +254,4 @@ const updateStatus = async (req, res) => {
     }
 }
 
-export { placeOrderCOD, placeOrderStripe, placeOrderRazorpay, userOrders, adminOrders, recentOrders, updateStatus };
+export { placeOrderCOD, placeOrderStripe, verifyStripe, placeOrderRazorpay, userOrders, adminOrders, recentOrders, salesCount, revenueTotal, updateStatus };

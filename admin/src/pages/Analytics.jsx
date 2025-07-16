@@ -7,6 +7,15 @@ import axios from "axios";
 
 const Analytics = ({ token }) => {
   const [orders, setOrders] =  useState([]);
+
+  const [totalSales, setTotalSales] =  useState("000");
+  const [onlineSales, setOnlineSales] =  useState("000");
+  const [storeSales, setStoreSales] =  useState("000");
+  const [pendingSales, setPendingSales] =  useState("000");
+
+  const [totalRevenue, setTotalRevenue] =  useState("000");
+  const [monthlyRevenue, setMonthlyRevenue] =  useState("000");
+
   const navigate = useNavigate();
 
   const fetchRecentOrders = async () => {
@@ -31,10 +40,59 @@ const Analytics = ({ token }) => {
     }
   }
 
+  const fetchSalesCount = async () => {
+    if (!token) {
+      return null;
+    }
+
+    try {
+      // Sending Request To Backend
+      const response = await axios.post(backendUrl + "/api/order/sales", {}, { headers: { token } });
+
+      // Updating States
+      if (response.data.success) {
+        setTotalSales(response.data.totalSales);
+        setOnlineSales(response.data.onlineSales);
+        setStoreSales(response.data.storeSales);
+        setPendingSales(response.data.pendingSales);
+      } else {
+        toast(response.data.message);
+      }
+    } catch (error) {
+      // Logging Error
+      console.log(error);
+      toast(error.message);
+    }
+  }
+
+  const fetchRevenueTotal = async () => {
+    if (!token) {
+      return null;
+    }
+
+    try {
+      // Sending Request To Backend
+      const response = await axios.post(backendUrl + "/api/order/revenue", {}, { headers: { token } });
+
+      // Updating States
+      if (response.data.success) {
+        setTotalRevenue(response.data.totalRevenue);
+        setMonthlyRevenue(response.data.monthlyRevenue);
+      } else {
+        toast(response.data.message);
+      }
+    } catch (error) {
+      // Logging Error
+      console.log(error);
+      toast(error.message);
+    }
+  }
+
   useEffect(() => {
     fetchRecentOrders();
+    fetchSalesCount();
+    fetchRevenueTotal();
   }, [token]);
-
 
   return (
     <div className="flex flex-col w-full items-start gap-6">
@@ -42,23 +100,23 @@ const Analytics = ({ token }) => {
       <p className="mb-2 font-title text-black">Analytics</p>
         <div className="w-full grid grid-cols-[repeat(auto-fit,minmax(215px,1fr))] gap-6">
           <div className="relative p-4 border border-black text-sm">
-            <b className="">Total Orders</b>
-            <p className="text-xl">000</p>
+            <b className="">Total Sales</b>
+            <p className="text-xl">{totalSales}</p>
             <img className="absolute w-[40px] border border-black p-2 top-4 right-4" src={assets.analytics_icon} alt="" />
           </div>
           <div className="relative p-4 border border-black text-sm">
-            <b className="">Online Orders</b>
-            <p className="text-xl">000</p>
+            <b className="">Online Sales</b>
+            <p className="text-xl">{onlineSales}</p>
             <img className="absolute w-[40px] border border-black p-2 top-4 right-4" src={assets.analytics_icon} alt="" />
           </div>
           <div className="relative p-4 border border-black text-sm">
-            <b className="">Store Orders</b>
-            <p className="text-xl">000</p>
+            <b className="">Store Sales</b>
+            <p className="text-xl">{storeSales}</p>
             <img className="absolute w-[40px] border border-black p-2 top-4 right-4" src={assets.analytics_icon} alt="" />
           </div>
           <div className="relative p-4 border border-black text-sm">
-            <b className="">Pending Orders</b>
-            <p className="text-xl">000</p>
+            <b className="">Pending Sales</b>
+            <p className="text-xl">{pendingSales}</p>
             <img className="absolute w-[40px] border border-black p-2 top-4 right-4" src={assets.analytics_icon} alt="" />
           </div>
         </div>
@@ -84,10 +142,17 @@ const Analytics = ({ token }) => {
               ))}
             </div>
           </div>
-          <div className="relative col-span-1 p-4 border border-black text-sm">
-            <b>Monthly Revenue</b>
-            <p className="">Total Sales For This Month</p>
-            <p className="text-xl">{currency}000</p>
+          <div className="flex flex-col gap-6">
+            <div className="relative col-span-1 p-4 border border-black text-sm">
+              <b>Total Revenue</b>
+              <p className="">Total Sales All Time</p>
+              <p className="text-xl">{currency}{totalRevenue.toLocaleString()}</p>
+            </div>
+            <div className="relative col-span-1 p-4 border border-black text-sm">
+              <b>Monthly Revenue</b>
+              <p className="">Total Sales This Month</p>
+              <p className="text-xl">{currency}{monthlyRevenue.toLocaleString()}</p>
+            </div>
           </div>
         </div>
       </div>
