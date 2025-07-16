@@ -55,7 +55,7 @@ const PlaceOrder = () => {
       switch (method) {
         // COD Payment
         case "cod":
-          const response = await axios.post(backendUrl + "/api/order/cod", orderData, { headers: { token} });
+          const response = await axios.post(backendUrl + "/api/order/cod", orderData, { headers: { token } });
           if (response.data.success) {
             setCartItems({});
             navigate("/orders");
@@ -63,6 +63,19 @@ const PlaceOrder = () => {
             toast(response.data.message);
           }
           break;
+
+        // Stripe Payment
+        case "stripe":
+          const responseStripe = await axios.post(backendUrl + "/api/order/stripe", orderData, {headers: { token } });
+          if (responseStripe.data.success) {
+            const { session_url } = responseStripe.data;
+            window.location.replace(session_url);
+          } else {
+            toast(response.data.message);
+          }
+          break;
+
+        // Default Payment
         default:
           break;
       }

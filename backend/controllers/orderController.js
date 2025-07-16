@@ -83,7 +83,7 @@ const placeOrderStripe = async (req, res) => {
                 },
                 unit_amount: deliveryFee * 100
             },
-            quantity: item.quantity
+            quantity: 1
         });
 
         // Creating Session
@@ -95,7 +95,7 @@ const placeOrderStripe = async (req, res) => {
         });
 
         // Sending Response
-        res.json({success: true, session_url: session_url});
+        res.json({success: true, session_url: session.url});
     } catch (error) {
         // Logging Error
         console.log(error);
