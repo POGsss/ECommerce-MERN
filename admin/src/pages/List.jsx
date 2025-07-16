@@ -90,7 +90,7 @@ const List = ({ token }) => {
 
       {/* List Header */}
       <p className="mb-2 font-title text-black">All Product List</p>
-      <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-3 lg:flex md:flex-col gap-2">
+      <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-3 lg:flex md:flex-col gap-4">
         {/* List Header */}
         <div className="hidden lg:grid grid-cols-[100px_5fr_2fr_1fr_50px] items-center py-1 px-2 border border-black text-sm gap-2">
           <b className="">Image</b>

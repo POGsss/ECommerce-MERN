@@ -95,10 +95,10 @@ const Analytics = ({ token }) => {
   }, [token]);
 
   return (
-    <div className="flex flex-col w-full items-start gap-6">
+    <div className="flex flex-col w-full items-start gap-4">
       <div className="w-full">
       <p className="mb-2 font-title text-black">Analytics</p>
-        <div className="w-full grid grid-cols-[repeat(auto-fit,minmax(215px,1fr))] gap-6">
+        <div className="w-full grid grid-cols-[repeat(auto-fit,minmax(215px,1fr))] gap-4">
           <div className="relative p-4 border border-black text-sm">
             <b className="">Total Sales</b>
             <p className="text-xl">{totalSales}</p>
@@ -123,7 +123,7 @@ const Analytics = ({ token }) => {
       </div>
 
       <div className="w-full">
-        <div className="w-full grid grid-cols-1 lg:grid-cols-3 items-start justify-start gap-6">
+        <div className="w-full grid grid-cols-1 lg:grid-cols-3 items-start justify-start gap-4">
           <div className="relative col-span-1 lg:col-span-2 p-4 border border-black text-sm">
             <b>Recent Activity</b>
             <p className="">Latest Customer Orders</p>
@@ -142,7 +142,7 @@ const Analytics = ({ token }) => {
               ))}
             </div>
           </div>
-          <div className="flex flex-col gap-6">
+          <div className="flex flex-col gap-4">
             <div className="relative col-span-1 p-4 border border-black text-sm">
               <b>Total Revenue</b>
               <p className="">Total Sales All Time</p>

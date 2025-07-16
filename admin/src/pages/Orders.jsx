@@ -67,7 +67,7 @@ const Orders = ({ token }) => {
       <p className="mb-2 font-title text-black">Order Page</p>
       <div>
         {orders.map((order, index) => (
-          <div className="relative grid grid-cols-1 sm:grid-cols-[75px_2fr_1fr] lg:grid-cols-[75px_2fr_1fr_0.5fr_200px] gap-4 items-start border border-black p-4 my-4 text-sm" key={index} >
+          <div className="relative grid grid-cols-1 sm:grid-cols-[75px_2fr_1fr] lg:grid-cols-[75px_2fr_1fr_0.5fr_200px] gap-4 items-start border border-black p-4 mb-4 text-sm" key={index} >
             <img onClick={() => handleImageClick(order.items)} className="w-full xs:absolute xs:w-[100px] xs:bottom-[70px] xs:right-4 sm:relative sm:right-0 sm:bottom-0 border border-black p-2 cursor-pointer" src={assets.parcel_icon} alt="" />
             <div>
               <p className="font-subtitle">{order.address.firstName + " " + order.address.lastName}</p>
