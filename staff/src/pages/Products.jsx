@@ -1,0 +1,13 @@
+
+
+const Products = () => {
+	return (
+		<div className="flex flex-col w-full items-start gap-4">
+			<div className="w-full">
+				<p className="mb-2 font-title text-black">Available Products</p>
+			</div>
+		</div>
+	)
+}
+
+export default Products;

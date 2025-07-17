@@ -105,7 +105,7 @@ const staffSignIn = async (req, res) => {
         const { email, password } = req.body;
 
         // Validating Admin Credentials
-        if (email === process.env.ADMIN_EMAIL && password === process.env.STAFF_PASSWORD) {
+        if (email === process.env.STAFF_EMAIL && password === process.env.STAFF_PASSWORD) {
             const token = jwt.sign(email+password, process.env.JWT_SECRET);
             res.json({success: true, token});
         } else {
