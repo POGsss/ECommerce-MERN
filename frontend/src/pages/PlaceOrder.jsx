@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useContext } from "react";
 import { ShopContext } from "../context/ShopContext";
 import CartTotal from "../components/CartTotal";
@@ -68,8 +68,17 @@ const PlaceOrder = () => {
         case "stripe":
           const responseStripe = await axios.post(backendUrl + "/api/order/stripe", orderData, {headers: { token } });
           if (responseStripe.data.success) {
+            // Deconstructuring Session Url
             const { session_url } = responseStripe.data;
-            window.location.replace(session_url);
+
+            // Setting Mini Window Size
+            const width = 600;
+            const height = 800;
+            const left = window.screenX + (window.outerWidth - width) / 2;
+            const top = window.screenY + (window.outerHeight - height) / 2;
+
+            // Opening Mini Window
+            window.open(session_url, "_blank", `width=${width},height=${height},left=${left},top=${top},resizable=no,scrollbars=yes`);
           } else {
             toast(response.data.message);
           }
@@ -85,6 +94,22 @@ const PlaceOrder = () => {
         res.json({success: false, message: error.message});
     }
   };
+
+  // Handling Message From Opening Mini Window
+  useEffect(() => {
+    const handleMessage = (event) => {
+      if (event.data?.type === "PAYMENT_RESULT") {
+        if (event.data.status === "success") {
+          navigate("/orders");
+        } else {
+          navigate("/cart");
+        }
+      }
+    };
+
+    window.addEventListener("message", handleMessage);
+    return () => window.removeEventListener("message", handleMessage);
+  }, []);
 
   return (
     <form onSubmit={onSubmitHandler} className="max-w-[1440px] mx-auto my-10">
@@ -124,10 +149,6 @@ const PlaceOrder = () => {
               <div onClick={() => setMethod("stripe")} className="flex items-center gap-3 border border-black px-4 py-2 cursor-pointer">
                 <p className={`min-w-4 min-h-4 border border-black rounded-full ${method === "stripe" ? "bg-black" : ""}`}></p>
                 <p className="text-sm font-subtitle">Stripe</p>
-              </div>
-              <div onClick={() => setMethod("razorpay")} className="flex items-center gap-3 border border-black px-4 py-2 cursor-pointer">
-                <p className={`min-w-4 min-h-4 border border-black rounded-full ${method === "razorpay" ? "bg-black" : ""}`}></p>
-                <p className="text-sm font-subtitle">Razorpay</p>
               </div>
               <div onClick={() => setMethod("cod")} className="flex items-center gap-3 border border-black px-4 py-2 cursor-pointer">
                 <p className={`min-w-4 min-h-4 border border-black rounded-full ${method === "cod" ? "bg-black" : ""}`}></p>

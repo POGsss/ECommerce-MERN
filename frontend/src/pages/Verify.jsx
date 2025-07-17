@@ -19,12 +19,16 @@ const Verify = () => {
 			
 			const response = await axios.post(backendUrl + "/api/order/verifyStripe", { success, orderId }, { headers: { token } });
 
+			// Checking Response And Sending Window Post Message
 			if (response.data.success) {
 				setCartItems({});
-				navigate("/orders");
+				window.opener?.postMessage({ type: "PAYMENT_RESULT", status: "success" }, "*");
 			} else {
-				navigate("/cart");
+				window.opener?.postMessage({ type: "PAYMENT_RESULT", status: "fail" }, "*");
 			}
+			
+			// Closing Opened window
+			window.close();
 		} catch (error) {
 			// Logging Error
 			console.log(error);
