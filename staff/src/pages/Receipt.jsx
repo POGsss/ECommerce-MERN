@@ -1,4 +1,4 @@
-import { useRef, useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { backendUrl, currency } from "../App";
 import { toast } from "react-toastify";
 import { assets } from "../assets/assets";
@@ -38,23 +38,29 @@ const Receipt = ({ token }) => {
 	useEffect(() => {
 		fetchAllOrders();
 	}, []);
-
-	const previewRef = useRef();
 	
-	const handleGeneratePDF = () => {
-    const element = previewRef.current;
-    html2pdf().from(element).set({
-      margin: 0.2,
-      filename: "receipt.pdf",
-      html2canvas: { scale: 1 },
-      jsPDF: { format: "a6", orientation: "portrait" },
-    }).save();
+	// Generate PDF Function
+	const handleGeneratePDF = (order) => {
+    
   };
 
+	// Print Receipt Function
 	const handlePrint = (order) => {
+		const style = document.createElement('style');
+		style.innerHTML = ` @media print { body * { visibility: hidden !important; overflow: hidden; } #print-root, #print-root * { visibility: visible !important; }}`;
+
 		const printArea = document.createElement('div');
+		printArea.id = 'print-root';
 		printArea.style.position = 'fixed';
-		printArea.style.top = '-9999px';
+		printArea.style.visibility = "hidden";
+		printArea.style.top = '50%';
+		printArea.style.left = '50%';
+		printArea.style.transform = "translate(-50%, -50%)";
+		printArea.style.width = '300px';
+		printArea.style.background = 'white';
+		printArea.style.zIndex = '9999';
+		
+		document.head.appendChild(style);
 		document.body.appendChild(printArea);
 
 		const root = ReactDOM.createRoot(printArea);
@@ -64,6 +70,7 @@ const Receipt = ({ token }) => {
 			window.print();
 			root.unmount();
 			document.body.removeChild(printArea);
+			document.head.removeChild(style);
 		}, 500);
 	};
 
@@ -103,7 +110,7 @@ const Receipt = ({ token }) => {
 				</div>
 				<div>
 					<p className="mb-2 font-title text-black">Receipt Preview</p>
-					<Preview ref={previewRef} selectedOrder={selectedOrder} />
+					<Preview selectedOrder={selectedOrder} />
 				</div>
 			</div>
 		</div>
