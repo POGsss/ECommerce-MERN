@@ -2,6 +2,8 @@ import orderModel from "../models/orderModel.js";
 import userModel from "../models/userModel.js";
 import Stripe from "stripe";
 
+// -------------------- USer -------------------- //
+
 // Global Variables
 const currency = "php";
 const deliveryFee = 30;
@@ -128,11 +130,6 @@ const verifyStripe = async (req, res) => {
     }
 }
 
-// Place Order Functionality Razorpay
-const placeOrderRazorpay = async (req, res) => {
-    
-}
-
 // User Orders Functionality
 const userOrders = async (req, res) => {
     try {
@@ -254,4 +251,53 @@ const updateStatus = async (req, res) => {
     }
 }
 
-export { placeOrderCOD, placeOrderStripe, verifyStripe, placeOrderRazorpay, userOrders, adminOrders, recentOrders, salesCount, revenueTotal, updateStatus };
+// -------------------- STAFF -------------------- //
+
+// All Orders Functionality
+const staffOrders = async (req, res) => {
+    try {
+        // Adding Filter For Online Orders
+        const { source } = req.query;
+        const filter = source ? { source } : {};
+
+        // Getting All Orders
+        const orders = await orderModel.find(filter).sort({date: -1});
+        res.json({ success: true, orders });
+    } catch (error) {
+        // Logging Error
+        console.log(error);
+        res.json({success: false, message: error.message});
+    }
+}
+
+// Place Order Functionality POS
+// Place Order Functionality COD
+const placeOrderPOS = async (req, res) => {
+    try {
+        // Getting User Data
+        const { items, amount } = req.body;
+
+        // Creating Order Data
+        const orderData = {
+            items,
+            amount,
+            payment: true,
+            status: "Completed",
+            date: Date.now(),
+            source: "store"
+        };
+
+        // Creating Order
+        const newOrder = await orderModel.create(orderData);
+        await newOrder.save();
+
+        // Sending Response
+        res.json({ success: true, message: "Order Placed"});
+    } catch (error) {
+        // Logging Error
+        console.log(error);
+        res.json({success: false, message: error.message});
+    }
+}
+
+export { placeOrderCOD, placeOrderStripe, verifyStripe, userOrders, adminOrders, recentOrders, salesCount, revenueTotal, updateStatus, staffOrders, placeOrderPOS };

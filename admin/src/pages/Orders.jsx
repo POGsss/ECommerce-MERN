@@ -20,7 +20,7 @@ const Orders = ({ token }) => {
     }
 
     try {
-      // Sending Request To Backend
+      // Sending Post Request
       const response = await axios.post(backendUrl + "/api/order/admin?source=online", {}, { headers: { token } });
 
       // Checking Response
@@ -71,7 +71,7 @@ const Orders = ({ token }) => {
             <img onClick={() => handleImageClick(order.items)} className="w-full xs:absolute xs:w-[100px] xs:bottom-[70px] xs:right-4 sm:relative sm:right-0 sm:bottom-0 border border-black p-2 cursor-pointer" src={assets.parcel_icon} alt="" />
             <div>
               <p className="font-subtitle">{order.address.firstName + " " + order.address.lastName}</p>
-              <p className="break-all">{new String(order._id).toString()}</p>
+              <p className="break-all">{order._id.substring(0, 8) + '-' + order._id.substring(order._id.length - 8)}</p>
               <div>
                 <p>{order.address.street + ", " + order.address.city + ", " + order.address.state + ", " + order.address.zipCode}</p>
               </div>

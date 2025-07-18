@@ -1,7 +1,8 @@
 import express from 'express';
-import { placeOrderCOD, placeOrderStripe, verifyStripe, placeOrderRazorpay, userOrders, adminOrders, recentOrders, salesCount, revenueTotal, updateStatus } from '../controllers/orderController.js';
+import { placeOrderCOD, placeOrderStripe, verifyStripe, userOrders, adminOrders, recentOrders, salesCount, revenueTotal, updateStatus, staffOrders, placeOrderPOS } from '../controllers/orderController.js';
 import authUser from '../middleware/authUser.js';
-import adminAuth from '../middleware/authAdmin.js';
+import authAdmin from '../middleware/authAdmin.js';
+import authStaff from "../middleware/authStaff.js";
 
 const orderRouter = express.Router();
 
@@ -10,15 +11,16 @@ orderRouter.post("/user", authUser, userOrders);
 orderRouter.post("/cod", authUser, placeOrderCOD);
 orderRouter.post("/stripe", authUser, placeOrderStripe);
 orderRouter.post("/verifyStripe", authUser, verifyStripe);
-orderRouter.post("/razorpay", authUser, placeOrderRazorpay);
 
 // Admin Routes
-orderRouter.post("/admin", adminAuth, adminOrders);
-orderRouter.post("/recent", adminAuth, recentOrders);
-orderRouter.post("/sales", adminAuth, salesCount);
-orderRouter.post("/revenue", adminAuth, revenueTotal);
-orderRouter.post("/status", adminAuth, updateStatus);
+orderRouter.post("/admin", authAdmin, adminOrders);
+orderRouter.post("/recent", authAdmin, recentOrders);
+orderRouter.post("/sales", authAdmin, salesCount);
+orderRouter.post("/revenue", authAdmin, revenueTotal);
+orderRouter.post("/status", authAdmin, updateStatus);
 
 // Staff Routes
+orderRouter.post("/staff", authStaff, staffOrders);
+orderRouter.post("/pos", authStaff, placeOrderPOS);
 
 export default orderRouter;

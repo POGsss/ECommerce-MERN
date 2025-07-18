@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { backendUrl, currency } from "../App";
 import { toast } from "react-toastify";
 import { assets } from "../assets/assets";
+import Order from "../components/Order";
 
 const Products = ({ token }) => {
 	const [list, setList ] = useState([]);
@@ -12,10 +13,9 @@ const Products = ({ token }) => {
 			// Sending Get Request
 			const response = await axios.get(backendUrl + "/api/product/list");
 
-			// Checkinig If Response Is Successful
+			// Checking Response
 			if (response.data.success) {
 				setList(response.data.products);
-				console.log(list);
 			} else {
 				toast(response.data.message);
 			}
@@ -33,7 +33,7 @@ const Products = ({ token }) => {
 	return (
 		<div className="flex flex-col-reverse sm:flex-row w-full items-start gap-4">
 			{/* Right Side */}
-			<div className="w-full sm:w-[calc(100%-250px)]">
+			<div className="w-full sm:w-[calc(100%-250px)] lg:w-[calc(100%-300px)]">
 				<p className="mb-2 font-title text-black">Available Products</p>
 				<div className="grid grid-cols-[repeat(auto-fit,minmax(150px,1fr))] gap-4">
 					{/* List Data */}
@@ -49,10 +49,10 @@ const Products = ({ token }) => {
 			</div>
 
 			{/* Left Side */}
-			<div  className="w-full sm:w-[250px]">
+			<div  className="w-full sm:w-[250px] lg:w-[300px]">
 				<p className="mb-2 font-title text-black">Current Order</p>
 				<div>
-					
+					<Order />
 				</div>
 			</div>
 		</div>
