@@ -13,11 +13,11 @@ const ShopContextProvider = (props) => {
 
     // Environment Variables
     const backendUrl = import.meta.env.VITE_BACKEND_URL;
-    const [products, setProducts] = useState([]);
+    const [ products, setProducts ] = useState([]);
 
     // State Variables
-    const [search, setSearch] = useState("");
-    const [showSearch, setShowSearch] = useState(false);
+    const [ search, setSearch ] = useState("");
+    const [ showSearch, setShowSearch ] = useState(false);
     const [ cartItems, setCartItems ] = useState({});
     const [ token, setToken ] = useState("");
     const navigate = useNavigate();

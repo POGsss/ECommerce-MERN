@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { assets } from "../assets/assets";
 
-const Calculator = () => {
-	const [ total, setTotal ] = useState(0);
+const Calculator = ({ amount }) => {
+	const [ total, setTotal ] = useState(amount);
 	const [ receive, setReceive ] = useState(0);
 	const [ change, setChange ] = useState(0);
 
@@ -17,8 +17,9 @@ const Calculator = () => {
 	}
 
 	useEffect(() => {
+		setTotal(amount);
 		calculateChange();
-	}, [total, receive]);
+	}, [total, receive, amount]);
 
 	return (
 		<div className="w-full flex flex-col text-sm gap-4 p-2 border border-black">

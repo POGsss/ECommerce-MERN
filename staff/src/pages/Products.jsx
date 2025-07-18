@@ -6,7 +6,8 @@ import { assets } from "../assets/assets";
 import Order from "../components/Order";
 
 const Products = ({ token }) => {
-	const [list, setList ] = useState([]);
+	const [ list, setList ] = useState([]);
+	const [ orderList, setOrderList ] = useState([]);
 
 	const fetchList = async () => {
 		try {
@@ -26,6 +27,20 @@ const Products = ({ token }) => {
 		}
 	}
 
+	const handleAddOrder = (item) => {
+		// Check If The Item Is In The List
+		const existing = orderList.find(i => i._id === item._id);
+		
+		if (existing) {
+			// Increment Quantity
+			const updated = orderList.map(i => i._id === item._id ? { ...i, quantity: i.quantity + 1 } : i);
+			setOrderList(updated);
+		} else {
+			// Add New Item
+			setOrderList([...orderList, { ...item, quantity: 1 }]);
+		}
+	};
+
 	useEffect(() => {
 		fetchList();
 	}, []);
@@ -42,17 +57,17 @@ const Products = ({ token }) => {
 							<img className="w-full border border-black" src={item.image[0]} alt="" />
 							<p>{item.name}</p>
 							<p>{currency}{item.price}</p>
-							<img onClick={() => handleDeleteClick(item._id)} className="absolute right-2 bottom-2 cursor-pointer" src={assets.add_order_icon} alt="" />
+							<img onClick={() => handleAddOrder(item)} className="absolute right-2 bottom-2 cursor-pointer" src={assets.add_order_icon} alt="" />
 						</div>
 					))}
 				</div>
 			</div>
 
 			{/* Left Side */}
-			<div  className="w-full sm:w-[250px] lg:w-[300px]">
-				<p className="mb-2 font-title text-black">Current Order</p>
+			<div  className="w-full flex flex-col gap-4 sm:w-[250px] lg:w-[300px]">
 				<div>
-					<Order />
+					<p className="mb-2 font-title text-black">Current Order</p>
+					<Order orderList={orderList} setOrderList={setOrderList} token={token} backendUrl={backendUrl} />
 				</div>
 			</div>
 		</div>

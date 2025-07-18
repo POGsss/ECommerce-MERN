@@ -25,7 +25,7 @@ const Analytics = ({ token }) => {
 
     try {
       // Sending Request To Backend
-      const response = await axios.post(backendUrl + "/api/order/recent", {}, { headers: { token } });
+      const response = await axios.post(backendUrl + "/api/order/recent?source=online", {}, { headers: { token } });
 
       // Checking Response
       if (response.data.success) {

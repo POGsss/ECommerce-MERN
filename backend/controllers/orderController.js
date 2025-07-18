@@ -271,7 +271,6 @@ const staffOrders = async (req, res) => {
 }
 
 // Place Order Functionality POS
-// Place Order Functionality COD
 const placeOrderPOS = async (req, res) => {
     try {
         // Getting User Data
