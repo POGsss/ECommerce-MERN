@@ -6,15 +6,15 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const Analytics = ({ token }) => {
-  const [orders, setOrders] =  useState([]);
+  const [ orders, setOrders ] =  useState([]);
 
-  const [totalSales, setTotalSales] =  useState("000");
-  const [onlineSales, setOnlineSales] =  useState("000");
-  const [storeSales, setStoreSales] =  useState("000");
-  const [pendingSales, setPendingSales] =  useState("000");
+  const [ totalSales, setTotalSales ] =  useState("000");
+  const [ onlineSales, setOnlineSales ] =  useState("000");
+  const [ storeSales, setStoreSales ] =  useState("000");
+  const [ pendingSales, setPendingSales ] =  useState("000");
 
-  const [totalRevenue, setTotalRevenue] =  useState("000");
-  const [monthlyRevenue, setMonthlyRevenue] =  useState("000");
+  const [ totalRevenue, setTotalRevenue ] =  useState("000");
+  const [ monthlyRevenue, setMonthlyRevenue ] =  useState("000");
 
   const navigate = useNavigate();
 
@@ -98,26 +98,26 @@ const Analytics = ({ token }) => {
     <div className="flex flex-col w-full items-start gap-4">
       <div className="w-full">
       <p className="mb-2 font-title text-black">Analytics</p>
-        <div className="w-full grid grid-cols-[repeat(auto-fit,minmax(215px,1fr))] gap-4">
-          <div className="relative p-4 border border-black text-sm">
+        <div className="w-full flex flex-wrap items-stretch gap-4">
+          <div className="relative grow basis-[200px] p-4 border border-black text-sm">
             <b className="">Total Sales</b>
             <p className="text-xl">{totalSales}</p>
             <img className="absolute w-[40px] border border-black p-2 top-4 right-4" src={assets.analytics_icon} alt="" />
           </div>
-          <div className="relative p-4 border border-black text-sm">
+          <div className="relative grow basis-[200px] p-4 border border-black text-sm">
             <b className="">Online Sales</b>
             <p className="text-xl">{onlineSales}</p>
             <img className="absolute w-[40px] border border-black p-2 top-4 right-4" src={assets.analytics_icon} alt="" />
           </div>
-          <div className="relative p-4 border border-black text-sm">
+          <div className="relative grow basis-[200px] p-4 border border-black text-sm">
             <b className="">Store Sales</b>
             <p className="text-xl">{storeSales}</p>
-            <img className="absolute w-[40px] border border-black p-2 top-4 right-4" src={assets.analytics_icon} alt="" />
+            <img className="absolute border border-black p-2 top-4 right-4" src={assets.analytics_icon} alt="" />
           </div>
-          <div className="relative p-4 border border-black text-sm">
+          <div className="relative grow basis-[200px] p-4 border border-black text-sm">
             <b className="">Pending Sales</b>
             <p className="text-xl">{pendingSales}</p>
-            <img className="absolute w-[40px] border border-black p-2 top-4 right-4" src={assets.analytics_icon} alt="" />
+            <img className="absolute border border-black p-2 top-4 right-4" src={assets.analytics_icon} alt="" />
           </div>
         </div>
       </div>

@@ -5,9 +5,9 @@ import axios from "axios";
 import { assets } from "../assets/assets";
 
 const Orders = ({ token }) => {
-  const [showItemDialog, setShowItemDialog] = useState(false);
-  const [selectedItems, setSelectedItems] = useState([]);
-  const [orders, setOrders] = useState([]);
+  const [ showItemDialog, setShowItemDialog ] = useState(false);
+  const [ selectedItems, setSelectedItems ] = useState([]);
+  const [ orders, setOrders ] = useState([]);
 
   const handleImageClick = (items) => {
     setSelectedItems(items);

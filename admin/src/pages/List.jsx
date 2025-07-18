@@ -7,9 +7,9 @@ import Dialog from "../components/Dialog";
 
 const List = ({ token }) => {
   const [ list, setList ] = useState([]);
-  const [showDialog, setShowDialog] = useState(false);
-  const [productToDelete, setProductToDelete] = useState(null);
-  const [currentPage, setCurrentPage] = useState(1);
+  const [ showDialog, setShowDialog ] = useState(false);
+  const [ productToDelete, setProductToDelete ] = useState(null);
+  const [ currentPage, setCurrentPage ] = useState(1);
   const itemsPerPage = 10;
 
   const fetchList = async () => {
