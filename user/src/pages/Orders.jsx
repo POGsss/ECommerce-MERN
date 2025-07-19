@@ -1,11 +1,33 @@
 import { useContext, useState, useEffect } from 'react';
 import { ShopContext } from '../context/ShopContext.jsx';
+import { toast } from 'react-toastify';
 import Title from '../components/Title.jsx';
 import axios from 'axios';
 
 const Orders = () => {
   const { backendUrl, token, currency } = useContext(ShopContext);
   const [ orderData, setOrderData ] = useState([]);
+
+  const handleReceiveItem = async (orderId) => {
+    try {
+      // Checking If User Logged In
+      if (!token) {
+        return null;
+      }
+      console.log(orderId);
+      // Sending Request To Backend
+      const response = await axios.post(backendUrl + "/api/order/receive", { orderId, status: "Completed", payment: true }, { headers: { token } });
+
+      if (response.data.success) {
+        fetchOrders();
+        toast(response.data.message);
+      }
+    } catch (error) {
+      // Logging Error
+      console.log(error);
+      toast(error.message);
+    }
+  };
 
   const fetchOrders = async () => {
     try {
@@ -26,18 +48,17 @@ const Orders = () => {
             item["payment"] = order.payment;
             item["paymentMethod"] = order.paymentMethod;
             item["date"] = order.date;
+            item["orderId"] = order._id;
 
             allOrders.push(item);
           });
         });
         setOrderData(allOrders.reverse());
       }
-
-      // Setting Order Data
     } catch (error) {
-        // Logging Error
-        console.log(error);
-        res.json({success: false, message: error.message});
+      // Logging Error
+      console.log(error);
+      toast(error.message);
     }
   }
 
@@ -72,7 +93,11 @@ const Orders = () => {
                 <p className="min-w-3 h-3 rounded-full bg-gray-500 border border-black"></p>
                 <p className="text-sm sm:text-base">{item.status}</p>
               </div>
-              <button onClick={fetchOrders} className="border border-black px-4 py-2 text-sm">Track Order</button>
+              {item.status === "Delivered" ? (
+                <button onClick={() => handleReceiveItem(item.orderId)} className="border border-black px-4 py-2 text-sm">Receive Order</button>
+              ) : (
+                <button onClick={fetchOrders} className="border border-black px-4 py-2 text-sm">Track Order</button>
+              )}
             </div>
           </div>
         ))}

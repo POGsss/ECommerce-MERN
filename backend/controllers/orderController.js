@@ -130,6 +130,22 @@ const verifyStripe = async (req, res) => {
     }
 }
 
+// Receive Order Functionality
+const receiveOrder = async (req, res) => {
+    try {
+        // Getting Order ID & Status
+        const { orderId, status, payment } = req.body; 
+
+        // Updating The Order Status
+        await orderModel.findByIdAndUpdate(orderId, { status, payment });
+        res.json({ success: true, message: "Order Received" });
+    } catch (error) {
+        // Logging Error
+        console.log(error);
+        res.json({success: false, message: error.message});
+    }
+}
+
 // User Orders Functionality
 const userOrders = async (req, res) => {
     try {
@@ -299,4 +315,4 @@ const placeOrderPOS = async (req, res) => {
     }
 }
 
-export { placeOrderCOD, placeOrderStripe, verifyStripe, userOrders, adminOrders, recentOrders, salesCount, revenueTotal, updateStatus, staffOrders, placeOrderPOS };
+export { placeOrderCOD, placeOrderStripe, verifyStripe, receiveOrder, userOrders, adminOrders, recentOrders, salesCount, revenueTotal, updateStatus, staffOrders, placeOrderPOS };
