@@ -129,7 +129,7 @@ const Analytics = ({ token }) => {
             <p className="">Latest Customer Orders</p>
             <div className="flex flex-col mt-4 gap-4">
               {orders.map((order, index) => (
-                <div onClick={() => navigate("/orders")} className="flex flex-row justify-between items-center gap-4 cursor-pointer">
+                <div onClick={() => navigate("/orders")} className="flex flex-row justify-between items-center gap-4 cursor-pointer" key={index}>
                   <div className="flex flex-row items-center justify-center gap-4">
                     <img className="w-[60px] h-[60px] border border-black p-2" src={assets.parcel_icon} alt="" />
                     <div>

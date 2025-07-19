@@ -3,7 +3,7 @@ import { currency } from "../App";
 const Preview = ({ selectedOrder }) => {
 	if (!selectedOrder) {
 		return (
-      <div className="w-full flex flex-col text-sm gap-4 p-4 border border-black">
+			<div className="w-full flex flex-col text-sm gap-4 p-4 border border-black">
 				<div className="flex flex-col items-center">
 					<b className="text-lg">BossDShop</b>
 					<p className="text-base">Point Of Sale System</p>
@@ -17,7 +17,7 @@ const Preview = ({ selectedOrder }) => {
 					<p>Please Come Again</p>
 				</div>
 			</div>
-    )
+		)
 	}
 
 	const { _id, date, items, amount } = selectedOrder;
