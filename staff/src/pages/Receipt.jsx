@@ -30,21 +30,21 @@ const Receipt = ({ token }) => {
 				toast(response.data.message);
 			}
 		} catch (error) {
-      // Logging Error
-      console.log(error);
-      toast(error.message);
+			// Logging Error
+			console.log(error);
+			toast(error.message);
 		}
 	}
 
 	useEffect(() => {
 		fetchAllOrders();
 	}, []);
-	
+
 	// Generate PDF Function
 	const handleGeneratePDF = (order) => {
 		// Creating Style Element
 		const style = document.createElement("style");
-		style.innerHTML = `@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap'); * { font-family: Montserrat !important; } #pdf-root { visibility: visible !important; }`;
+		style.innerHTML = `@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap'); #pdf-root { visibility: visible !important; font-family: Montserrat !important; }`;
 
 		// Creating Pdf Area Element
 		const pdfArea = document.createElement("div");
@@ -58,7 +58,7 @@ const Receipt = ({ token }) => {
 		pdfArea.style.padding = "20px";
 		pdfArea.style.background = "white";
 		pdfArea.style.zIndex = "9999";
-		
+
 		// Creating Component To Render
 		const root = ReactDOM.createRoot(pdfArea);
 		root.render(<Preview selectedOrder={order} />);
@@ -74,7 +74,7 @@ const Receipt = ({ token }) => {
 
 			// Setting Properties
 			const imgData = canvas.toDataURL("image/png");
-			const pdf = new jsPDF("portrait", "mm", [canvas.width, canvas.height]);
+			const pdf = new jsPDF("portrait", "px", [canvas.width, canvas.height]);
 
 			// Generating And Saving
 			pdf.addImage(imgData, "PNG", 0, 0, canvas.width, canvas.height);
@@ -82,16 +82,16 @@ const Receipt = ({ token }) => {
 
 			// Unmounting Style And Pdf Area
 			root.unmount();
-			document.body.removeChild(pdfArea);
 			document.head.removeChild(style);
+			document.body.removeChild(pdfArea);
 		}, 500);
-  };
+	};
 
 	// Print Receipt Function
 	const handlePrint = (order) => {
 		// Creating Style Element
 		const style = document.createElement("style");
-		style.innerHTML = ` @media print { body * { visibility: hidden !important; overflow: hidden; } #print-root * { visibility: visible !important; }}`;
+		style.innerHTML = `@media print { body * { visibility: hidden !important; overflow: hidden; } #print-root * { visibility: visible !important; }}`;
 
 		// Creating Print Area Element
 		const printArea = document.createElement("div");
@@ -121,8 +121,8 @@ const Receipt = ({ token }) => {
 			root.unmount();
 
 			// Unmounting The Style And Print Area
-			document.body.removeChild(printArea);
 			document.head.removeChild(style);
+			document.body.removeChild(printArea);
 		}, 500);
 	};
 
@@ -133,7 +133,7 @@ const Receipt = ({ token }) => {
 				<p className="mb-2 font-title text-black">Receipt History</p>
 				<div className="flex flex-col gap-4">
 					{orders.map((order, index) => (
-					<div onClick={() => {setAmount(order.amount); setSelectedOrder(order);}} className="flex flex-wrap items-center justify-end gap-2 border border-black p-2 text-sm cursor-pointer" key={index} >
+						<div onClick={() => { setAmount(order.amount); setSelectedOrder(order); }} className="flex flex-wrap items-center justify-end gap-2 border border-black p-2 text-sm cursor-pointer" key={index} >
 							<div className="flex flex-col grow basis-[200px]">
 								<p className="break-all font-subtitle">Receipt #{order._id.substring(0, 6) + "-" + order._id.substring(order._id.length - 6)}</p>
 								<p>{new Date(order.date).toLocaleDateString()}, {new Date(order.date).toLocaleTimeString("en-US", { hour12: true })}</p>
@@ -155,7 +155,7 @@ const Receipt = ({ token }) => {
 			</div>
 
 			{/* Left Side */}
-			<div  className="w-full flex flex-col gap-4 sm:w-[250px] lg:w-[300px]">
+			<div className="w-full flex flex-col gap-4 sm:w-[250px] lg:w-[300px]">
 				<div>
 					<p className="mb-2 font-title text-black">Calculator</p>
 					<Calculator amount={amount} />
