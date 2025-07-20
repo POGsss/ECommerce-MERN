@@ -10,9 +10,9 @@ import Calculator from "../components/Calculator";
 import Preview from "../components/Preview";
 
 const Receipt = ({ token }) => {
-	const [ orders, setOrders ] = useState([]);
-	const [ selectedOrder, setSelectedOrder ] = useState(null);
-	const [ amount, setAmount ] = useState(0);
+	const [orders, setOrders] = useState([]);
+	const [selectedOrder, setSelectedOrder] = useState(null);
+	const [amount, setAmount] = useState(0);
 
 	const fetchAllOrders = async () => {
 		if (!token) {
@@ -44,18 +44,17 @@ const Receipt = ({ token }) => {
 	const handleGeneratePDF = (order) => {
 		// Creating Style Element
 		const style = document.createElement("style");
-		style.innerHTML = `@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap'); #pdf-root { visibility: visible !important; font-family: Montserrat !important; }`;
+		style.innerHTML = `@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap'); #pdf-root, #pdf-root * { visibility: visible !important; font-family: Montserrat !important; }`;
 
 		// Creating Pdf Area Element
 		const pdfArea = document.createElement("div");
 		pdfArea.id = "pdf-root";
 		pdfArea.style.position = "fixed";
 		pdfArea.style.visibility = "hidden";
-		pdfArea.style.top = "50%";
-		pdfArea.style.left = "50%";
-		pdfArea.style.transform = "translate(-50%, -50%)";
+		pdfArea.style.top = "-100%";
+		pdfArea.style.left = "-100%";
 		pdfArea.style.width = "300px";
-		pdfArea.style.padding = "20px";
+		pdfArea.style.padding = "10px 20px 30px 20px";
 		pdfArea.style.background = "white";
 		pdfArea.style.zIndex = "9999";
 
@@ -91,17 +90,17 @@ const Receipt = ({ token }) => {
 	const handlePrint = (order) => {
 		// Creating Style Element
 		const style = document.createElement("style");
-		style.innerHTML = `@media print { body * { visibility: hidden !important; overflow: hidden; } #print-root * { visibility: visible !important; }}`;
+		style.innerHTML = `@media print { body * { visibility: hidden !important; overflow: hidden; width: } #print-root * { visibility: visible !important; }}`;
 
 		// Creating Print Area Element
 		const printArea = document.createElement("div");
 		printArea.id = "print-root";
 		printArea.style.position = "fixed";
 		printArea.style.visibility = "hidden";
-		printArea.style.top = "50%";
+		printArea.style.top = "0";
 		printArea.style.left = "50%";
-		printArea.style.transform = "translate(-50%, -50%)";
-		printArea.style.width = "300px";
+		printArea.style.transform = "translateX(-50%)";
+		printArea.style.width = "100%";
 		printArea.style.padding = "20px";
 		printArea.style.background = "white";
 		printArea.style.zIndex = "9999";
@@ -127,9 +126,9 @@ const Receipt = ({ token }) => {
 	};
 
 	return (
-		<div className="flex flex-col-reverse sm:flex-row w-full items-start gap-4">
+		<div className="flex flex-col-reverse sm:flex-row items-start gap-4">
 			{/* Right Side */}
-			<div className="w-full sm:w-[calc(100%-250px)] lg:w-[calc(100%-300px)]">
+			<div className="w-full sm:w-[calc(100%-266px)] lg:w-[calc(100%-316px)]">
 				<p className="mb-2 font-title text-black">Receipt History</p>
 				<div className="flex flex-col gap-4">
 					{orders.map((order, index) => (
@@ -158,11 +157,15 @@ const Receipt = ({ token }) => {
 			<div className="w-full flex flex-col gap-4 sm:w-[250px] lg:w-[300px]">
 				<div>
 					<p className="mb-2 font-title text-black">Calculator</p>
-					<Calculator amount={amount} />
+					<div className="p-2 border border-black">
+						<Calculator amount={amount} />
+					</div>
 				</div>
 				<div>
 					<p className="mb-2 font-title text-black">Receipt Preview</p>
-					<Preview selectedOrder={selectedOrder} />
+					<div className="p-2 border border-black">
+						<Preview selectedOrder={selectedOrder} />
+					</div>
 				</div>
 			</div>
 		</div>

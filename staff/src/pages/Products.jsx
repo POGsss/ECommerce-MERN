@@ -48,7 +48,7 @@ const Products = ({ token }) => {
 	return (
 		<div className="flex flex-col-reverse sm:flex-row w-full items-start gap-4">
 			{/* Right Side */}
-			<div className="w-full sm:w-[calc(100%-250px)] lg:w-[calc(100%-300px)]">
+			<div className="w-full sm:w-[calc(100%-266px)] lg:w-[calc(100%-316px)]">
 				<p className="mb-2 font-title text-black">Available Products</p>
 				<div className="grid grid-cols-[repeat(auto-fit,minmax(150px,1fr))] gap-4">
 					{/* List Data */}
@@ -67,7 +67,9 @@ const Products = ({ token }) => {
 			<div  className="w-full flex flex-col gap-4 sm:w-[250px] lg:w-[300px]">
 				<div>
 					<p className="mb-2 font-title text-black">Current Order</p>
-					<Order orderList={orderList} setOrderList={setOrderList} token={token} backendUrl={backendUrl} />
+					<div className="p-2 border border-black">
+						<Order orderList={orderList} setOrderList={setOrderList} token={token} backendUrl={backendUrl} />
+					</div>
 				</div>
 			</div>
 		</div>

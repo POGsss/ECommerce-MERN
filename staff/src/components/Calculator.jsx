@@ -22,7 +22,7 @@ const Calculator = ({ amount }) => {
 	}, [total, receive, amount]);
 
 	return (
-		<div className="w-full flex flex-col text-sm gap-4 p-2 border border-black">
+		<div className="w-full flex flex-col text-sm gap-4">
 			{/* Title */}
 			<div className="w-full flex flex-row items-center justify-between gap-2">
 				<div className="flex flex-col justify-center">
