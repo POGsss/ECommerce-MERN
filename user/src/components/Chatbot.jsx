@@ -46,7 +46,7 @@ const Chatbot = () => {
           {/* Messages */}
           <div className="flex-1 p-3 overflow-y-auto space-y-2">
             {messages.map((msg, index) => (
-              <div key={index} className={`p-2 max-w-[80%] ${ msg.from === "user" ? "bg-black text-white self-end text-right ml-auto" : "bg-[#bfbfbf] self-start text-left mr-auto"}`}>
+              <div key={index} className={`p-2 max-w-[80%] border border-black ${ msg.from === "user" ? "bg-[#bfbfbf] self-end text-right ml-auto" : "bg-white self-start text-left mr-auto"}`}>
                 {msg.text}
               </div>
             ))}
@@ -54,8 +54,8 @@ const Chatbot = () => {
 
           {/* Input */}
           <div className="p-2 border-t border-black flex gap-2">
-            <input value={input} onChange={(e) => setInput(e.target.value)} onKeyDown={(e) => e.key === "Enter" && handleSend()} type="text" placeholder="Type your message..." className="flex-1 px-4 py-2 border border-black" />
-            <button onClick={handleSend} className="flex-1 border border-black bg-[#bfbfbf] flex items-center justify-center">
+            <input value={input} onChange={(e) => setInput(e.target.value)} onKeyDown={(e) => e.key === "Enter" && handleSend()} type="text" placeholder="Ask anything..." className="w-full px-4 py-2 border border-black" />
+            <button onClick={handleSend} className="w-[50px] border border-black bg-[#bfbfbf] flex items-center justify-center">
               <img className="" src={assets.send_icon} alt="" />
             </button>
           </div>
