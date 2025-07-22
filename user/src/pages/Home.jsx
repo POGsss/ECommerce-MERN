@@ -1,4 +1,5 @@
 import BestSeller from "../components/BestSeller";
+import Chatbot from "../components/Chatbot";
 import Hero from "../components/Hero";
 import LatestCollection from "../components/LatestCollection";
 import NewsLetterBox from "../components/NewsLetterBox";
@@ -12,6 +13,7 @@ const Home = () => {
         <LatestCollection />
         <OurPolicy />
         <NewsLetterBox />
+        <Chatbot />
     </div>
   )
 }

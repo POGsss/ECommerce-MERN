@@ -23,6 +23,9 @@ import contact_img from "./contact_img.png";
 import razorpay_logo from "./razorpay_logo.png";
 import stripe_logo from "./stripe_logo.png";
 import cross_icon from "./cross_icon.png";
+import chat_icon from "./chat_icon.png";
+import send_icon from "./send_icon.png";
+import send_icon_white from "./send_icon_white.png";
 
 // Export Images
 export const assets = {
@@ -43,7 +46,10 @@ export const assets = {
     contact_img,
     razorpay_logo,
     stripe_logo,
-    cross_icon
+    cross_icon,
+    chat_icon,
+    send_icon,
+    send_icon_white
 }
 
 // Sample Product Data
