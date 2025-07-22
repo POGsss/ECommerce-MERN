@@ -26,6 +26,7 @@ import cross_icon from "./cross_icon.png";
 import chat_icon from "./chat_icon.png";
 import send_icon from "./send_icon.png";
 import send_icon_white from "./send_icon_white.png";
+import filter_icon from "./filter_icon.png";
 
 // Export Images
 export const assets = {
@@ -49,7 +50,8 @@ export const assets = {
     cross_icon,
     chat_icon,
     send_icon,
-    send_icon_white
+    send_icon_white,
+    filter_icon
 }
 
 // Sample Product Data

@@ -39,7 +39,7 @@ const Chatbot = () => {
         <div className="fixed flex flex-col z-50 bottom-0 right-0 w-full h-full bg-white border border-black xs:bottom-5 xs:right-5 xs:w-[300px] xs:h-[400px]">
           {/* Header */}
           <div className="p-4 flex flex-row items-center justify-between border-b border-black">
-            <p className="text-xl font-subtitle">BossDShop Chat</p>
+            <p className="text-xl font-subtitle">BossD Chat</p>
             <img className="cursor-pointer" onClick={toggleChat} src={assets.cross_icon} alt="" />
           </div>
 
