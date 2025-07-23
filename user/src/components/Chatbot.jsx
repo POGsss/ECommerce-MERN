@@ -1,30 +1,29 @@
 import { useState } from "react";
 import { assets } from "../assets/assets"; 
+import { generateResponse } from "../lib/Gemini.jsx";
 
 const Chatbot = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [input, setInput] = useState("");
   const [messages, setMessages] = useState([
-    { from: "bot", text: "Hi! How can I help you with your shopping today?" },
+    { sender: "bot", text: "Hi! I'm here to help all your inquiries about Boss D Apparel." }
   ]);
 
-  const toggleChat = () => setIsOpen(!isOpen);
-
-  const handleSend = async () => {
+  const handleSubmit = async (e) => {
+    e.preventDefault();
     if (!input.trim()) return;
 
-    const newMessages = [...messages, { from: "user", text: input }];
-    setMessages(newMessages);
-
-    // Replace this block with actual Gemini API call
-    const botReply = await mockGeminiResponse(input);
-    setMessages([...newMessages, { from: "bot", text: botReply }]);
-
+    const newUserMessage = { sender: "user", text: input };
+    setMessages((prev) => [...prev, newUserMessage]);
     setInput("");
+
+    const reply = await generateResponse(input);
+    const newBotMessage = { sender: "bot", text: reply };
+    setMessages((prev) => [...prev, newBotMessage]);
   };
 
-  const mockGeminiResponse = async (message) => {
-    return "Thanks for asking! For inquiries about shipping, return policies, or latest arrivals, I'm here to help.";
+  const toggleChat = () => {
+    setIsOpen((prev) => !prev);
   };
 
   return (
@@ -46,7 +45,7 @@ const Chatbot = () => {
           {/* Messages */}
           <div className="flex-1 p-3 overflow-y-auto space-y-2">
             {messages.map((msg, index) => (
-              <div key={index} className={`p-2 max-w-[80%] border border-black ${ msg.from === "user" ? "bg-[#bfbfbf] self-end text-right ml-auto" : "bg-white self-start text-left mr-auto"}`}>
+              <div key={index} className={`p-2 max-w-[80%] border border-black ${ msg.sender === "user" ? "bg-[#bfbfbf] self-end text-right ml-auto" : "bg-white self-start text-left mr-auto"}`}>
                 {msg.text}
               </div>
             ))}
@@ -54,8 +53,8 @@ const Chatbot = () => {
 
           {/* Input */}
           <div className="p-2 border-t border-black flex gap-2">
-            <input value={input} onChange={(e) => setInput(e.target.value)} onKeyDown={(e) => e.key === "Enter" && handleSend()} type="text" placeholder="Ask anything..." className="w-full px-4 py-2 border border-black" />
-            <button onClick={handleSend} className="w-[50px] border border-black bg-[#bfbfbf] flex items-center justify-center">
+            <input value={input} onChange={(e) => setInput(e.target.value)} type="text" placeholder="Ask anything..." className="w-full px-4 py-2 border border-black" />
+            <button onClick={handleSubmit} className="w-[50px] border border-black bg-[#bfbfbf] flex items-center justify-center">
               <img className="" src={assets.send_icon} alt="" />
             </button>
           </div>

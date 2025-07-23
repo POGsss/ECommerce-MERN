@@ -23,7 +23,7 @@ const Navbar = () => {
             </Link>
 
             {/* Menu */}
-            <ul className="hidden sm:flex gap-5 text-sm text-black">
+            <ul className="hidden sm:flex gap-4 text-sm text-black">
                 <NavLink to="/" className="flex flex-col items-center gap-1">
                     <p className="font-text">HOME</p>
                     <hr className="w-2/4 border-none h-[1.5px] bg-black" hidden/>
@@ -43,7 +43,7 @@ const Navbar = () => {
             </ul>
 
             {/* Icons */}
-            <div className="flex items-center gap-5">
+            <div className="flex items-center gap-2 xs:gap-4">
                 <img onClick={() => setShowSearch(!showSearch)} src={assets.search_icon} className="w-5 min-w-5 cursor-pointer" alt="" />
                 <div className="group relative">
                     <img onClick={() => token ? null : navigate("/signin")} src={assets.profile_icon} className="w-5 min-w-5 cursor-pointer" alt="" />
