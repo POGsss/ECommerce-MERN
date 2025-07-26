@@ -2,6 +2,8 @@ import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useContext, useState } from "react";
 import { ShopContext } from "../context/ShopContext.jsx";
+import { assets } from "../assets/assets";
+import VirtualTryOn from "../components/VirtualTryOn.jsx";
 import RelatedProducts from "../components/RelatedProducts.jsx";
 
 const Product = () => {
@@ -84,6 +86,9 @@ const Product = () => {
 
       {/* Related Products Section */}
       <RelatedProducts category={productData.category} subCategory={productData.subCategory} />
+
+      {/* Virtual Try-On Component */}
+      <VirtualTryOn />
     </div>
   ) : <div className="opacity-0"></div>
 }
