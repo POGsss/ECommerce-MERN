@@ -42,8 +42,8 @@ const VirtualTryOn = () => {
 					</div>
 
 					{/* Body */}
-					<div className="w-full flex flex-row gap-4 p-4">
-						<div className="w-[250px] flex flex-col gap-4 justify-between items-center">
+					<div className="w-full flex flex-col xs:flex-row gap-4 p-4">
+						<div className="w-full flex flex-row xs:w-[250px] xs:flex-col gap-4 justify-between items-center">
 							<label htmlFor="image1" className="w-full h-full">
 								<img className="border border-black border-dashed w-full h-full object-cover" src={garmentImage ? URL.createObjectURL(garmentImage) : assets.upload_area} alt="" />
 								<input onChange={(e) => setGarmentImage(e.target.files[0])} type="file" id="image1" hidden />
