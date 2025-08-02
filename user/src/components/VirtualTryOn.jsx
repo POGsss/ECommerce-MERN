@@ -34,7 +34,7 @@ const VirtualTryOn = () => {
 
 			{/* Popup Container */}
 			{isOpen && (
-				<div className="fixed top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] z-50 bg-white border border-black flex flex-col items-center justify-center w-full md:w-[500px]">
+				<div className="fixed bottom-[20px] right-[20px] z-50 bg-white border border-black flex flex-col items-center justify-center w-[calc(100%-40px)] sm:w-[500px]">
 					{/* Header */}
 					<div className="w-full p-4 flex flex-row items-center justify-between border-b border-black">
 						<p className="text-xl font-subtitle">Virtual Try On</p>
