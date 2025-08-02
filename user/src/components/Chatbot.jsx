@@ -35,7 +35,7 @@ const Chatbot = () => {
 
       {/* Chatbox */}
       {isOpen && (
-        <div className="fixed flex flex-col z-50 bottom-0 right-0 w-full h-full bg-white border border-black xs:bottom-5 xs:right-5 xs:w-[300px] xs:h-[400px]">
+        <div className="fixed flex flex-col z-50 bottom-[20px] right-[20px] w-[calc(100%-40px)] min-h-[400px] max-h-[500px] bg-white border border-black xs:w-[300px]">
           {/* Header */}
           <div className="p-4 flex flex-row items-center justify-between border-b border-black">
             <p className="text-xl font-subtitle">BossD Chat</p>
