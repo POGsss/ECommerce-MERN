@@ -18,7 +18,7 @@ const VirtualTryOn = () => {
 	};
 
 	const handleGenerate = async () => {
-		setResultImage("https://via.placeholder.com/300x400?text=Generated+Result");
+		setResultImage("");
 	};
 
 	const toggleTryOn = () => {
@@ -45,18 +45,18 @@ const VirtualTryOn = () => {
 					<div className="w-full flex flex-col xs:flex-row gap-4 p-4">
 						<div className="w-full flex flex-row xs:w-[250px] xs:flex-col gap-4 justify-between items-center">
 							<label htmlFor="image1" className="w-full h-full">
-								<img className="border border-black border-dashed w-full h-full object-cover" src={garmentImage ? URL.createObjectURL(garmentImage) : assets.upload_area} alt="" />
-								<input onChange={(e) => setGarmentImage(e.target.files[0])} type="file" id="image1" hidden />
+								<img className="border border-black border-dashed w-full aspect-[1/1] object-cover" src={personImage ? URL.createObjectURL(personImage) : assets.upload_area} alt="" />
+								<input onChange={(e) => setPersonImage(e.target.files[0])} type="file" id="image1" hidden />
 							</label>
-							<label htmlFor="image1" className="w-full h-full">
-								<img className="border border-black border-dashed w-full h-full object-cover" src={garmentImage ? URL.createObjectURL(garmentImage) : assets.upload_area} alt="" />
-								<input onChange={(e) => setGarmentImage(e.target.files[0])} type="file" id="image1" hidden />
+							<label htmlFor="image2" className="w-full h-full">
+								<img className="border border-black border-dashed w-full aspect-[1/1] object-cover" src={garmentImage ? URL.createObjectURL(garmentImage) : assets.upload_area} alt="" />
+								<input onChange={(e) => setGarmentImage(e.target.files[0])} type="file" id="image2" hidden />
 							</label>
 						</div>
 						<div className="w-full flex">
-							<label htmlFor="image1" className="w-full h-full">
-								<img className="border border-black border-dashed w-full h-full object-cover" src={garmentImage ? URL.createObjectURL(garmentImage) : assets.upload_area} alt="" />
-								<input onChange={(e) => setGarmentImage(e.target.files[0])} type="file" id="image1" hidden />
+							<label htmlFor="image3" className="w-full h-full">
+								<img className="border border-black border-dashed w-full h-full object-cover" src={resultImage ? URL.createObjectURL(resultImage) : assets.upload_area} alt="" />
+								<input onChange={(e) => setResultImage(e.target.files[0])} type="file" id="image3" hidden />
 							</label>
 						</div>
 					</div>
