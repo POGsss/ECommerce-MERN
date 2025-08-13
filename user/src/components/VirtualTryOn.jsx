@@ -1,24 +1,33 @@
 import { useState } from "react";
 import { assets } from "../assets/assets";
+import { generateVirtualTryOn } from "../lib/Fashn.jsx";
+import { toast } from "react-toastify";
 
 const VirtualTryOn = () => {
 	const [isOpen, setIsOpen] = useState(false);
 	const [garmentImage, setGarmentImage] = useState(false);
 	const [personImage, setPersonImage] = useState(false);
 	const [resultImage, setResultImage] = useState(false);
-
-	const handleGarmentChange = (e) => {
-		const file = e.target.files[0];
-		if (file) setGarmentImage(URL.createObjectURL(file));
-	};
-
-	const handlePersonChange = (e) => {
-		const file = e.target.files[0];
-		if (file) setPersonImage(URL.createObjectURL(file));
-	};
+	const [loading, setLoading] = useState(false);
 
 	const handleGenerate = async () => {
-		setResultImage("");
+		if (personImage && garmentImage) {
+			try {
+				setLoading(true);
+				const result = await generateVirtualTryOn(personImage, garmentImage);
+
+				if (result) {
+					setResultImage(result);
+				} else {
+					toast("Failed To Generate");
+				}
+			} catch (error) {
+				console.error(error);
+				toast("Failed To Generate");
+			} finally {
+				setLoading(false);
+			}
+		}
 	};
 
 	const toggleTryOn = () => {
@@ -29,12 +38,19 @@ const VirtualTryOn = () => {
 		<div>
 			{/* Floating Button */}
 			<button onClick={toggleTryOn} className="fixed bottom-5 right-5 z-50 bg-[#bfbfbf] p-4 border border-black shadow-lg">
-				<img src={assets.chat_icon} alt="Chat Icon" />
+				<img src={assets.tryon_icon} alt="Chat Icon" />
 			</button>
 
 			{/* Popup Container */}
 			{isOpen && (
 				<div className="fixed bottom-[20px] right-[20px] z-50 bg-white border border-black flex flex-col items-center justify-center w-[calc(100%-40px)] sm:w-[500px]">
+					{/* Overlay */}
+					{loading && (
+						<div className="absolute top-0 left-0 w-full h-full bg-black bg-opacity-50 flex items-center justify-center z-50">
+							<div className="w-10 h-10 border-4 border-white border-t-transparent rounded-full animate-spin"></div>
+						</div>
+					)}
+
 					{/* Header */}
 					<div className="w-full p-4 flex flex-row items-center justify-between border-b border-black">
 						<p className="text-xl font-subtitle">Virtual Try On</p>

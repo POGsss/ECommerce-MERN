@@ -4,7 +4,7 @@ const API_KEY = import.meta.env.VITE_GEMINI_API_KEY.replace(/^"|"$/g, "");
 const chatBot = new GoogleGenerativeAI(API_KEY);
 
 export async function generateResponse(prompt) {
-    try {
+  try {
     const model = chatBot.getGenerativeModel({ model: "gemini-2.0-flash" });
 
     // Business Details

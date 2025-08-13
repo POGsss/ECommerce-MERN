@@ -24,6 +24,7 @@ import razorpay_logo from "./razorpay_logo.png";
 import stripe_logo from "./stripe_logo.png";
 import cross_icon from "./cross_icon.png";
 import chat_icon from "./chat_icon.png";
+import tryon_icon from "./tryon_icon.png";
 import send_icon from "./send_icon.png";
 import send_icon_white from "./send_icon_white.png";
 import filter_icon from "./filter_icon.png";
@@ -50,6 +51,7 @@ export const assets = {
     stripe_logo,
     cross_icon,
     chat_icon,
+    tryon_icon,
     send_icon,
     send_icon_white,
     filter_icon,
