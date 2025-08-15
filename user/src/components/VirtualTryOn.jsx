@@ -1,7 +1,9 @@
 import { useState } from "react";
 import { assets } from "../assets/assets";
-import { generateVirtualTryOn } from "../lib/Fashn.jsx";
+import { generateFitroom } from "../lib/Fitroom.jsx";
+import { generateFashn } from "../lib/Fashn.jsx";
 import { toast } from "react-toastify";
+import axios from "axios";
 
 const VirtualTryOn = () => {
 	const [isOpen, setIsOpen] = useState(false);
@@ -10,25 +12,37 @@ const VirtualTryOn = () => {
 	const [resultImage, setResultImage] = useState(false);
 	const [loading, setLoading] = useState(false);
 
-	const handleGenerate = async () => {
+	// Virtual Try On Fitroom
+	const handleGenerateFitroom = async () => {
 		if (personImage && garmentImage) {
 			try {
 				setLoading(true);
-				const result = await generateVirtualTryOn(personImage, garmentImage);
-
-				if (result) {
-					setResultImage(result);
-				} else {
-					toast("Failed To Generate");
-				}
+				const result = await generateFitroom(personImage, garmentImage);
+				setResultImage(result);
 			} catch (error) {
 				console.error(error);
-				toast("Failed To Generate");
+				toast("Failed to generate");
 			} finally {
 				setLoading(false);
 			}
 		}
 	};
+
+	// Virtual Try On Fashn
+	const handleGenerateFashn = async () => {
+		if (personImage && garmentImage) {
+			try {
+				setLoading(true);
+				const result = await generateFashn(personImage, garmentImage);
+				setResultImage(result);
+			} catch (error) {
+				console.error(error);
+				toast("Failed to generate");
+			} finally {
+				setLoading(false);
+			}
+		}
+	}
 
 	const toggleTryOn = () => {
 		setIsOpen((prev) => !prev);
@@ -71,14 +85,14 @@ const VirtualTryOn = () => {
 						</div>
 						<div className="w-full flex">
 							<label htmlFor="image3" className="w-full h-full">
-								<img className="border border-black border-dashed w-full h-full object-cover" src={resultImage ? URL.createObjectURL(resultImage) : assets.upload_area} alt="" />
+								<img className="border border-black border-dashed w-full h-full object-cover" src={resultImage ? resultImage : assets.upload_area} alt="" />
 								<input onChange={(e) => setResultImage(e.target.files[0])} type="file" id="image3" hidden />
 							</label>
 						</div>
 					</div>
 
 					{/* Footer */}
-					<button onClick={handleGenerate} className="w-[calc(100%-32px)] font-text md:text-base mb-4 px-8 py-4 bg-black text-white cursor-pointer active:bg-gray-500">Generate</button>
+					<button onClick={handleGenerateFitroom} className="w-[calc(100%-32px)] font-text md:text-base mb-4 px-8 py-4 bg-black text-white cursor-pointer active:bg-gray-500">Generate</button>
 				</div>
 			)}
 		</div>

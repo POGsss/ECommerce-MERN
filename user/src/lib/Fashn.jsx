@@ -3,7 +3,7 @@ import axios from "axios";
 const API_KEY = import.meta.env.VITE_FASHN_API_KEY.replace(/^"|"$/g, "");
 const endpoint = "https://api.fashn.ai/v1/run";
 
-export async function generateVirtualTryOn(personImage, garmentImage) {
+export async function generateFashn(personImage, garmentImage) {
     try {
         const response = await axios.post(endpoint,
             {
