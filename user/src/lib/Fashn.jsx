@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const API_KEY = import.meta.env.VITE_FASHN_API_KEY.replace(/^"|"$/g, "");
-const endpoint = "https://api.fashn.ai/v1/run";
+const endpoint = "https://api.fashn.ai/v1";
 
 export async function generateFashn(personImage, garmentImage) {
     try {
@@ -10,7 +10,7 @@ export async function generateFashn(personImage, garmentImage) {
 		let statusData = null;
 
         while (true) {
-            const response = await axios.get(`${endpoint}/${task.id}`, {
+            const response = await axios.get(`${endpoint}/status/${task.id}`, {
                 headers: {
                     Authorization: `Bearer ${API_KEY}`,
                 },
@@ -26,7 +26,7 @@ export async function generateFashn(personImage, garmentImage) {
         if (statusData?.output?.[0]) {
             return statusData.output[0];
         } else {
-            throw new Error("No result image in response");
+            throw new Error("No output[0] in response");
         }
     } catch (error) {
         console.error("Virtual TryOn Error:", error);
@@ -36,7 +36,7 @@ export async function generateFashn(personImage, garmentImage) {
 
 async function generateVirtualTryOn(personImage, garmentImage) {
     try {
-        const response = await axios.post(endpoint,
+        const response = await axios.post(`${endpoint}/run`,
             {
                 model_name: "tryon-v1.6",
                 inputs: {

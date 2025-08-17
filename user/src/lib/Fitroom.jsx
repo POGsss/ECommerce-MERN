@@ -29,8 +29,8 @@ export async function generateFitroom(personImage, garmentImage) {
 			throw new Error("No download_signed_url in response");
 		}
 	} catch (error) {
-		console.error("Virtual try-on error:", error);
-		throw error;
+        console.error("Virtual TryOn Error:", error);
+        return null;
 	}
 }
 
