@@ -3,7 +3,6 @@ import { assets } from "../assets/assets";
 import { generateFitroom } from "../lib/Fitroom.jsx";
 import { generateFashn } from "../lib/Fashn.jsx";
 import { toast } from "react-toastify";
-import axios from "axios";
 
 const VirtualTryOn = () => {
 	const [isOpen, setIsOpen] = useState(false);
@@ -42,7 +41,7 @@ const VirtualTryOn = () => {
 				setLoading(false);
 			}
 		}
-	}
+	};
 
 	const toggleTryOn = () => {
 		setIsOpen((prev) => !prev);

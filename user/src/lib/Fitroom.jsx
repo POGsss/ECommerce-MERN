@@ -6,12 +6,11 @@ const endpoint = "https://platform.fitroom.app/api/tryon/v2/tasks";
 export async function generateFitroom(personImage, garmentImage) {
     try {
 		const task = await generateVirtualTryOn(personImage, garmentImage);
-
 		if (!task?.task_id) throw new Error("No task_id returned");
-
 		let statusData = null;
+
 		while (true) {
-			const response = await axios.get(`https://platform.fitroom.app/api/tryon/v2/tasks/${task.task_id}`, {
+			const response = await axios.get(`${endpoint}/${task.task_id}`, {
 				headers: {
 					"X-API-KEY": API_KEY,
 				},
@@ -29,7 +28,6 @@ export async function generateFitroom(personImage, garmentImage) {
 		} else {
 			throw new Error("No download_signed_url in response");
 		}
-
 	} catch (error) {
 		console.error("Virtual try-on error:", error);
 		throw error;
