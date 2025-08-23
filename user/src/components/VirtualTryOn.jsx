@@ -91,7 +91,7 @@ const VirtualTryOn = () => {
 					</div>
 
 					{/* Footer */}
-					<button onClick={handleGenerateFitroom} className="w-[calc(100%-32px)] font-text md:text-base mb-4 px-8 py-4 bg-black text-white cursor-pointer active:bg-gray-500">Generate</button>
+					<button onClick={handleGenerateFashn} className="w-[calc(100%-32px)] font-text md:text-base mb-4 px-8 py-4 bg-black text-white cursor-pointer active:bg-gray-500">Generate</button>
 				</div>
 			)}
 		</div>

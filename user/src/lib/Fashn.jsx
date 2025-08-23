@@ -5,7 +5,10 @@ const endpoint = "https://api.fashn.ai/v1";
 
 export async function generateFashn(personImage, garmentImage) {
     try {
-        const task = await generateVirtualTryOn(personImage, garmentImage);
+        const personImageBase64 = await toBase64(personImage);
+        const garmentImageBase64 = await toBase64(garmentImage);
+
+        const task = await generateVirtualTryOn(personImageBase64, garmentImageBase64);
         if (!task?.id) throw new Error("No task id returned");
 		let statusData = null;
 
@@ -34,14 +37,14 @@ export async function generateFashn(personImage, garmentImage) {
     }
 }
 
-async function generateVirtualTryOn(personImage, garmentImage) {
+async function generateVirtualTryOn(personImageBase64, garmentImageBase64) {
     try {
         const response = await axios.post(`${endpoint}/run`,
             {
                 model_name: "tryon-v1.6",
                 inputs: {
-                    model_image: personImage,
-                    garment_image: garmentImage
+                    model_image: personImageBase64,
+                    garment_image: garmentImageBase64
                 }
             },
             {
@@ -57,4 +60,13 @@ async function generateVirtualTryOn(personImage, garmentImage) {
         console.error("Virtual TryOn Error:", error);
         return null;
     }
+}
+
+async function toBase64(file) {
+    return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = () => resolve(reader.result);
+        reader.onerror = (error) => reject(error);
+    });
 }
