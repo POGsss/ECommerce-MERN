@@ -81,11 +81,11 @@ const VirtualTryOn = ({ image }) => {
 					<div className="w-full flex flex-col xs:flex-row gap-4 p-4">
 						<div className="w-full flex flex-row xs:w-[250px] xs:flex-col gap-4 justify-between items-center">
 							<label htmlFor="image1" className="w-full h-full">
-								<img className="border border-black border-dashed w-full aspect-[1/1] object-cover" src={personImage ? URL.createObjectURL(personImage) : assets.person_area} alt="" />
+								<img className="border border-black border-dashed w-full aspect-[1/1] object-cover cursor-pointer" src={personImage ? URL.createObjectURL(personImage) : assets.person_area} alt="" />
 								<input onChange={(e) => setPersonImage(e.target.files[0])} type="file" id="image1" hidden />
 							</label>
 							<label htmlFor="image2" className="w-full h-full">
-								<img className="border border-black border-dashed w-full aspect-[1/1] object-cover" src={garmentImage ? URL.createObjectURL(garmentImage) : assets.garment_area} alt="" />
+								<img className="border border-black border-dashed w-full aspect-[1/1] object-cover cursor-pointer" src={garmentImage ? URL.createObjectURL(garmentImage) : assets.garment_area} alt="" />
 								<input onChange={(e) => setGarmentImage(e.target.files[0])} type="file" id="image2" hidden />
 							</label>
 						</div>

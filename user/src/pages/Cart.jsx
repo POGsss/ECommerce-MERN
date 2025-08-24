@@ -3,6 +3,7 @@ import { ShopContext } from "../context/ShopContext.jsx";
 import { assets } from "../assets/assets.js";
 import Title from "../components/Title.jsx";
 import CartTotal from "../components/CartTotal.jsx";
+import { toast } from "react-toastify";
 
 const Cart = () => {
   const { products, currency, cartItems, updateQuantity, navigate } = useContext(ShopContext);
@@ -64,7 +65,10 @@ const Cart = () => {
           <div className="w-full sm:w-[450px]">
             <CartTotal />
             <div className="w-full text-end">
-              <button onClick={() => navigate("/place-order")} className="font-text md:text-base px-8 py-4 mt-8 bg-black text-white cursor-pointer">PROCCED TO CHECKOUT</button>
+              {cartData.length > 0 
+                ? <button onClick={() => navigate("/place-order")} className="font-text md:text-base px-8 py-4 mt-8 bg-black text-white cursor-pointer">PROCEED TO CHECKOUT</button> 
+                : <button onClick={() => toast("No Items In Cart")} className="font-text md:text-base px-8 py-4 mt-8 bg-black text-white active:bg-gray-500">PROCEED TO CHECKOUT</button>
+              }
             </div>
           </div>
         </div>
