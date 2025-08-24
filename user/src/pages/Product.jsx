@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { useContext, useState } from "react";
 import { ShopContext } from "../context/ShopContext.jsx";
 import { assets } from "../assets/assets";
+import axios from "axios";
 import VirtualTryOn from "../components/VirtualTryOn.jsx";
 import RelatedProducts from "../components/RelatedProducts.jsx";
 
@@ -11,6 +12,7 @@ const Product = () => {
   const { products, currency, addToCart } = useContext(ShopContext);
   const [ productData, setProductData ] = useState(false);
   const [ image, setImage ] = useState("");
+  const [ convertedImage, setConvertedImage ] = useState(null);
   const [ size, setSize ] = useState("");
 
   const fetchProductData = async () => {
@@ -24,10 +26,25 @@ const Product = () => {
     });
   }
 
+  const convertImage = async (image) => {
+    const response = await axios.get(image, {responseType: "blob",});
+    const myBlob = response.data;
+    const myFile = new File([myBlob], "garment.jpg", {type: "image/jpeg"});
+    return myFile;
+  };
+
   useEffect(() => {
     fetchProductData();
   }, [productId]);
-  
+
+  useEffect(() => {
+    if (image) {
+      convertImage(image).then((file) => {
+        setConvertedImage(file);
+      });
+    }
+  }, [image]);
+
   return productData ? (
     <div className="max-w-[1440px] m-auto my-10">
       {/* Product Data */}
@@ -88,7 +105,7 @@ const Product = () => {
       <RelatedProducts category={productData.category} subCategory={productData.subCategory} />
 
       {/* Virtual Try-On Component */}
-      <VirtualTryOn />
+      <VirtualTryOn image={convertedImage} />
     </div>
   ) : <div className="opacity-0"></div>
 }

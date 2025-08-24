@@ -29,6 +29,9 @@ import send_icon from "./send_icon.png";
 import send_icon_white from "./send_icon_white.png";
 import filter_icon from "./filter_icon.png";
 import upload_area from "./upload_area.png";
+import person_area from "./person_area.png";
+import garment_area from "./garment_area.png";
+import result_area from "./result_area.png";
 
 // Export Images
 export const assets = {
@@ -55,7 +58,10 @@ export const assets = {
     send_icon,
     send_icon_white,
     filter_icon,
-    upload_area
+    upload_area,
+    person_area,
+    garment_area,
+    result_area
 }
 
 // Sample Product Data

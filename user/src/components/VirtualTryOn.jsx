@@ -3,8 +3,9 @@ import { assets } from "../assets/assets";
 import { generateFitroom } from "../lib/Fitroom.jsx";
 import { generateFashn } from "../lib/Fashn.jsx";
 import { toast } from "react-toastify";
+import { useEffect } from "react";
 
-const VirtualTryOn = () => {
+const VirtualTryOn = ({ image }) => {
 	const [isOpen, setIsOpen] = useState(false);
 	const [garmentImage, setGarmentImage] = useState(false);
 	const [personImage, setPersonImage] = useState(false);
@@ -47,6 +48,12 @@ const VirtualTryOn = () => {
 		setIsOpen((prev) => !prev);
 	};
 
+	useEffect(() => {
+		if (image) {
+			setGarmentImage(image);
+		}
+	}, [image]);
+
 	return (
 		<div>
 			{/* Floating Button */}
@@ -74,18 +81,18 @@ const VirtualTryOn = () => {
 					<div className="w-full flex flex-col xs:flex-row gap-4 p-4">
 						<div className="w-full flex flex-row xs:w-[250px] xs:flex-col gap-4 justify-between items-center">
 							<label htmlFor="image1" className="w-full h-full">
-								<img className="border border-black border-dashed w-full aspect-[1/1] object-cover" src={personImage ? URL.createObjectURL(personImage) : assets.upload_area} alt="" />
+								<img className="border border-black border-dashed w-full aspect-[1/1] object-cover" src={personImage ? URL.createObjectURL(personImage) : assets.person_area} alt="" />
 								<input onChange={(e) => setPersonImage(e.target.files[0])} type="file" id="image1" hidden />
 							</label>
 							<label htmlFor="image2" className="w-full h-full">
-								<img className="border border-black border-dashed w-full aspect-[1/1] object-cover" src={garmentImage ? URL.createObjectURL(garmentImage) : assets.upload_area} alt="" />
+								<img className="border border-black border-dashed w-full aspect-[1/1] object-cover" src={garmentImage ? URL.createObjectURL(garmentImage) : assets.garment_area} alt="" />
 								<input onChange={(e) => setGarmentImage(e.target.files[0])} type="file" id="image2" hidden />
 							</label>
 						</div>
 						<div className="w-full flex">
-							<label htmlFor="image3" className="w-full h-full">
-								<img className="border border-black border-dashed w-full h-full object-cover" src={resultImage ? resultImage : assets.upload_area} alt="" />
-								<input onChange={(e) => setResultImage(e.target.files[0])} type="file" id="image3" hidden />
+							<label htmlFor="image3" className="relative w-full h-full">
+								<img className="border border-black border-dashed w-full h-full object-cover" src={resultImage ? resultImage : assets.result_area} alt="" />
+								<a className="absolute bottom-2 right-2 bg-white text-black px-2 py-1 border border-black" href={resultImage ? resultImage : assets.result_area} download="result_image">Download</a>
 							</label>
 						</div>
 					</div>
