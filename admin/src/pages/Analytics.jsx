@@ -137,7 +137,7 @@ const Analytics = ({ token }) => {
                       <p className="text-start">{new Date(order.date).toLocaleDateString()}</p>
                     </div>
                   </div>
-                  <p className="text-center px-4 py-2 w-[75px] border border-black">{currency}{order.amount}</p>
+                  <p className="hidden xs:block text-center px-4 py-2 w-[75px] border border-black">{currency}{order.amount}</p>
                 </div>
               ))}
             </div>
