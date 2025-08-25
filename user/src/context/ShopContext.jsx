@@ -1,5 +1,5 @@
 import { products } from "../assets/assets"; // Sample Products Data
-import { createContext, use, useEffect, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";

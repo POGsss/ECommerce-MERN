@@ -1,6 +1,7 @@
 import { useState, useContext, useEffect } from "react";
 import { ShopContext } from "../context/ShopContext.jsx";
 import { toast } from "react-toastify";
+import { useGoogleLogin } from "@react-oauth/google";
 import Title from "../components/Title.jsx";
 import axios from "axios";
 
@@ -11,6 +12,7 @@ const Login = () => {
   const [ password, setPassword ] = useState("");
   const { token, setToken, navigate, backendUrl } = useContext(ShopContext);
 
+  // Form Login
   const onSubmitHandler = async (e) => {
     e.preventDefault();
 
@@ -42,6 +44,28 @@ const Login = () => {
     }
   }
 
+  // Google Login
+  const loginWithGoogle = useGoogleLogin({
+    onSuccess: async (response) => {
+      // Getting Access Token
+      console.log("Access Token:", response.access_token);
+
+      // Getting User Info Using Access Token
+      const userInfo = await axios.get("https://www.googleapis.com/oauth2/v3/userinfo", {headers: { Authorization: `Bearer ${response.access_token}` }});
+
+      // Print User Info
+      console.log("User Info:", userInfo.data);
+
+      // Store Token In LocalStorage
+      localStorage.setItem("token", response.access_token);
+      setToken(response.access_token);
+    },
+    onError: (error) => {
+      console.log(error);
+      toast(error.message);
+    }
+  });
+
   useEffect(() => {
     // Checking If User Is Already Logged In
     if (token) {
@@ -72,7 +96,7 @@ const Login = () => {
         <p>or</p>
         <div className="w-full flex flex-col sm:flex-row gap-4">
           <button type="button" className="w-full font-text md:text-base px-8 py-4 bg-black text-white cursor-pointer">{currentState} WITH FACEBOOK</button>
-          <button type="button" className="w-full font-text md:text-base px-8 py-4 bg-black text-white cursor-pointer">{currentState} WITH GOOGLE</button>
+          <button onClick={() => loginWithGoogle()} type="button" className="w-full font-text md:text-base px-8 py-4 bg-black text-white cursor-pointer">{currentState} WITH GOOGLE</button>
         </div>
       </div>
     </form>
