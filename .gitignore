@@ -17,9 +17,14 @@ user/node_modules/
 # Build output
 dist/
 dist-ssr/
-frontend/dist/
-frontend/dist-ssr/
+admin/dist/
+admin/dist-ssr/
 backend/dist/
+backend/dist-ssr/
+staff/dist/
+staff/dist-ssr/
+user/dist/
+user/dist-ssr/
 
 # Local environment files
 *.local
@@ -35,8 +40,10 @@ backend/dist/
 *.sln
 *.sw?
 
-# Optional: Ignore environment files (common for backend/frontend)
+# Optional: Ignore environment files (common for all)
 .env
 .env.*
-frontend/.env
+admin/.env
 backend/.env
+staff/.env
+user/.env
