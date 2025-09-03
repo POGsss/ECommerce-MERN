@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { assets } from "../assets/assets"; 
-import { generateResponse } from "../lib/Gemini.jsx";
+import { generateChat } from "../lib/Gemini.jsx";
 
 const Chatbot = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -17,7 +17,7 @@ const Chatbot = () => {
     setMessages((prev) => [...prev, newUserMessage]);
     setInput("");
 
-    const reply = await generateResponse(input);
+    const reply = await generateChat(input);
     const newBotMessage = { sender: "bot", text: reply };
     setMessages((prev) => [...prev, newBotMessage]);
   };

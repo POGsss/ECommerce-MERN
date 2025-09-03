@@ -2,6 +2,7 @@ import { useState } from "react";
 import { assets } from "../assets/assets";
 import { generateFitroom } from "../lib/Fitroom.jsx";
 import { generateFashn } from "../lib/Fashn.jsx";
+import { generateTryOn } from "../lib/Gemini.jsx";
 import { toast } from "react-toastify";
 import { useEffect } from "react";
 
@@ -34,6 +35,22 @@ const VirtualTryOn = ({ image }) => {
 			try {
 				setLoading(true);
 				const result = await generateFashn(personImage, garmentImage);
+				setResultImage(result);
+			} catch (error) {
+				console.error(error);
+				toast("Failed to generate");
+			} finally {
+				setLoading(false);
+			}
+		}
+	};
+
+	// Virtual Try On Gemini
+	const handleGenerateGemini = async () => {
+		if (personImage && garmentImage) {
+			try {
+				setLoading(true);
+				const result = await generateTryOn(personImage, garmentImage);
 				setResultImage(result);
 			} catch (error) {
 				console.error(error);
@@ -98,7 +115,7 @@ const VirtualTryOn = ({ image }) => {
 					</div>
 
 					{/* Footer */}
-					<button onClick={handleGenerateFashn} className="w-[calc(100%-32px)] font-text md:text-base mb-4 px-8 py-4 bg-black text-white cursor-pointer active:bg-gray-500">Generate</button>
+					<button onClick={handleGenerateGemini} className="w-[calc(100%-32px)] font-text md:text-base mb-4 px-8 py-4 bg-black text-white cursor-pointer active:bg-gray-500">Generate</button>
 				</div>
 			)}
 		</div>
