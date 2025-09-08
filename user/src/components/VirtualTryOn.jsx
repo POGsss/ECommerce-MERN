@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { assets } from "../assets/assets";
-import { generateFitroom } from "../lib/Fitroom.jsx";
+import { generateFashionFit } from "../lib/FashionFit.jsx";
 import { generateFashn } from "../lib/Fashn.jsx";
+import { generateFitroom } from "../lib/Fitroom.jsx";
 import { generateTryOn } from "../lib/Gemini.jsx";
 import { toast } from "react-toastify";
 import { useEffect } from "react";
@@ -13,13 +14,13 @@ const VirtualTryOn = ({ image }) => {
 	const [resultImage, setResultImage] = useState(false);
 	const [loading, setLoading] = useState(false);
 
-	// Virtual Try On Fitroom
-	const handleGenerateFitroom = async () => {
+	// Virtual Try On FashionFit
+	const handleGenerateFashionFit = async () => {
 		if (personImage && garmentImage) {
 			try {
 				setLoading(true);
-				const result = await generateFitroom(personImage, garmentImage);
-				setResultImage(result);
+				const result = await generateFashionFit(personImage, garmentImage);
+				console.log(result.data);
 			} catch (error) {
 				console.error(error);
 				toast("Failed to generate");
@@ -35,6 +36,22 @@ const VirtualTryOn = ({ image }) => {
 			try {
 				setLoading(true);
 				const result = await generateFashn(personImage, garmentImage);
+				setResultImage(result);
+			} catch (error) {
+				console.error(error);
+				toast("Failed to generate");
+			} finally {
+				setLoading(false);
+			}
+		}
+	};
+
+	// Virtual Try On Fitroom
+	const handleGenerateFitroom = async () => {
+		if (personImage && garmentImage) {
+			try {
+				setLoading(true);
+				const result = await generateFitroom(personImage, garmentImage);
 				setResultImage(result);
 			} catch (error) {
 				console.error(error);
@@ -115,7 +132,7 @@ const VirtualTryOn = ({ image }) => {
 					</div>
 
 					{/* Footer */}
-					<button onClick={handleGenerateFashn} className="w-[calc(100%-32px)] font-text md:text-base mb-4 px-8 py-4 bg-black text-white cursor-pointer active:bg-gray-500">Generate</button>
+					<button onClick={handleGenerateFashionFit} className="w-[calc(100%-32px)] font-text md:text-base mb-4 px-8 py-4 bg-black text-white cursor-pointer active:bg-gray-500">Generate</button>
 				</div>
 			)}
 		</div>
