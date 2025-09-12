@@ -2,7 +2,7 @@ import { assets } from "../assets/assets";
 
 const Footer = () => {
     return (
-        <div>
+        <div className="w-full max-w-[2160px] m-auto">
             <div className="flex flex-col sm:grid grid-cols-[3fr_1fr_1fr] gap-14 my-10 mt-20 text-sm">
                 <div>
                     <img className="mb-5 h-[50px]" src={assets.logo} alt="" />

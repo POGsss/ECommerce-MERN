@@ -6,6 +6,13 @@
 
 /* System Styling */
 
+:root {
+  --primary: #BA9731;
+  --secondary: #E8DCBA;
+  --light: #FCFAF5;
+  --dark: #090702;
+}
+
 * {
   font-family: Montserrat;
   box-sizing: border-box;
@@ -85,8 +92,8 @@ select {
 
 @media (max-width: 640px) {
   a.active {
-    color: #ffffff;
-    background: #000000;
+    color: var(--light);
+    background: var(--dark);
     text-decoration: none;
   }
 }
