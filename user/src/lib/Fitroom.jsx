@@ -1,4 +1,5 @@
 import axios from "axios";
+import { toast } from "react-toastify";
 
 const API_KEY = import.meta.env.VITE_FITROOM_API_KEY.replace(/^"|"$/g, "");
 const endpoint = "https://platform.fitroom.app/api/tryon/v2/tasks";
@@ -52,6 +53,7 @@ async function generateVirtualTryOn(personImage, garmentImage) {
         return response.data;
     } catch (error) {
         console.error("Virtual TryOn Error:", error);
+		toast("Failed to generate. Please try again.");
         return null;
     }
 }

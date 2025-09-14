@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { assets } from "../assets/assets";
-import { generateFashionFit } from "../lib/FashionFit.jsx";
 import { generateFashn } from "../lib/Fashn.jsx";
 import { generateFitroom } from "../lib/Fitroom.jsx";
 import { generateTryOn } from "../lib/Gemini.jsx";
@@ -13,22 +12,6 @@ const VirtualTryOn = ({ image }) => {
 	const [personImage, setPersonImage] = useState(false);
 	const [resultImage, setResultImage] = useState(false);
 	const [loading, setLoading] = useState(false);
-
-	// Virtual Try On FashionFit
-	const handleGenerateFashionFit = async () => {
-		if (personImage && garmentImage) {
-			try {
-				setLoading(true);
-				const result = await generateFashionFit(personImage, garmentImage);
-				console.log(result.data);
-			} catch (error) {
-				console.error(error);
-				toast("Failed to generate");
-			} finally {
-				setLoading(false);
-			}
-		}
-	};
 
 	// Virtual Try On Fashn
 	const handleGenerateFashn = async () => {
@@ -125,14 +108,14 @@ const VirtualTryOn = ({ image }) => {
 						</div>
 						<div className="w-full flex">
 							<label htmlFor="image3" className="relative w-full h-full">
-								<img className="border border-black border-dashed w-full h-full object-cover" src={resultImage ? resultImage : assets.result_area} alt="" />
+								<img className="border border-black border-dashed h-full aspect-[4/3] object-cover" src={resultImage ? resultImage : assets.result_area} alt="" />
 								<a className="absolute bottom-2 right-2 bg-white text-black px-2 py-1 border border-black" href={resultImage ? resultImage : assets.result_area} download="result_image">Download</a>
 							</label>
 						</div>
 					</div>
 
 					{/* Footer */}
-					<button onClick={handleGenerateFashionFit} className="w-[calc(100%-32px)] font-text md:text-base mb-4 px-8 py-4 bg-black text-white cursor-pointer active:bg-gray-500">Generate</button>
+					<button onClick={handleGenerateGemini} className="w-[calc(100%-32px)] font-text md:text-base mb-4 px-8 py-4 bg-black text-white cursor-pointer active:bg-gray-500">Generate</button>
 				</div>
 			)}
 		</div>

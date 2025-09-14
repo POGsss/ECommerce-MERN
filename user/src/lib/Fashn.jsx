@@ -1,4 +1,5 @@
 import axios from "axios";
+import { toast } from "react-toastify";
 
 const API_KEY = import.meta.env.VITE_FASHN_API_KEY.replace(/^"|"$/g, "");
 const endpoint = "https://api.fashn.ai/v1";
@@ -58,6 +59,7 @@ async function generateVirtualTryOn(personImageBase64, garmentImageBase64) {
         return response.data;
     } catch (error) {
         console.error("Virtual TryOn Error:", error);
+        toast("Failed to generate. Please try again.");
         return null;
     }
 }

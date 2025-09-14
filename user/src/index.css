@@ -8,9 +8,12 @@
 
 :root {
   --primary: #BA9731;
-  --secondary: #E8DCBA;
-  --light: #FCFAF5;
-  --dark: #090702;
+  --secondary: #E1D2A7;
+  --bg: #000000;
+  --bg-dark: #14120E;
+  --bg-light: #252219;
+  --text: #F0EFEA;
+  --text-muted: #E4E1D9;
 }
 
 * {
@@ -29,6 +32,26 @@ html, body, #root {
 }
 
 /* System Styling */
+/* Reusable Styling */
+
+.full-bleed {
+  box-shadow: 0 0 0 100vmax var(--bg-light);
+  clip-path: inset(0 -100vmax);
+}
+
+.bg {
+  background: var(--bg);
+}
+
+.bg-dark {
+  background: var(--bg-dark);
+}
+
+.bg-light {
+  background: var(--bg-light);
+}
+
+/* Reusable Styling */
 /* Toastify Styling */
 
 .Toastify__close-button {
@@ -36,12 +59,13 @@ html, body, #root {
 }
 
 .Toastify__toast {
-  border-radius: 0px;
+  background: var(--bg-light);
+  border-radius: 10px;
+  overflow: hidden;
 }
 
 .Toastify__progress-bar {
-  background: #ffffff;
-  border-radius: 0px;
+  background: var(--primary);
 }
 
 /* Toastify Styling */

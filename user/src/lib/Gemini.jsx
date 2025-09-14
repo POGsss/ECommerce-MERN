@@ -1,4 +1,5 @@
 import { GoogleGenerativeAI } from "@google/generative-ai";
+import { toast } from "react-toastify";
 
 const API_KEY = import.meta.env.VITE_GEMINI_API_KEY.replace(/^"|"$/g, "");
 const gemini = new GoogleGenerativeAI(API_KEY);
@@ -27,9 +28,7 @@ export async function generateChat(prompt) {
 // Virtual Try On AI
 export async function generateTryOn(personFile, clothFile) {
   try {
-    const model = gemini.getGenerativeModel({
-      model: "gemini-2.5-flash-image-preview",
-    });
+    const model = gemini.getGenerativeModel({ model: "gemini-2.5-flash-image-preview" });
 
     // Convert Files To Base64
     const toBase64 = (file) =>
@@ -69,6 +68,7 @@ export async function generateTryOn(personFile, clothFile) {
     }
   } catch (error) {
     console.error("Gemini Try-On Error:", error);
+    toast("Failed to generate. Please try again.");
     return null;
   }
 }

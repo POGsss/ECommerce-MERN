@@ -119,7 +119,7 @@ const PlaceOrder = () => {
 
       <div className="flex flex-col sm:flex-row justify-between gap-8">
         {/* Left Side */}
-        <div className="flex flex-col gap-4 w-full sm:max-w-[640px]">
+        <div className="flex flex-col gap-4 w-full">
             <div className="mb-0">
                 <p className="font-subtitle text-xl">Personal Information:</p>
             </div>
@@ -141,7 +141,7 @@ const PlaceOrder = () => {
         </div>
 
         {/* Right Side */}
-        <div className="flex flex-col gap-4 w-full sm:max-w-[640px]">
+        <div className="flex flex-col gap-4 w-full">
           <CartTotal />
           <div className="mt-4">
             <p className="font-subtitle text-xl">Payment Method:</p>
