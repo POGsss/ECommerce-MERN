@@ -11,7 +11,7 @@ const VirtualTryOn = ({ image }) => {
 	const [isPreview, setIsPreview] = useState(false);
 	const [garmentImage, setGarmentImage] = useState(false);
 	const [personImage, setPersonImage] = useState(false);
-	const [resultImage, setResultImage] = useState("https://v3.fal.media/files/koala/ZR1GRjM2b4JgvxxBUiXR7.png");
+	const [resultImage, setResultImage] = useState(null);
 	const [loading, setLoading] = useState(false);
   	const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 });
 
