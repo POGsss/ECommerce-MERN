@@ -42,10 +42,10 @@ async function generateVirtualTryOn(personImageBase64, garmentImageBase64) {
     try {
         const response = await axios.post(`${endpoint}/run`,
             {
-                model_name: "tryon-v1.6",
+                model_name: "product-to-model",
                 inputs: {
                     model_image: personImageBase64,
-                    garment_image: garmentImageBase64
+                    product_image: garmentImageBase64,
                 }
             },
             {

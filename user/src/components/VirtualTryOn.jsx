@@ -8,10 +8,12 @@ import { useEffect } from "react";
 
 const VirtualTryOn = ({ image }) => {
 	const [isOpen, setIsOpen] = useState(false);
+	const [isPreview, setIsPreview] = useState(false);
 	const [garmentImage, setGarmentImage] = useState(false);
 	const [personImage, setPersonImage] = useState(false);
-	const [resultImage, setResultImage] = useState(false);
+	const [resultImage, setResultImage] = useState("https://v3.fal.media/files/koala/ZR1GRjM2b4JgvxxBUiXR7.png");
 	const [loading, setLoading] = useState(false);
+  	const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 });
 
 	// Virtual Try On Fashn
 	const handleGenerateFashn = async () => {
@@ -61,10 +63,24 @@ const VirtualTryOn = ({ image }) => {
 		}
 	};
 
+	// Download Result Image
+	const handleDownload = async (url, filename = "resultImage.png") => {
+		const res = await fetch(url);
+		const blob = await res.blob();
+		const objectUrl = URL.createObjectURL(blob);
+		const a = document.createElement("a");
+		a.href = objectUrl;
+		a.download = filename;
+		a.click();
+		URL.revokeObjectURL(objectUrl);
+	};
+
+	// Toggle Popup
 	const toggleTryOn = () => {
 		setIsOpen((prev) => !prev);
 	};
 
+	// Set Garment Image from Prop
 	useEffect(() => {
 		if (image) {
 			setGarmentImage(image);
@@ -97,25 +113,54 @@ const VirtualTryOn = ({ image }) => {
 					{/* Body */}
 					<div className="w-full flex flex-col xs:flex-row gap-4 p-4">
 						<div className="w-full flex flex-row xs:w-[250px] xs:flex-col gap-4 justify-between items-center">
-							<label htmlFor="image1" className="w-full h-full">
+							<label htmlFor="image1" className="group relative w-full h-full" onMouseMove={(e) => { const rect = e.currentTarget.getBoundingClientRect(); setCursorPos({ x: e.clientX - rect.left, y: e.clientY - rect.top, }); }}>
 								<img className="border border-black border-dashed w-full aspect-[1/1] object-cover cursor-pointer" src={personImage ? URL.createObjectURL(personImage) : assets.person_area} alt="" />
 								<input onChange={(e) => setPersonImage(e.target.files[0])} type="file" id="image1" hidden />
+								{personImage && (
+									<div className="absolute pointer-events-none w-[200px] opacity-0 group-hover:opacity-75 bg-white" style={{ top: cursorPos.y, left: cursorPos.x, transform: "translate(-50%, -50%)", zIndex: 99 }} >
+										<img src={URL.createObjectURL(personImage)} alt="Preview" className="w-full h-full"/>
+									</div>
+								)}
 							</label>
-							<label htmlFor="image2" className="w-full h-full">
+							<label htmlFor="image2" className="group relative w-full h-full" onMouseMove={(e) => { const rect = e.currentTarget.getBoundingClientRect(); setCursorPos({ x: e.clientX - rect.left, y: e.clientY - rect.top, }); }}>
 								<img className="border border-black border-dashed w-full aspect-[1/1] object-cover cursor-pointer" src={garmentImage ? URL.createObjectURL(garmentImage) : assets.garment_area} alt="" />
 								<input onChange={(e) => setGarmentImage(e.target.files[0])} type="file" id="image2" hidden />
+								{garmentImage && (
+									<div className="absolute pointer-events-none w-[200px] opacity-0 group-hover:opacity-75 bg-white" style={{ top: cursorPos.y, left: cursorPos.x, transform: "translate(-50%, -50%)", zIndex: 99 }} >
+										<img src={URL.createObjectURL(garmentImage)} alt="Preview" className="w-full h-full"/>
+									</div>
+								)}
 							</label>
 						</div>
 						<div className="w-full flex">
-							<label htmlFor="image3" className="relative w-full h-full">
-								<img className="border border-black border-dashed h-full aspect-[4/3] object-cover" src={resultImage ? resultImage : assets.result_area} alt="" />
-								<a className="absolute bottom-2 right-2 bg-white text-black px-2 py-1 border border-black" href={resultImage ? resultImage : assets.result_area} download="result_image">Download</a>
+							<label htmlFor="image3" className="group relative w-full h-full">
+								<img className="border border-black border-dashed h-full w-full aspect-[4/3] object-cover" src={resultImage ? resultImage : assets.result_area} alt="" />
+								{resultImage && (
+									<div className="absolute bottom-2 right-2 bg-white p-2 border border-black cursor-pointer" onClick={() => setIsPreview(true)}>
+										<img src={assets.zoom_icon} alt="Zoom Icon" className="w-6 h-6"/>
+									</div>
+								)}
 							</label>
 						</div>
 					</div>
 
+					{/* Preview Modal */}
+					{isPreview && (
+						<div className="fixed inset-0 bg-[rgba(0,0,0,0.5)] p-4 w-full h-full">
+							<img src={resultImage} alt="Preview" className="w-full h-full object-contain" />
+							<div className="absolute top-4 right-4 flex gap-2">
+								<button className="bg-white text-black p-2 border border-black cursor-pointer" onClick={(e) => { e.preventDefault(); handleDownload(resultImage, "resultImage.png"); }}>
+									<img src={assets.download_icon} alt="" />
+								</button>
+								<button className="bg-white text-black p-2 border border-black cursor-pointer" onClick={() => setIsPreview(false)}>
+									<img src={assets.cross_icon} alt="" />
+								</button>
+							</div>
+						</div>
+					)}
+
 					{/* Footer */}
-					<button onClick={handleGenerateGemini} className="w-[calc(100%-32px)] font-text md:text-base mb-4 px-8 py-4 bg-black text-white cursor-pointer active:bg-gray-500">Generate</button>
+					<button onClick={handleGenerateFashn} className="w-[calc(100%-32px)] font-text md:text-base mb-4 px-8 py-4 bg-black text-white cursor-pointer active:bg-gray-500">Generate</button>
 				</div>
 			)}
 		</div>

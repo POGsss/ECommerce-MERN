@@ -32,6 +32,7 @@ import upload_area from "./upload_area.png";
 import person_area from "./person_area.png";
 import garment_area from "./garment_area.png";
 import result_area from "./result_area.png";
+import download_icon from "./download_icon.png";
 
 // Export Images
 export const assets = {
@@ -61,7 +62,8 @@ export const assets = {
     upload_area,
     person_area,
     garment_area,
-    result_area
+    result_area,
+    download_icon,
 }
 
 // Sample Product Data
