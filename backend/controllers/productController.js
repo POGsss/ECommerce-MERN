@@ -44,7 +44,7 @@ const productRemove = async (req, res) => {
             const publicId = filename.split('.')[0];
             
             // Deleting Images From Cloudinary
-            await cloudinary.uploader.destroy(publicId, { resource_type: "image" });
+            await cloudinary.uploader.destroy("ecommerce/" + publicId, { resource_type: "image" });
 
             // Logging Deleted Images
             console.log("Deleted Image: " + filename);
@@ -76,7 +76,7 @@ const productAdd = async (req, res) => {
         const images = [image1, image2, image3, image4].filter((item) => item !== undefined);
         let imagesUrl = await Promise.all(
             images.map(async (item) => {
-                let result = await cloudinary.uploader.upload(item.path, {resource_type: "image"});
+                let result = await cloudinary.uploader.upload(item.path, {resource_type: "image", folder: "ecommerce"});
                 return result.secure_url;
             })
         );

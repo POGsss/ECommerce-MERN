@@ -3,7 +3,6 @@ import jwt from "jsonwebtoken";
 import validator from "validator";
 import userModel from "../models/userModel.js";
 
-
 // Create Token Function
 const createToken = (id) => {
     return jwt.sign({id}, process.env.JWT_SECRET);
