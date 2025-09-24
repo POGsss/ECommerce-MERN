@@ -16,7 +16,7 @@ import Verify from "./pages/Verify.jsx";
 
 const App = () => {
   return (
-    <div className="flex flex-col min-h-screen px-4 sm:px-[2vw] md:px-[4vw] lg:px-[8vw]">
+    <div className="flex flex-col min-h-screen bg-dark">
       <ToastContainer
         position="top-right"
         autoClose={3000}
@@ -32,7 +32,7 @@ const App = () => {
 
       <Navbar />
       <SearchBar />
-      <main className="flex-grow">
+      <main className="flex-grow px-4 sm:px-[2vw] md:px-[4vw] lg:px-[8vw]">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/collection" element={<Collection />} />
