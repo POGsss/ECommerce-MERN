@@ -5,7 +5,7 @@ import p_imgDefault_2 from "./p_imgDefault_2.png";
 import p_imgDefault_3 from "./p_imgDefault_3.png";
 
 // Import General Images
-import logo from "./logo.png";
+import logo from "./Logomark.svg";
 import hero_img from "./hero_img.png";
 import cart_icon from "./cart_icon.png";
 import bin_icon from "./bin_icon.png";

@@ -50,6 +50,10 @@ html, body, #root {
   background: var(--bg-light);
 }
 
+.bg-primary {
+  background: var(--primary);
+}
+
 /* Reusable Styling */
 /* Toastify Styling */
 

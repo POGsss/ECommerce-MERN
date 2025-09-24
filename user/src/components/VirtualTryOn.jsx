@@ -90,13 +90,13 @@ const VirtualTryOn = ({ image }) => {
 	return (
 		<div>
 			{/* Floating Button */}
-			<button onClick={toggleTryOn} className="fixed bottom-5 right-5 z-50 bg-[#bfbfbf] p-4 border border-black shadow-lg">
+			<button onClick={toggleTryOn} className="fixed bottom-5 right-5 z-50 bg-primary rounded-[10px] p-4 shadow-lg">
 				<img src={assets.tryon_icon} alt="Chat Icon" />
 			</button>
 
 			{/* Popup Container */}
 			{isOpen && (
-				<div className="fixed bottom-[20px] right-[20px] z-50 bg-white border border-black flex flex-col items-center justify-center w-[calc(100%-40px)] sm:w-[500px]">
+				<div className="fixed bottom-[20px] right-[20px] z-50 bg-dark rounded-[10px] overflow-hidden flex flex-col items-center justify-center w-[calc(100%-40px)] sm:w-[500px] shadow-lg">
 					{/* Overlay */}
 					{loading && (
 						<div className="absolute top-0 left-0 w-full h-full bg-black bg-opacity-50 flex items-center justify-center z-50">
@@ -105,7 +105,7 @@ const VirtualTryOn = ({ image }) => {
 					)}
 
 					{/* Header */}
-					<div className="w-full p-4 flex flex-row items-center justify-between border-b border-black">
+					<div className="w-full p-4 flex flex-row items-center justify-between bg-light">
 						<p className="text-xl font-subtitle">Virtual Try On</p>
 						<img className="cursor-pointer" onClick={toggleTryOn} src={assets.cross_icon} alt="" />
 					</div>
@@ -160,7 +160,11 @@ const VirtualTryOn = ({ image }) => {
 					)}
 
 					{/* Footer */}
-					<button onClick={handleGenerateFashn} className="w-[calc(100%-32px)] font-text md:text-base mb-4 px-8 py-4 bg-black text-white cursor-pointer active:bg-gray-500">Generate</button>
+					<div className="w-full flex bg-light gap-2 p-4">
+						<button onClick={() => {}} className="font-text md:text-base px-8 py-4 bg rounded-[5px] text-white cursor-pointer active:bg-gray-500">NANO</button>
+						<button onClick={() => {}} className="font-text md:text-base px-8 py-4 bg rounded-[5px] text-white cursor-pointer active:bg-gray-500">FASHN</button>
+						<button onClick={handleGenerateFashn} className="w-full font-text md:text-base px-8 py-4 bg rounded-[5px] text-white cursor-pointer active:bg-gray-500">Generate</button>
+					</div>
 				</div>
 			)}
 		</div>

@@ -16,30 +16,30 @@ const Navbar = () => {
     }
 
     return (
-        <div className="w-full bg-light px-4 sm:px-[2vw] md:px-[4vw] lg:px-[8vw]">
+        <div className="w-full bg px-4 sm:px-[2vw] md:px-[4vw] lg:px-[8vw]">
             <div className="flex max-w-[2160px] m-auto items-center justify-between py-5 font-text">
                 {/* Logo */}
                 <Link to="/">
-                    <img className="w-36" src={assets.logo} alt="" />
+                    <img className="w-16" src={assets.logo} alt="" />
                 </Link>
 
                 {/* Menu */}
-                <ul className="hidden sm:flex gap-4 text-sm text-black">
+                <ul className="hidden sm:flex gap-4 text-sm text-white">
                     <NavLink to="/" className="flex flex-col items-center gap-1">
                         <p className="font-text">HOME</p>
-                        <hr className="w-2/4 border-none h-[1.5px] bg-black" hidden/>
+                        <hr className="w-2/4 border-none h-[1.5px] bg-white" hidden/>
                     </NavLink>
                     <NavLink to="/collection" className="flex flex-col items-center gap-1">
                         <p className="font-text">COLLECTION</p>
-                        <hr className="w-2/4 border-none h-[1.5px] bg-black" hidden/>
+                        <hr className="w-2/4 border-none h-[1.5px] bg-white" hidden/>
                     </NavLink>
                     <NavLink to="/about" className="flex flex-col items-center gap-1">
                         <p className="font-text">ABOUT</p>
-                        <hr className="w-2/4 border-none h-[1.5px] bg-black" hidden/>
+                        <hr className="w-2/4 border-none h-[1.5px] bg-white" hidden/>
                     </NavLink>
                     <NavLink to="/contact" className="flex flex-col items-center gap-1">
                         <p className="font-text">CONTACT</p>
-                        <hr className="w-2/4 border-none h-[1.5px] bg-black" hidden/>
+                        <hr className="w-2/4 border-none h-[1.5px] bg-white" hidden/>
                     </NavLink>
                 </ul>
 
