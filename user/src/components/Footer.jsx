@@ -2,7 +2,7 @@ import { assets } from "../assets/assets";
 
 const Footer = () => {
     return (
-        <div className="w-full bg px-4 sm:px-[2vw] md:px-[4vw] lg:px-[8vw] text-white">
+        <div className="w-full bg-secondary px-4 sm:px-[2vw] md:px-[4vw] lg:px-[8vw] text-white">
             <div className="max-w-[2160px] m-auto">
                 <div className="flex flex-col sm:grid grid-cols-[3fr_1fr_1fr] gap-14 my-10 mt-10 text-sm">
                     <div>

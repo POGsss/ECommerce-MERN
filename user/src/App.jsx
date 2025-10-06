@@ -16,7 +16,7 @@ import Verify from "./pages/Verify.jsx";
 
 const App = () => {
   return (
-    <div className="flex flex-col min-h-screen bg-light">
+    <div className="flex flex-col min-h-screen bg-light-light">
       <ToastContainer
         position="top-right"
         autoClose={3000}

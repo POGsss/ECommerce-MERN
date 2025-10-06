@@ -16,7 +16,7 @@ const Navbar = () => {
     }
 
     return (
-        <div className="w-full bg px-4 sm:px-[2vw] md:px-[4vw] lg:px-[8vw]">
+        <div className="w-full bg-secondary px-4 sm:px-[2vw] md:px-[4vw] lg:px-[8vw]">
             <div className="flex max-w-[2160px] m-auto items-center justify-between py-5 font-text">
                 {/* Logo */}
                 <Link to="/">
@@ -58,7 +58,7 @@ const Navbar = () => {
                     </div>
                     <Link to="/cart" className="relative">
                         <img src={assets.cart_icon} className="w-5 min-w-5 cursor-pointer" alt="" />
-                        <p className="absolute right-[-5px] bottom-[-5px] w-4 text-center leading-4 bg-black text-white aspect-square rounded-full text-[8px]">{getCartCount()}</p>
+                        <p className="absolute right-[-5px] bottom-[-5px] w-4 text-center leading-4 bg-primary text-black aspect-square rounded-full text-[8px]">{getCartCount()}</p>
                     </Link>
                     <img onClick={()=>setVisible(true)} src={assets.menu_icon} className="w-5 cursor-pointer sm:hidden" alt="" />
                 </div>

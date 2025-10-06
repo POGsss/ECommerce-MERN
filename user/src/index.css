@@ -7,12 +7,12 @@
 /* System Styling */
 
 :root {
-  --primary: #FFF222;
+  --primary: #FFCD58;
   --secondary: #0C0C0C;
-  --bg-dark: #F3F3F3;
-  --bg-light: #FFFFFF;
-  --text-normal: #000000;
-  --text-muted: #555555;
+  --bg-light-dark: #EEEEEE;
+  --bg-light-light: #FFFFFF;
+  --bg-dark-dark: #000000;
+  --bg-dark-light: #555555;
 }
 
 * {
@@ -34,24 +34,8 @@ html, body, #root {
 /* Reusable Styling */
 
 .full-bleed {
-  box-shadow: 0 0 0 100vmax var(--bg-light );
+  box-shadow: 0 0 0 100vmax var(--bg-light-dark);
   clip-path: inset(0 -100vmax);
-}
-
-.bg {
-  background: var(--secondary);
-}
-
-.bg-dark {
-  background: var(--bg-dark);
-}
-
-.bg-light {
-  background: var(--bg-light);
-}
-
-.bg-primary {
-  background: var(--primary);
 }
 
 /* Reusable Styling */
@@ -100,6 +84,7 @@ select {
   -webkit-appearance: none;
   -moz-appearance: none;
 
+  background-color: var(--bg-light-dark);
   background-image:
     linear-gradient(45deg, transparent 50%, rgb(0, 0, 0) 50%),
     linear-gradient(135deg, rgb(0, 0, 0) 50%, transparent 50%);

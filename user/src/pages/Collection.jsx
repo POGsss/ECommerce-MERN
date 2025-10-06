@@ -79,7 +79,7 @@ const Collection = () => {
 			{/* Left Side */}
 			<div className="min-w-[200px] md:min-w-[250px]">
 				{/* Category Filter */}
-				<div className={`border border-black p-5 py-3 ${showFilter ? "" : "hidden"} sm:block`}>
+				<div className={`rounded-[5px] bg-light-dark p-5 py-3 ${showFilter ? "" : "hidden"} sm:block`}>
 					<p className="mb-3 text-sm font-subtitle">CATEGORIES</p>
 					<div className="flex flex-col gap-2 text-sm font-text text-gray-500">
 						<p className="flex gap-2">
@@ -95,7 +95,7 @@ const Collection = () => {
 				</div>
 
 				{/* SubCategory Filter */}
-				<div className={`border border-black p-5 py-3 mt-4 mb-6 ${showFilter ? "" : "hidden"} sm:block`}>
+				<div className={`rounded-[5px] bg-light-dark p-5 py-3 mt-4 mb-6 ${showFilter ? "" : "hidden"} sm:block`}>
 					<p className="mb-3 text-sm font-subtitle">TYPE</p>
 					<div className="flex flex-col gap-2 text-sm font-text text-gray-500">
 						<p className="flex gap-2">
@@ -118,10 +118,10 @@ const Collection = () => {
 
 					{/* Product Sort */}
 					<div className="flex flex-row items-center justify-between gap-2 sm:gap-4">
-						<select className="w-full border border-black text-sm px-4 py-2 pr-10" onChange={(e) => setSortType(e.target.value)}>
-							<option value="relevant">Relevant</option>
-							<option value="low-high">Low-High</option>
-							<option value="high-low">High-Low</option>
+						<select className="w-full rounded-[5px] text-sm px-4 py-2 pr-10" onChange={(e) => setSortType(e.target.value)}>
+							<option value="relevant"className="bg-light-dark outline-none">Relevant</option>
+							<option value="low-high" className="bg-light-dark outline-none">Low-High</option>
+							<option value="high-low" className="bg-light-dark outline-none">High-Low</option>
 						</select>
 						<img onClick={() => setShowFilter(!showFilter)} className="block sm:hidden h3" src={assets.filter_icon} alt="" />
 					</div>
