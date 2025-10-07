@@ -74,14 +74,14 @@ const Login = () => {
   }, [token]);
 
   return (
-    <form onSubmit={onSubmitHandler} className="flex flex-col items-center max-w-[640px] mx-auto my-10 gap-4">
+    <form onSubmit={onSubmitHandler} className="flex flex-col items-center max-w-[640px] mx-auto my-10 gap-4 bg-light-light p-4 sm:p-8 rounded-[20px]">
       <div className="font-subtitle text-2xl pb-4">
-        <Title text1={currentState} text2={""} />
+        <Title text1={currentState.split(" ")[0]} text2={currentState.split(" ")[1]} />
       </div>
 
-      {currentState === "SIGN IN" ? "" : <input onChange={(e) => setName(e.target.value)} value={name} type="text" className="w-full px-4 py-2 border border-black" placeholder="Username" required/> }
-      <input onChange={(e) => setEmail(e.target.value)} value={email} type="text" className="w-full px-4 py-2 border border-black" placeholder="Email" required/>
-      <input onChange={(e) => setPassword(e.target.value)} value={password} type="password" className="w-full px-4 py-2 border border-black" placeholder="Password" required/>
+      {currentState === "SIGN IN" ? "" : <input onChange={(e) => setName(e.target.value)} value={name} type="text" className="w-full px-4 py-2 bg-light-dark rounded-[10px]" placeholder="Username" required/> }
+      <input onChange={(e) => setEmail(e.target.value)} value={email} type="text" className="w-full px-4 py-2 bg-light-dark rounded-[10px]" placeholder="Email" required/>
+      <input onChange={(e) => setPassword(e.target.value)} value={password} type="password" className="w-full px-4 py-2 bg-light-dark rounded-[10px]" placeholder="Password" required/>
 
       <div className="w-full flex items-center justify-between text-sm">
         <p className="cursor-pointer">Forgot your password?</p>
@@ -92,11 +92,11 @@ const Login = () => {
       </div>
       
       <div className="w-full flex flex-col items-center gap-2 mt-4">
-        <button type="submit" className="w-full font-text md:text-base px-8 py-4 bg-black text-white cursor-pointer">{currentState === "SIGN IN" ? "SIGN IN" : "SIGN UP"}</button>
+        <button type="submit" className="w-full font-text md:text-base px-8 py-4 bg-secondary rounded-[10px] text-white cursor-pointer">{currentState === "SIGN IN" ? "SIGN IN" : "SIGN UP"}</button>
         <p>or</p>
         <div className="w-full flex flex-col sm:flex-row gap-4">
-          <button type="button" className="w-full font-text md:text-base px-8 py-4 bg-black text-white cursor-pointer">{currentState} WITH FACEBOOK</button>
-          <button onClick={() => loginWithGoogle()} type="button" className="w-full font-text md:text-base px-8 py-4 bg-black text-white cursor-pointer">{currentState} WITH GOOGLE</button>
+          <button type="button" className="w-full font-text md:text-base px-8 py-4 bg-secondary rounded-[10px] text-white cursor-pointer">FACEBOOK {currentState}</button>
+          <button onClick={() => loginWithGoogle()} type="button" className="w-full font-text md:text-base px-8 py-4 bg-secondary rounded-[10px] text-white cursor-pointer">GOOGLE {currentState}</button>
         </div>
       </div>
     </form>

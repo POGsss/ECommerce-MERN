@@ -34,7 +34,7 @@ html, body, #root {
 /* Reusable Styling */
 
 .full-bleed {
-  box-shadow: 0 0 0 100vmax var(--bg-light-dark);
+  box-shadow: 0 0 0 100vmax var(--bg-light-light);
   clip-path: inset(0 -100vmax);
 }
 
@@ -46,7 +46,8 @@ html, body, #root {
 }
 
 .Toastify__toast {
-  background: var(--secondary);
+  color: var(--bg-dark-dark);
+  background: var(--bg-light-light);
   border-radius: 10px;
   overflow: hidden;
 }
@@ -84,7 +85,7 @@ select {
   -webkit-appearance: none;
   -moz-appearance: none;
 
-  background-color: var(--bg-light-dark);
+  background-color: var(--bg-light-light);
   background-image:
     linear-gradient(45deg, transparent 50%, rgb(0, 0, 0) 50%),
     linear-gradient(135deg, rgb(0, 0, 0) 50%, transparent 50%);
@@ -100,6 +101,33 @@ select {
 }
 
 /* Element Styling */
+/* Component Styling */
+
+#cartList:nth-child(odd) {
+  background: var(--bg-light-light);
+}
+
+#cartList:nth-child(even) .field {
+  background: var(--bg-light-light);
+}
+
+#cartList:nth-child(odd) .field {
+  background: var(--bg-light-dark);
+}
+
+#orderList:nth-child(odd) {
+  background: var(--bg-light-light);
+}
+
+#orderList:nth-child(even) .field {
+  background: var(--bg-light-light);
+}
+
+#orderList:nth-child(odd) .field {
+  background: var(--bg-light-dark);
+}
+
+/* Component Styling */
 /* Media Query */
 
 @media (max-width: 640px) {

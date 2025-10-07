@@ -4,12 +4,12 @@ import { toast } from "react-toastify";
 const API_KEY = import.meta.env.VITE_FASHN_API_KEY.replace(/^"|"$/g, "");
 const endpoint = "https://api.fashn.ai/v1";
 
-export async function generateFashn(personImage, garmentImage) {
+export async function generateFashn(personImage, garmentImage, prompt) {
     try {
         const personImageBase64 = await toBase64(personImage);
         const garmentImageBase64 = await toBase64(garmentImage);
 
-        const task = await generateVirtualTryOn(personImageBase64, garmentImageBase64);
+        const task = await generateVirtualTryOn(personImageBase64, garmentImageBase64, prompt);
         if (!task?.id) throw new Error("No task id returned");
 		let statusData = null;
 
@@ -38,7 +38,7 @@ export async function generateFashn(personImage, garmentImage) {
     }
 }
 
-async function generateVirtualTryOn(personImageBase64, garmentImageBase64) {
+async function generateVirtualTryOn(personImageBase64, garmentImageBase64, prompt) {
     try {
         const response = await axios.post(`${endpoint}/run`,
             {
@@ -46,6 +46,7 @@ async function generateVirtualTryOn(personImageBase64, garmentImageBase64) {
                 inputs: {
                     model_image: personImageBase64,
                     product_image: garmentImageBase64,
+                    prompt: prompt || "Create a professional fashion try-on image. Let the person in the first image wear the clothing item in the second image.",
                 }
             },
             {

@@ -32,29 +32,29 @@ const Cart = () => {
 
   return (
     <div className="max-w-[1440px] mx-auto my-10">
-        <div className="font-subtitle text-2xl pb-4 border-b border-black">
+        <div className="font-subtitle text-2xl pb-4">
           <Title text1={"YOUR"} text2={"CART"} />
         </div>
 
-        <div className="">
+        <div>
           {
             cartData.map((item, index) => {
               const productData = products.find((product) => product._id === item._id);
 
               return (
-                <div key={index} className="py-4 border-b border-black grid grid-cols-[4fr_0.5fr_0.5fr] sm:grid-cols-[4fr_2fr_0.5fr] items-center gap-4">
-                  <div className="flex items-start gap-6">
-                    <img className="w-16 sm:w-20" src={productData.image[0]} alt="" />
+                <div key={index} id="cartList" className="relative p-4 grid xs:grid-cols-[4fr_0.5fr_0.5fr] sm:grid-cols-[4fr_2fr_0.5fr] items-center gap-4 rounded-[10px]">
+                  <div className="flex items-center gap-6">
+                    <img className="w-16 sm:w-20 rounded-[5px]" src={productData.image[0]} alt="" />
                     <div>
                       <p className="text-sm sm:text-lg font-subtitle">{productData.name}</p>
                       <div className="flex items-center gap-5 mt-2">
                         <p className="text-sm sm:text-lg font-text text-gray-500 w-[50px] sm:w-[75px]">{currency}{productData.price}</p>
-                        <p className="text-sm sm:text-lg font-text text-gray-500 border border-black px-2 py-1">{item.size}</p>
+                        <p className="text-sm sm:text-lg font-text text-gray-500 rounded-[5px] field px-2 py-1">{item.size}</p>
                       </div>
                     </div>
                   </div>
-                  <input onChange={(e) => e.target.value === "" || e.target.value === "0" ? null : updateQuantity(item._id, item.size, Number(e.target.value))} className="border border-black max-w-14 sm:max-w-20 px-2 py-1" type="number" min={1} defaultValue={item.quantity} />
-                  <img onClick={() => updateQuantity(item._id, item.size, 0)} className="w-6 m-4 sm:w-6 cursor-pointer" src={assets.bin_icon} alt="" />
+                  <input onChange={(e) => e.target.value === "" || e.target.value === "0" ? null : updateQuantity(item._id, item.size, Number(e.target.value))} className="rounded-[5px] field w-[calc(100%-50px)] xs:justify-self-end xs:w-14 sm:w-24 px-2 py-1" type="number" min={1} defaultValue={item.quantity} />
+                  <img onClick={() => updateQuantity(item._id, item.size, 0)} className="absolute bottom-1 right-1 xs:relative xs:bottom-0 xs:right-0 w-6 m-4 sm:w-6 cursor-pointer justify-self-end" src={assets.bin_icon} alt="" />
                 </div>
               )
             })
@@ -66,8 +66,8 @@ const Cart = () => {
             <CartTotal />
             <div className="w-full text-end">
               {cartData.length > 0 
-                ? <button onClick={() => navigate("/place-order")} className="font-text md:text-base px-8 py-4 mt-8 bg-black text-white cursor-pointer">PROCEED TO CHECKOUT</button> 
-                : <button onClick={() => toast("No Items In Cart")} className="font-text md:text-base px-8 py-4 mt-8 bg-black text-white active:bg-gray-500">PROCEED TO CHECKOUT</button>
+                ? <button onClick={() => navigate("/place-order")} className="font-text md:text-base px-8 py-4 mt-8 bg-secondary rounded-[10px] text-white cursor-pointer">PROCEED TO CHECKOUT</button> 
+                : <button onClick={() => toast("No Items In Cart")} className="font-text md:text-base px-8 py-4 mt-8 bg-secondary rounded-[10px] text-white active:bg-gray-500">PROCEED TO CHECKOUT</button>
               }
             </div>
           </div>

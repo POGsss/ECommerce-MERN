@@ -68,15 +68,15 @@ const Orders = () => {
 
   return (
     <div className="max-w-[1440px] mx-auto my-10">
-      <div className="font-subtitle text-2xl pb-4 border-b border-black">
+      <div className="font-subtitle text-2xl">
         <Title text1={"YOUR"} text2={"ORDERS"} />
       </div>
 
       <div>
         {orderData.map((item, index) => (
-          <div key={index} className="py-4 border-b border-black flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+          <div key={index} id="orderList" className="p-4 flex flex-col md:flex-row md:items-center md:justify-between gap-4 rounded-[10px]">
             <div className="flex items-center gap-6 text-sm">
-              <img className="w-16 sm:w-20" src={item.image[0]} alt="" />
+              <img className="w-16 sm:w-20 rounded-[5px]" src={item.image[0]} alt="" />
               <div>
                 <p className="text-base sm:text-lg font-subtitle">{item.name}</p>
                   <div className="flex items-center gap-2">
@@ -90,13 +90,13 @@ const Orders = () => {
             </div>
             <div className="md:w-1/2 flex justify-between items-center">
               <div className="flex items-center gap-2">
-                <p className="min-w-3 h-3 rounded-full bg-gray-500 border border-black"></p>
+                <p className="min-w-3 h-3 rounded-full bg-primary"></p>
                 <p className="text-sm sm:text-base">{item.status}</p>
               </div>
               {item.status === "Delivered" ? (
-                <button onClick={() => handleReceiveItem(item.orderId)} className="border border-black px-4 py-2 text-sm">Receive Order</button>
+                <button onClick={() => handleReceiveItem(item.orderId)} className="field rounded-[5px] px-4 py-2 text-sm">Receive Order</button>
               ) : (
-                <button onClick={fetchOrders} className="border border-black px-4 py-2 text-sm">Track Order</button>
+                <button onClick={fetchOrders} className="field rounded-[5px] px-4 py-2 text-sm">Track Order</button>
               )}
             </div>
           </div>

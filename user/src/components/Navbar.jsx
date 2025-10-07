@@ -16,7 +16,7 @@ const Navbar = () => {
     }
 
     return (
-        <div className="w-full bg-secondary px-4 sm:px-[2vw] md:px-[4vw] lg:px-[8vw]">
+        <div className="w-full bg-secondary px-4 sm:px-[2vw] md:px-[4vw] lg:px-[8vw] z-10">
             <div className="flex max-w-[2160px] m-auto items-center justify-between py-5 font-text">
                 {/* Logo */}
                 <Link to="/">
@@ -49,7 +49,7 @@ const Navbar = () => {
                     <div className="group relative">
                         <img onClick={() => token ? null : navigate("/signin")} src={assets.profile_icon} className="w-5 min-w-5 cursor-pointer" alt="" />
                         {token && <div className="group-hover:block hidden absolute dropdown-menu right-0 pt-4">
-                            <div className="flex flex-col gap-2 w-36 py-3 px-5 bg-slate-100 text-gray-500 rounded">
+                            <div className="flex flex-col gap-2 w-36 py-3 px-5 bg-light-light text-gray-500 rounded-[10px] shadow-lg">
                                 <p className="cursor-pointer hover:text-black">Profile</p>
                                 <p onClick={() => navigate("/orders")} className="cursor-pointer hover:text-black">Orders</p>
                                 <p onClick={signOut} className="cursor-pointer hover:text-black">Sign Out</p>
@@ -57,14 +57,14 @@ const Navbar = () => {
                         </div>}
                     </div>
                     <Link to="/cart" className="relative">
-                        <img src={assets.cart_icon} className="w-5 min-w-5 cursor-pointer" alt="" />
+                        <img src={assets.cart_icon_white} className="w-5 min-w-5 cursor-pointer" alt="" />
                         <p className="absolute right-[-5px] bottom-[-5px] w-4 text-center leading-4 bg-primary text-black aspect-square rounded-full text-[8px]">{getCartCount()}</p>
                     </Link>
                     <img onClick={()=>setVisible(true)} src={assets.menu_icon} className="w-5 cursor-pointer sm:hidden" alt="" />
                 </div>
 
                 {/* Mobile Menu */}
-                <div className={`fixed top-0 right-0 bottom-0 overflow-hidden bg-white transition-all ${visible ? "w-full" : "w-0"}`}>
+                <div className={`fixed top-0 right-0 bottom-0 overflow-hidden bg-light-light transition-all ${visible ? "w-full" : "w-0"}`}>
                     <div className="flex flex-col text-black">
                         <div onClick={()=>setVisible(false)} className="flex items-center gap-2 p-8 cursor-pointer">
                             <img className="w-5 rotate-90" src={assets.dropdown_icon} alt="" />

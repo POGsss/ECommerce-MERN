@@ -26,7 +26,7 @@ export async function generateChat(prompt) {
 }
 
 // Virtual Try On AI
-export async function generateTryOn(personFile, clothFile) {
+export async function generateTryOn(personFile, clothFile, text) {
   try {
     const model = gemini.getGenerativeModel({ model: "gemini-2.5-flash-image-preview" });
 
@@ -50,7 +50,7 @@ export async function generateTryOn(personFile, clothFile) {
         parts: [
           { inlineData: { mimeType: personFile.type, data: personB64 } },
           { inlineData: { mimeType: clothFile.type, data: clothB64 } },
-          { text: "Create a professional fashion try-on image. Let the person in the first image wear the clothing item in the second image." },
+          { text: text || "Create a professional fashion try-on image. Let the person in the first image wear the clothing item in the second image." },
         ],
       },
     ];

@@ -29,7 +29,7 @@ const Footer = () => {
                         </ul>
                     </div>
                 </div>
-                <div className="border-t border-black">
+                <div className="border-t border-gray-500">
                     <p className="py-5 text-sm text-center">Copyright 2025 - bossdapparel.com - All Right Reserved.</p>
                 </div>
             </div>

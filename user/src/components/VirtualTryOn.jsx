@@ -21,7 +21,7 @@ const VirtualTryOn = ({ image }) => {
 		if (personImage && garmentImage) {
 			try {
 				setLoading(true);
-				const result = await generateFashn(personImage, garmentImage);
+				const result = await generateFashn(personImage, garmentImage, prompt);
 				setResultImage(result);
 			} catch (error) {
 				console.error(error);
@@ -53,7 +53,7 @@ const VirtualTryOn = ({ image }) => {
 		if (personImage && garmentImage) {
 			try {
 				setLoading(true);
-				const result = await generateTryOn(personImage, garmentImage);
+				const result = await generateTryOn(personImage, garmentImage, prompt);
 				setResultImage(result);
 			} catch (error) {
 				console.error(error);
@@ -91,7 +91,7 @@ const VirtualTryOn = ({ image }) => {
 	return (
 		<div>
 			{/* Floating Button */}
-			<button onClick={toggleTryOn} className="fixed bottom-5 right-5 z-50 bg-primary rounded-[10px] p-4 shadow-lg">
+			<button onClick={toggleTryOn} className="fixed bottom-5 right-5 z-9 bg-primary rounded-[10px] p-4 shadow-lg">
 				<img src={assets.tryon_icon} alt="Chat Icon" />
 			</button>
 
@@ -114,20 +114,20 @@ const VirtualTryOn = ({ image }) => {
 					{/* Body */}
 					<div className="w-full flex flex-col xs:flex-row gap-4 p-4">
 						<div className="w-full flex flex-row xs:w-[250px] xs:flex-col gap-4 justify-between items-center">
-							<label htmlFor="image1" className="group relative w-full h-full" onMouseMove={(e) => { const rect = e.currentTarget.getBoundingClientRect(); setCursorPos({ x: e.clientX - rect.left, y: e.clientY - rect.top, }); }}>
-								<img className="border border-black border-dashed w-full aspect-[1/1] object-cover cursor-pointer bg-light-light rounded-[5px]" src={personImage ? URL.createObjectURL(personImage) : assets.person_area} alt="" />
+							<label htmlFor="image1" className="group relative w-full h-full aspect-[1/1] border border-black border-dashed rounded-[5px] overflow-hidden" onMouseMove={(e) => { const rect = e.currentTarget.getBoundingClientRect(); setCursorPos({ x: e.clientX - rect.left, y: e.clientY - rect.top, }); }}>
+								<img className="w-full h-full object-cover group-hover:object-contain cursor-pointer bg-light-light" src={personImage ? URL.createObjectURL(personImage) : assets.person_area} alt="" />
 								<input onChange={(e) => setPersonImage(e.target.files[0])} type="file" id="image1" hidden />
 								{personImage && (
-									<div className="absolute pointer-events-none w-[200px] opacity-0 group-hover:opacity-75 bg-white" style={{ top: cursorPos.y, left: cursorPos.x, transform: "translate(-50%, -50%)", zIndex: 99 }} >
+									<div className="absolute hidden sm:block pointer-events-none w-[200px] opacity-0 group-hover:opacity-100 bg-white" style={{ top: cursorPos.y, left: cursorPos.x, transform: `translate(-${cursorPos.x / 1.55}%, -${cursorPos.y / 1.55}%)`, zIndex: 99 }} >
 										<img src={URL.createObjectURL(personImage)} alt="Preview" className="w-full h-full"/>
 									</div>
 								)}
 							</label>
-							<label htmlFor="image2" className="group relative w-full h-full" onMouseMove={(e) => { const rect = e.currentTarget.getBoundingClientRect(); setCursorPos({ x: e.clientX - rect.left, y: e.clientY - rect.top, }); }}>
-								<img className="border border-black border-dashed w-full aspect-[1/1] object-cover cursor-pointer bg-light-light rounded-[5px]" src={garmentImage ? URL.createObjectURL(garmentImage) : assets.garment_area} alt="" />
+							<label htmlFor="image2" className="group relative w-full h-full aspect-[1/1] border border-black border-dashed rounded-[5px] overflow-hidden" onMouseMove={(e) => { const rect = e.currentTarget.getBoundingClientRect(); setCursorPos({ x: e.clientX - rect.left, y: e.clientY - rect.top, }); }}>
+								<img className="w-full h-full object-cover group-hover:object-contain cursor-pointer bg-light-light" src={garmentImage ? URL.createObjectURL(garmentImage) : assets.garment_area} alt="" />
 								<input onChange={(e) => setGarmentImage(e.target.files[0])} type="file" id="image2" hidden />
 								{garmentImage && (
-									<div className="absolute pointer-events-none w-[200px] opacity-0 group-hover:opacity-75 bg-white" style={{ top: cursorPos.y, left: cursorPos.x, transform: "translate(-50%, -50%)", zIndex: 99 }} >
+									<div className="absolute hidden sm:block pointer-events-none w-[200px] opacity-0 group-hover:opacity-100 bg-white" style={{ top: cursorPos.y, left: cursorPos.x, transform: `translate(-${cursorPos.x / 1.55}%, -${cursorPos.y / 1.55}%)`, zIndex: 99 }} >
 										<img src={URL.createObjectURL(garmentImage)} alt="Preview" className="w-full h-full"/>
 									</div>
 								)}
@@ -137,7 +137,7 @@ const VirtualTryOn = ({ image }) => {
 							<label htmlFor="image3" className="group relative w-full h-full">
 								<img className="border border-black border-dashed h-full w-full aspect-[4/3] object-cover bg-light-light rounded-[5px]" src={resultImage ? resultImage : assets.result_area} alt="" />
 								{resultImage && (
-									<div className="absolute bottom-2 right-2 bg-white p-2 border border-black cursor-pointer" onClick={() => setIsPreview(true)}>
+									<div className="absolute bottom-2 right-2 bg-primary rounded-[5px] p-2 cursor-pointer" onClick={() => setIsPreview(true)}>
 										<img src={assets.zoom_icon} alt="Zoom Icon" className="w-6 h-6"/>
 									</div>
 								)}
@@ -150,10 +150,10 @@ const VirtualTryOn = ({ image }) => {
 						<div className="fixed inset-0 bg-[rgba(0,0,0,0.5)] p-4 w-full h-full">
 							<img src={resultImage} alt="Preview" className="w-full h-full object-contain" />
 							<div className="absolute top-4 right-4 flex gap-2">
-								<button className="bg-white text-black p-2 border border-black cursor-pointer" onClick={(e) => { e.preventDefault(); handleDownload(resultImage, "resultImage.png"); }}>
+								<button className="bg-light-light rounded-[5px] text-black p-2 cursor-pointer" onClick={(e) => { e.preventDefault(); handleDownload(resultImage, "resultImage.png"); }}>
 									<img src={assets.download_icon} alt="" />
 								</button>
-								<button className="bg-white text-black p-2 border border-black cursor-pointer" onClick={() => setIsPreview(false)}>
+								<button className="bg-primary rounded-[5px] text-black p-2 cursor-pointer" onClick={() => setIsPreview(false)}>
 									<img src={assets.cross_icon} alt="" />
 								</button>
 							</div>
