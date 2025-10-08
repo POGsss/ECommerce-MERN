@@ -77,9 +77,9 @@ const Collection = () => {
 	return (
 		<div className="max-w-[1280px] m-auto flex flex-col sm:flex-row sm:gap-10 my-10">
 			{/* Left Side */}
-			<div className="min-w-[200px] md:min-w-[250px]">
+			<div className="relative sm:sticky top-0 sm:mt-[-40px] h-full min-w-[200px] md:min-w-[250px]">
 				{/* Category Filter */}
-				<div className={`rounded-[10px] bg-light-light p-5 py-3 ${showFilter ? "" : "hidden"} sm:block`}>
+				<div className={`sm:mt-10 rounded-[10px] bg-light-light p-5 py-3 ${showFilter ? "" : "hidden"} sm:block`}>
 					<p className="mb-3 text-sm font-subtitle">CATEGORIES</p>
 					<div className="flex flex-col gap-2 text-sm font-text text-gray-500">
 						<p className="flex gap-2">

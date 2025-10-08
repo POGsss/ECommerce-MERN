@@ -92,7 +92,7 @@ const List = ({ token }) => {
       <p className="mb-2 font-title text-black">All Product List</p>
       <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-3 lg:flex md:flex-col gap-4">
         {/* List Header */}
-        <div className="hidden lg:grid grid-cols-[100px_5fr_2fr_1fr_50px] items-center py-1 px-2 border border-black text-sm gap-2">
+        <div className="hidden lg:grid grid-cols-[100px_5fr_2fr_1fr_50px] items-center py-1 px-2 bg-light-light rounded-[5px] text-sm gap-2">
           <b className="">Image</b>
           <b className="">Name</b>
           <b className="">Category</b>
@@ -101,8 +101,8 @@ const List = ({ token }) => {
         </div>
         {/* List Data */}
         {paginatedList.map((item, index) => (
-          <div className="relative grid lg:grid-cols-[100px_5fr_2fr_1fr_50px] items-center gap-2 p-2 border border-black text-sm" key={index}>
-            <img className="w-full border border-black" src={item.image[0]} alt="" />
+          <div className="relative grid lg:grid-cols-[100px_5fr_2fr_1fr_50px] items-center gap-2 p-2 bg-light-light rounded-[10px] text-sm" key={index}>
+            <img className="w-full bg-light-light rounded-[5px]" src={item.image[0]} alt="" />
             <p>{item.name}</p>
             <p>{item.category}</p>
             <p>{currency}{item.price}</p>
@@ -113,10 +113,10 @@ const List = ({ token }) => {
 
       {/* Pagination Controls */}
       <div className="flex justify-between items-center gap-4 mt-4">
-        <span className="px-2 py-1 border border-black">{currentPage} / {totalPages}</span>
+        <span className="px-2 py-1 bg-light-light rounded-[5px]">{currentPage} / {totalPages}</span>
         <div className="flex gap-2">
-          <button onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))} disabled={currentPage === 1} className="px-2 py-1 border border-black disabled:opacity-50">Prev</button>
-          <button onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))} disabled={currentPage === totalPages} className="px-2 py-1 border border-black disabled:opacity-50">Next</button>
+          <button onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))} disabled={currentPage === 1} className="px-2 py-1 bg-light-light rounded-[5px] disabled:opacity-50">Prev</button>
+          <button onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))} disabled={currentPage === totalPages} className="px-2 py-1 bg-light-light rounded-[5px] disabled:opacity-50">Next</button>
         </div>
       </div>
     </div>

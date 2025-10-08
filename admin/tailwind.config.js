@@ -5,7 +5,25 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        primary: "#FFCD58",
+        secondary: "#0C0C0C",
+        light: {
+          light: "#FFFFFF",
+          dark: "#EEEEEE"
+        },
+        dark: {
+          light: "#000000",
+          dark: "#555555"
+        }
+      },
+      fontFamily: {
+        title: ['Montserrat', 'sans-serif'],
+        subtitle: ['Poppins', 'sans-serif'],
+        text: ['Lato', 'sans-serif']
+      }
+    },
     screens: {
       'xs': '420px',
       'sm': '640px',
@@ -13,7 +31,7 @@ export default {
       'lg': '1024px',
       'xl': '1280px',
       '2xl': '1536px',
-    }
+    },
   },
   plugins: [],
 }
