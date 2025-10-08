@@ -75,11 +75,11 @@ const Collection = () => {
 	}, [sortType]);
 
 	return (
-		<div className="max-w-[1280px] m-auto flex flex-col sm:flex-row sm:gap-10 my-10">
+		<div className="max-w-[1280px] m-auto flex flex-col sm:flex-row my-10">
 			{/* Left Side */}
-			<div className="relative sm:sticky top-0 sm:mt-[-40px] h-full min-w-[200px] md:min-w-[250px]">
+			<div className="sm:sticky sm:top-5 md:top-10 h-full min-w-[200px] md:min-w-[250px]">
 				{/* Category Filter */}
-				<div className={`sm:mt-10 rounded-[10px] bg-light-light p-5 py-3 ${showFilter ? "" : "hidden"} sm:block`}>
+				<div className={`rounded-[10px] bg-light-light p-5 py-3 ${showFilter ? "" : "hidden"} sm:block`}>
 					<p className="mb-3 text-sm font-subtitle">CATEGORIES</p>
 					<div className="flex flex-col gap-2 text-sm font-text text-gray-500">
 						<p className="flex gap-2">
@@ -112,7 +112,7 @@ const Collection = () => {
 			</div>
 
 			{/* Right Side */}
-			<div className="w-full flex-2">
+			<div className="w-full flex-2 sm:ml-5 md:ml-10">
 				<div className="flex flex-col sm:flex-row justify-between items-stretch sm:items-center text-2xl mb-3">
 					<Title text1={"ALL"} text2={"COLLECTIONS"} />
 
