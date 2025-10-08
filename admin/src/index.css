@@ -38,12 +38,14 @@ html, body, #root {
 }
 
 .Toastify__toast {
-  border-radius: 0px;
+  color: var(--bg-dark-dark);
+  background: var(--bg-light-light);
+  border-radius: 10px;
+  overflow: hidden;
 }
 
 .Toastify__progress-bar {
-  background: #ffffff;
-  border-radius: 0px;
+  background: var(--primary);
 }
 
 /* Toastify Styling */

@@ -29,7 +29,7 @@ const Calculator = ({ amount }) => {
 					<b>Change Calculator</b>
 					<p>Total change amount</p>
 				</div>
-				<button className="border border-black p-2 flex flex-row gap-2 items-center justify-between">
+				<button className="bg-light-dark rounded-[5px] p-2 flex flex-row gap-2 items-center justify-between">
 					<img onClick={() => {setTotal(0); setReceive(0); setChange(0)}} src={assets.bin_icon} alt="" />
 				</button>
 			</div>
@@ -38,16 +38,16 @@ const Calculator = ({ amount }) => {
 			<div className="flex flex-col gap-2">
 				<div className="flex flex-col gap-1">
 					<p>Total Amount:</p>
-					<input onChange={(e) => setTotal(e.target.value)} value={total} type="number" className="w-full px-4 py-2 border border-black" placeholder="Total" required />
+					<input onChange={(e) => setTotal(e.target.value)} value={total} type="number" className="w-full px-4 py-2 bg-light-dark rounded-[5px]" placeholder="Total" required />
 				</div>
 				<div className="flex flex-col gap-1">
 					<p>Amount Receive:</p>
-					<input onChange={(e) => setReceive(e.target.value)} value={receive} type="number" className="w-full px-4 py-2 border border-black" placeholder="Receive" required />
+					<input onChange={(e) => setReceive(e.target.value)} value={receive} type="number" className="w-full px-4 py-2 bg-light-dark rounded-[5px]" placeholder="Receive" required />
 				</div>
 			</div>
 
 			{/* Total */}
-			<div className="w-full flex flex-row items-center justify-between font-text md:text-base px-8 py-4 bg-black text-white">
+			<div className="w-full flex flex-row items-center justify-between font-text md:text-base px-8 py-4 bg-secondary rounded-[5px] text-white">
 				<p>CHANGE:</p>
 				<p>{change}</p>
 			</div>

@@ -126,24 +126,23 @@ const Receipt = ({ token }) => {
 	};
 
 	return (
-		<div className="flex flex-col-reverse sm:flex-row items-start gap-4">
-			{/* Right Side */}
-			<div className="w-full sm:w-[calc(100%-266px)] lg:w-[calc(100%-316px)]">
-				<p className="mb-2 font-title text-black">Receipt History</p>
-				<div className="flex flex-col gap-4">
+		<div className="flex flex-col items-start w-full">
+			<p className="mb-2 font-title text-black">Receipt History</p>
+			<div className="w-full flex flex-col-reverse sm:flex-row items-start gap-4">
+				<div className="w-full flex flex-col gap-4">
 					{orders.map((order, index) => (
-						<div onClick={() => { setAmount(order.amount); setSelectedOrder(order); }} className="flex flex-wrap items-center justify-end gap-2 border border-black p-2 text-sm cursor-pointer" key={index} >
+						<div onClick={() => { setAmount(order.amount); setSelectedOrder(order); }} className="flex flex-wrap items-center justify-end gap-2 bg-light-light rounded-[10px] p-2 text-sm cursor-pointer" key={index} >
 							<div className="flex flex-col grow basis-[200px]">
 								<p className="break-all font-subtitle">Receipt #{order._id.substring(0, 6) + "-" + order._id.substring(order._id.length - 6)}</p>
 								<p>{new Date(order.date).toLocaleDateString()}, {new Date(order.date).toLocaleTimeString("en-US", { hour12: true })}</p>
 								<p>{order.items.length} items, {currency}{order.amount}</p>
 							</div>
 							<div className="flex flex-row gap-2">
-								<button onClick={() => handleGeneratePDF(order)} className="border border-black p-2 flex flex-row gap-2 items-center justify-between">
+								<button onClick={() => handleGeneratePDF(order)} className="bg-light-dark rounded-[5px] p-2 flex flex-row gap-2 items-center justify-between">
 									<img src={assets.download_icon} alt="" />
 									<span className="hidden xl:inline">PDF</span>
 								</button>
-								<button onClick={() => handlePrint(order)} className="border border-black p-2 flex flex-row gap-2 items-center justify-between">
+								<button onClick={() => handlePrint(order)} className="bg-light-dark rounded-[5px] p-2 flex flex-row gap-2 items-center justify-between">
 									<img src={assets.print_icon} alt="" />
 									<span className="hidden xl:inline">PRINT</span>
 								</button>
@@ -151,19 +150,11 @@ const Receipt = ({ token }) => {
 						</div>
 					))}
 				</div>
-			</div>
-
-			{/* Left Side */}
-			<div className="w-full flex flex-col gap-4 sm:w-[250px] lg:w-[300px]">
-				<div>
-					<p className="mb-2 font-title text-black">Calculator</p>
-					<div className="p-2 border border-black">
+				<div className="w-full flex flex-col sm:w-[250px] lg:w-[300px]">
+					<div className="p-2 mb-4 bg-light-light rounded-[10px]">
 						<Calculator amount={amount} />
 					</div>
-				</div>
-				<div>
-					<p className="mb-2 font-title text-black">Receipt Preview</p>
-					<div className="p-2 border border-black">
+					<div className="p-2 bg-light-light rounded-[10px]">
 						<Preview selectedOrder={selectedOrder} />
 					</div>
 				</div>

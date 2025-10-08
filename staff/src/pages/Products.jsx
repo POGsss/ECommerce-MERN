@@ -46,28 +46,20 @@ const Products = ({ token }) => {
 	}, []);
 
 	return (
-		<div className="flex flex-col-reverse sm:flex-row w-full items-start gap-4">
-			{/* Right Side */}
-			<div className="w-full sm:w-[calc(100%-266px)] lg:w-[calc(100%-316px)]">
-				<p className="mb-2 font-title text-black">Available Products</p>
-				<div className="grid grid-cols-[repeat(auto-fit,minmax(150px,1fr))] gap-4">
-					{/* List Data */}
+		<div className="flex flex-col items-start w-full">
+			<p className="mb-2 font-title text-black">Available Products</p>
+			<div  className="w-full flex flex-col-reverse sm:flex-row items-start gap-4">
+				<div className="w-full grid grid-cols-[repeat(auto-fit,minmax(150px,1fr))] gap-4">
 					{list.map((item, index) => (
-						<div className="relative grid items-center gap-2 p-2 border border-black text-sm" key={index}>
-							<img className="w-full border border-black" src={item.image[0]} alt="" />
+						<div onClick={() => handleAddOrder(item)} className="relative grid items-center gap-2 p-2 bg-light-light rounded-[10px] text-sm cursor-pointer" key={index}>
+							<img className="w-full bg-light-light rounded-[10px]" src={item.image[0]} alt="" />
 							<p>{item.name}</p>
 							<p>{currency}{item.price}</p>
-							<img onClick={() => handleAddOrder(item)} className="absolute right-2 bottom-2 cursor-pointer" src={assets.add_order_icon} alt="" />
 						</div>
 					))}
 				</div>
-			</div>
-
-			{/* Left Side */}
-			<div  className="w-full flex flex-col gap-4 sm:w-[250px] lg:w-[300px]">
-				<div>
-					<p className="mb-2 font-title text-black">Current Order</p>
-					<div className="p-2 border border-black">
+				<div className="w-full sm:min-w-[250px] sm:max-w-[300px]">
+					<div className="p-2 bg-light-light rounded-[10px]">
 						<Order orderList={orderList} setOrderList={setOrderList} token={token} backendUrl={backendUrl} />
 					</div>
 				</div>

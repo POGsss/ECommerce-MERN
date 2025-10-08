@@ -60,7 +60,7 @@ const Order = ({ orderList, setOrderList, token, backendUrl }) => {
 					<b>Order Breakdown</b>
 					<p>Order price breakdown</p>
 				</div>
-				<button onClick={() => setOrderList([])} className="border border-black p-2 flex flex-row gap-2 items-center justify-between">
+				<button onClick={() => setOrderList([])} className="bg-light-dark rounded-[5px] p-2 flex flex-row gap-2 items-center justify-between">
 					<img src={assets.bin_icon} alt="" />
 				</button>
 			</div>
@@ -74,9 +74,9 @@ const Order = ({ orderList, setOrderList, token, backendUrl }) => {
 							<p>{currency}{item.price * item.quantity}</p>
 						</div>
 						<div className="flex flex-row gap-2 items-center">
-							<img className="cursor-pointer" src={assets.subtract_order_icon} onClick={() => decreaseQty(item._id)} alt="" />
+							<img className="cursor-pointer bg-light-dark rounded-[5px]" src={assets.subtract_order_icon} onClick={() => decreaseQty(item._id)} alt="" />
 							<p className="w-4 text-center">{item.quantity}</p>
-							<img className="cursor-pointer" src={assets.add_order_icon} onClick={() => increaseQty(item._id)} alt="" />
+							<img className="cursor-pointer bg-light-dark rounded-[5px]" src={assets.add_order_icon} onClick={() => increaseQty(item._id)} alt="" />
 						</div>
 					</div>
 				))}
@@ -96,7 +96,7 @@ const Order = ({ orderList, setOrderList, token, backendUrl }) => {
 					<b>Total</b>
 					<b>{currency}{total}</b>
 				</div>
-				<button onClick={handleProceed} className="w-full flex flex-row items-center justify-center font-text md:text-base px-8 py-4 bg-black text-white cursor-pointer">PROCEED</button>
+				<button onClick={handleProceed} className="w-full flex flex-row items-center justify-center font-text md:text-base px-8 py-4 bg-secondary rounded-[5px] text-white cursor-pointer">PROCEED</button>
 			</div>
     </div>
   )

@@ -6,6 +6,15 @@
 
 /* System Styling */
 
+:root {
+  --primary: #FFCD58;
+  --secondary: #0C0C0C;
+  --bg-light-dark: #EEEEEE;
+  --bg-light-light: #FFFFFF;
+  --bg-dark-dark: #000000;
+  --bg-dark-light: #555555;
+}
+
 * {
   font-family: Montserrat;
   box-sizing: border-box;
@@ -29,15 +38,25 @@ html, body, #root {
 }
 
 .Toastify__toast {
-  border-radius: 0px;
+  color: var(--bg-dark-dark);
+  background: var(--bg-light-light);
+  border-radius: 10px;
+  overflow: hidden;
 }
 
 .Toastify__progress-bar {
-  background: #ffffff;
-  border-radius: 0px;
+  background: var(--primary);
 }
 
 /* Toastify Styling */
+/* Reusable Styling */
+
+.full-bleed {
+  box-shadow: 0 0 0 100vmax var(--secondary);
+  clip-path: inset(0 -100vmax);
+}
+
+/* Reusable Styling */
 /* Element Styling */
 
 .font-title {
@@ -59,7 +78,17 @@ html, body, #root {
 }
 
 a.active {
-  background: #BFBFBF;
+  background: var(--secondary);
+  color: #FFFFFF;
+}
+
+a.active:hover {
+  background: var(--secondary);
+  color: #FFFFFF;
+}
+
+a.active img {
+  filter: invert(100%);
 }
 
 input[type="checkbox"] {
