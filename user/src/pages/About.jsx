@@ -4,12 +4,12 @@ import Title from "../components/Title";
 
 const About = () => {
   return (
-    <div className="max-w-[1440px] m-auto my-10">
-      <div className="text-2xl text-center">
+    <div className="max-w-[1280px] m-auto my-10">
+      <div className="text-center text-2xl">
         <Title text1={"ABOUT"} text2={"US"} />
       </div>
       <div className="my-10 flex flex-col items-center justify-center md:flex-row gap-16">
-        <img className="w-full sm:max-w-full md:max-w-[450px]" src={assets.about_img} alt="" />
+        <img className="w-full sm:max-w-full md:max-w-[450px] bg-primary rounded-[20px]" src={assets.about_img} alt="" />
         <div className="w-full sm:max-w-full md:max-w-[450px] flex flex-col justify-center gap-6">
           <b>Background</b>
           <p className="text-gray-500">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius, eaque vel suscipit eum facere quod eos aliquid id sequi porro quia rerum ea alias reiciendis laboriosam voluptas. Veritatis, quae repudiandae.</p>

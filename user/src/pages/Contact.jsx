@@ -4,7 +4,7 @@ import Title from "../components/Title";
 
 const Contact = () => {
   return (
-    <div className="max-w-[1440px] m-auto my-10">
+    <div className="max-w-[1280px] m-auto my-10">
       <div className="text-center text-2xl">
         <Title text1={"CONTACT"} text2={"US"} />
       </div>
@@ -16,7 +16,7 @@ const Contact = () => {
           <b>Basic Info</b>
           <p className="text-start md:text-end text-gray-500">Telephone: +63 123-456-789<br />Email: bossdapparel@gmail.com</p>
         </div>
-        <img className="w-full sm:max-w-full md:max-w-[450px]" src={assets.contact_img} alt="" />
+        <img className="w-full sm:max-w-full md:max-w-[450px] bg-primary rounded-[20px]" src={assets.contact_img} alt="" />
       </div>
       <NewsLetterBox />
     </div>

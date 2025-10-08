@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useContext } from "react";
 import { ShopContext } from "../context/ShopContext";
+import { toast } from "react-toastify";
 import CartTotal from "../components/CartTotal";
 import Title from "../components/Title";
 import axios from "axios";
@@ -91,7 +92,7 @@ const PlaceOrder = () => {
     } catch (error) {
         // Logging Error
         console.log(error);
-        res.json({success: false, message: error.message});
+        toast({success: false, message: error.message});
     }
   };
 
@@ -112,7 +113,7 @@ const PlaceOrder = () => {
   }, []);
 
   return (
-    <form onSubmit={onSubmitHandler} className="max-w-[1440px] mx-auto my-10">
+    <form onSubmit={onSubmitHandler} className="max-w-[1280px] mx-auto my-10">
       <div className="font-subtitle text-2xl pb-4">
         <Title text1={"DELIVERY"} text2={"DETAILS"} />
       </div>
@@ -120,9 +121,6 @@ const PlaceOrder = () => {
       <div className="flex flex-col sm:flex-row justify-between gap-8">
         {/* Left Side */}
         <div className="flex flex-col gap-4 w-full sm:w-3/5 bg-light-light p-4 sm:p-8 rounded-[20px]">
-            <div className="mb-0">
-                <p className="font-subtitle text-xl">Personal Information:</p>
-            </div>
           <div className="flex gap-3">
             <input onChange={onChangeHandler} name="firstName" value={formData.firstName} className="bg-light-dark rounded-[10px] px-4 py-2 w-full" type="text" placeholder="First Name" required />
             <input onChange={onChangeHandler} name="lastName" value={formData.lastName} className="bg-light-dark rounded-[10px] px-4 py-2 w-full" type="text" placeholder="Last Name" required />            

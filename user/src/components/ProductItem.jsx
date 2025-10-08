@@ -3,7 +3,6 @@ import { useContext } from "react";
 import { ShopContext } from "../context/ShopContext";
 import { assets } from "../assets/assets";
 
-
 const ProductItem = ({id, image, name, price}) => {
     const {currency} = useContext(ShopContext)
 
@@ -12,7 +11,7 @@ const ProductItem = ({id, image, name, price}) => {
             <div className="overflow-hidden aspect-4/3">
                 <img className="hover:scale-110 transition ease-in-out w-full h-full object-cover" src={image[0]} alt="" />
             </div>
-            <div className="p-2 flex flex-col gap-1">
+            <div className="p-4 flex flex-col gap-1">
                 <p className="text-sm font-subtitle">{name}</p>
                 <p className="text-sm">0+ sold</p>
                 <p className="text-lg font-subtitle">{currency}{price}</p>

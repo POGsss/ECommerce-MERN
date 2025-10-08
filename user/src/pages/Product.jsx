@@ -2,7 +2,6 @@ import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useContext, useState } from "react";
 import { ShopContext } from "../context/ShopContext.jsx";
-import { assets } from "../assets/assets";
 import axios from "axios";
 import VirtualTryOn from "../components/VirtualTryOn.jsx";
 import RelatedProducts from "../components/RelatedProducts.jsx";
@@ -46,7 +45,7 @@ const Product = () => {
   }, [image]);
 
   return productData ? (
-    <div className="max-w-[1440px] m-auto my-10">
+    <div className="max-w-[1280px] m-auto my-10">
       {/* Product Data */}
       <div className="flex gap-12 sm:gap-12 flex-col sm:flex-row">
 

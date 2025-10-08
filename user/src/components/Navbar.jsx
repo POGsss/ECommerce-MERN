@@ -17,7 +17,7 @@ const Navbar = () => {
 
     return (
         <div className="w-full bg-secondary px-4 sm:px-[2vw] md:px-[4vw] lg:px-[8vw] z-10">
-            <div className="flex max-w-[2160px] m-auto items-center justify-between py-5 font-text">
+            <div className="flex max-w-[1440px] m-auto items-center justify-between py-5 font-text">
                 {/* Logo */}
                 <Link to="/">
                     <img className="w-16" src={assets.logo} alt="" />

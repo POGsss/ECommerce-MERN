@@ -67,8 +67,8 @@ const Orders = () => {
   }, [token]);
 
   return (
-    <div className="max-w-[1440px] mx-auto my-10">
-      <div className="font-subtitle text-2xl">
+    <div className="max-w-[1280px] mx-auto my-10">
+      <div className="font-subtitle text-2xl pb-4">
         <Title text1={"YOUR"} text2={"ORDERS"} />
       </div>
 
