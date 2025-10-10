@@ -69,8 +69,8 @@ const PlaceOrder = () => {
         case "stripe":
           const responseStripe = await axios.post(backendUrl + "/api/order/stripe", orderData, {headers: { token } });
           if (responseStripe.data.success) {
-            // Deconstructuring Session Url
-            const { session_url } = responseStripe.data;
+            // Deconstructuring Session Url & OrderId
+            const { session_url, orderId } = responseStripe.data;
 
             // Setting Mini Window Size
             const width = 600;
@@ -79,7 +79,16 @@ const PlaceOrder = () => {
             const top = window.screenY + (window.outerHeight - height) / 2;
 
             // Opening Mini Window
-            window.open(session_url, "_blank", `width=${width},height=${height},left=${left},top=${top},resizable=no,scrollbars=yes`);
+            const popup = window.open(session_url, "_focus", `width=${width},height=${height},left=${left},top=${top},resizable=no,scrollbars=yes`);
+
+            // Polling for Popup Closure
+            const pollTimer = setInterval(async () => {
+              if (popup.closed) {
+                clearInterval(pollTimer);
+                await axios.post(backendUrl + "/api/order/cancelStripe", { orderId }, { headers: { token } });
+                window.location.reload();
+              }
+            }, 1000);
           } else {
             toast(response.data.message);
           }

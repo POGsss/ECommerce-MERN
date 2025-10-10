@@ -91,14 +91,14 @@ const placeOrderStripe = async (req, res) => {
 
         // Creating Session
         const session = await stripe.checkout.sessions.create({
-            success_url: `${origin}/verify?success=true&orderId=${newOrder._id}`,
-            cancel_url: `${origin}/verify?success=false&orderId=${newOrder._id}`,
+            success_url: `${origin}/verify?success=true&orderId=${newOrder._id}&userId=${userId}`,
+            cancel_url: `${origin}/verify?success=false&orderId=${newOrder._id}&userId=${userId}`,
             line_items,
             mode: "payment",
         });
 
         // Sending Response
-        res.json({success: true, session_url: session.url});
+        res.json({success: true, session_url: session.url, orderId: newOrder._id});
     } catch (error) {
         // Logging Error
         console.log(error);
@@ -129,6 +129,22 @@ const verifyStripe = async (req, res) => {
         res.json({success: false, message: error.message});
     }
 }
+
+// Cancel Stripe Payment
+const cancelStripe = async (req, res) => {
+    // Getting Order ID
+    const { orderId } = req.body;
+
+    try {
+        if (!orderId) return res.json({ success: false, message: "Missing order ID" });
+
+        await orderModel.findByIdAndDelete(orderId);
+        res.json({ success: true, message: "Order canceled and deleted" });
+    } catch (error) {
+        console.log(error);
+        res.json({ success: false, message: error.message });
+    }
+};
 
 // Receive Order Functionality
 const receiveOrder = async (req, res) => {
@@ -315,4 +331,4 @@ const placeOrderPOS = async (req, res) => {
     }
 }
 
-export { placeOrderCOD, placeOrderStripe, verifyStripe, receiveOrder, userOrders, adminOrders, recentOrders, salesCount, revenueTotal, updateStatus, staffOrders, placeOrderPOS };
+export { placeOrderCOD, placeOrderStripe, verifyStripe, cancelStripe, receiveOrder, userOrders, adminOrders, recentOrders, salesCount, revenueTotal, updateStatus, staffOrders, placeOrderPOS };
