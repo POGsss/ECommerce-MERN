@@ -77,6 +77,37 @@ const userSignUp = async (req, res) => {
     }
 }
 
+const userGoogleSignIn = async (req, res) => {
+    try {
+        // Getting User Input
+        const { email, name } = req.body;
+        let googleUser = await userModel.findOne({email});
+        
+        // Checking If Email Already Exists
+        if (!email) {
+            return res.json({success: false, message: "Email is required"});
+        }
+
+        // Saving New User
+        if (!googleUser) {
+            googleUser = new userModel({
+                name,
+                email,
+                password: "noPasswordForGoogleUser"
+            });
+            await googleUser.save();
+        }
+        const token = createToken(googleUser._id);
+
+        // Returning Success Response
+        res.json({success: true, token});
+    } catch (error) {
+        // Logging Error
+        console.log(error);
+        res.json({success: false, message: error.message});
+    }
+};
+
 // Admin Sign In Function
 const adminSignIn = async (req, res) => {
     try {
@@ -117,4 +148,4 @@ const staffSignIn = async (req, res) => {
     }
 }
 
-export { userSignIn, userSignUp, adminSignIn, staffSignIn };
+export { userSignIn, userSignUp, userGoogleSignIn, adminSignIn, staffSignIn };

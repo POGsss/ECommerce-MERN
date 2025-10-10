@@ -47,18 +47,29 @@ const Login = () => {
   // Google Login
   const loginWithGoogle = useGoogleLogin({
     onSuccess: async (response) => {
-      // Getting Access Token
-      console.log("Access Token:", response.access_token);
+      try {
+        // Getting User Info Using Access Token
+        const userInfo = await axios.get("https://www.googleapis.com/oauth2/v3/userinfo", {headers: { Authorization: `Bearer ${response.access_token}` }});
 
-      // Getting User Info Using Access Token
-      const userInfo = await axios.get("https://www.googleapis.com/oauth2/v3/userinfo", {headers: { Authorization: `Bearer ${response.access_token}` }});
+        // Print User Info
+        console.log("User Info:", userInfo.data);
 
-      // Print User Info
-      console.log("User Info:", userInfo.data);
+        // Sending User Info To Backend
+        const backendResponse = await axios.post(backendUrl + "/api/user/google", { name: userInfo.data.name, email: userInfo.data.email });
 
-      // Store Token In LocalStorage
-      localStorage.setItem("token", response.access_token);
-      setToken(response.access_token);
+        if (backendResponse.data.success) {
+          // Store Token In LocalStorage
+          localStorage.setItem("token", backendResponse.data.token);
+          setToken(backendResponse.data.token);
+          toast("Logged in successfully!");
+        } else {
+          toast(backendResponse.data.message);
+        }
+      } catch (error) {
+        // Logging Error
+        console.log(error);
+        toast(error.message);
+      }
     },
     onError: (error) => {
       console.log(error);
