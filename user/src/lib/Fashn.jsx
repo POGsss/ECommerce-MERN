@@ -46,7 +46,7 @@ async function generateVirtualTryOn(personImageBase64, garmentImageBase64, promp
                 inputs: {
                     model_image: personImageBase64,
                     product_image: garmentImageBase64,
-                    prompt: prompt || "Create a professional fashion try-on image. Let the person in the first image wear the clothing item in the second image.",
+                    ...(prompt && { prompt: prompt }),
                 }
             },
             {
