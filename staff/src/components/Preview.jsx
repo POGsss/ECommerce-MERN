@@ -1,19 +1,19 @@
 import { useState } from "react";
 import { currency } from "../App";
 
-const Preview = ({ selectedOrder }) => {
-	const [dashLine, setDashLine] = useState("-".repeat(1000));
+const Preview = ({ selectedOrder, componentRef }) => {
+	const [dashLine, setDashLine] = useState("-".repeat(500));
 
 	if (!selectedOrder) {
 		return (
-			<div className="w-full flex flex-col text-sm gap-4 p-4">
+			<div ref={componentRef} className="absolute top-0 left-0 w-full flex flex-col text-sm gap-4 p-4">
 				<div className="flex flex-col items-center">
 					<b className="text-lg">BossDShop</b>
 					<p className="text-base">Point Of Sale System</p>
 				</div>
 				<div className="flex flex-col items-center overflow-hidden">
 						<p className="whitespace-nowrap">{dashLine}</p>
-						<p>No Receipt Selcted</p>
+						<p>No Receipt Selected</p>
 						<p>Select One From History</p>
 						<p className="whitespace-nowrap">{dashLine}</p>
 				</div>
@@ -28,7 +28,7 @@ const Preview = ({ selectedOrder }) => {
 	const { _id, date, items, amount } = selectedOrder;
 
 	return (
-		<div className="w-full flex flex-col text-sm gap-4 p-4">
+		<div ref={componentRef} className="absolute top-0 left-0 w-full flex flex-col text-sm gap-4 p-4">
 				<div className="flex flex-col items-center">
 						<b className="text-lg">BossDShop</b>
 						<p className="text-base">Point Of Sale System</p>

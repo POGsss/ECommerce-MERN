@@ -25,9 +25,9 @@ const Calculator = ({ amount }) => {
 		<div className="w-full flex flex-col text-sm gap-4">
 			{/* Title */}
 			<div className="w-full flex flex-row items-center justify-between gap-2">
-				<div className="flex flex-col justify-center">
-					<b>Change Calculator</b>
-					<p>Total change amount</p>
+				<div className="flex flex-col justify-center w-[calc(100%-50px)]">
+					<b className="w-full whitespace-nowrap text-ellipsis overflow-hidden">Change Calculator</b>
+					<p className="w-full whitespace-nowrap text-ellipsis overflow-hidden">Total change amount</p>
 				</div>
 				<button className="bg-light-dark rounded-[5px] p-2 flex flex-row gap-2 items-center justify-between">
 					<img onClick={() => {setTotal(0); setReceive(0); setChange(0)}} src={assets.bin_icon} alt="" />

@@ -58,8 +58,8 @@ const Products = ({ token }) => {
 						</div>
 					))}
 				</div>
-				<div className="w-full sm:min-w-[250px] sm:max-w-[300px]">
-					<div className="p-2 bg-light-light rounded-[10px]">
+				<div className="w-full flex flex-col sm:min-w-[250px] sm:max-w-[300px]">
+					<div className="relative p-2 bg-light-light rounded-[10px]">
 						<Order orderList={orderList} setOrderList={setOrderList} token={token} backendUrl={backendUrl} />
 					</div>
 				</div>

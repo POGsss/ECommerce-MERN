@@ -56,9 +56,9 @@ const Order = ({ orderList, setOrderList, token, backendUrl }) => {
     <div className="w-full flex flex-col text-sm gap-4">
 			{/* Title */}
 			<div className="w-full flex flex-row items-center justify-between gap-2">
-				<div className="flex flex-col justify-center">
-					<b>Order Breakdown</b>
-					<p>Order price breakdown</p>
+				<div className="flex flex-col justify-center w-[calc(100%-50px)]">
+					<b className="w-full whitespace-nowrap text-ellipsis overflow-hidden">Order Breakdown</b>
+					<p className="w-full whitespace-nowrap text-ellipsis overflow-hidden">Order price breakdown</p>
 				</div>
 				<button onClick={() => setOrderList([])} className="bg-light-dark rounded-[5px] p-2 flex flex-row gap-2 items-center justify-between">
 					<img src={assets.bin_icon} alt="" />
@@ -69,9 +69,9 @@ const Order = ({ orderList, setOrderList, token, backendUrl }) => {
 			<div className="flex flex-col gap-2 p-2 border-t border-b border-black">
 				{orderList.map((item) => (
 					<div key={item._id} className="flex flex-row justify-between">
-						<div className="flex flex-col">
-							<p>{item.name}</p>
-							<p>{currency}{item.price * item.quantity}</p>
+						<div className="flex flex-col w-[calc(100%-100px)]">
+							<p className="w-full whitespace-nowrap text-ellipsis overflow-hidden">{item.name}</p>
+							<p className="w-full whitespace-nowrap text-ellipsis overflow-hidden">{currency}{item.price * item.quantity}</p>
 						</div>
 						<div className="flex flex-row gap-2 items-center">
 							<img className="cursor-pointer bg-light-dark rounded-[5px]" src={assets.subtract_order_icon} onClick={() => decreaseQty(item._id)} alt="" />
