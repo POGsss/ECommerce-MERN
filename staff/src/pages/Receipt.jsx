@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useLayoutEffect } from "react";
+import { useState, useEffect } from "react";
 import { backendUrl, currency } from "../App";
 import { toast } from "react-toastify";
 import { assets } from "../assets/assets";
@@ -13,8 +13,6 @@ const Receipt = ({ token }) => {
 	const [orders, setOrders] = useState([]);
 	const [selectedOrder, setSelectedOrder] = useState(null);
 	const [amount, setAmount] = useState(0);
-    const componentRef = useRef(null);
-    const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
 
 	const fetchAllOrders = async () => {
 		if (!token) {
@@ -127,22 +125,8 @@ const Receipt = ({ token }) => {
 		}, 500);
 	};
 
-	// Using Resize Observer To Get Dimension Of Preview
-	useLayoutEffect(() => {
-		if (!componentRef.current) return;
-
-		const observer = new ResizeObserver((entries) => {
-		const { width, height } = entries[0].contentRect;
-		setDimensions({ width, height });
-		});
-
-		observer.observe(componentRef.current);
-
-		return () => observer.disconnect();
-	}, []);
-
 	return (
-		<div className="flex flex-col items-start w-full">
+		<div className="flex flex-col items-start w-[calc(100%-16px)] sm:w-full">
 			<p className="mb-2 font-title text-black">Receipt History</p>
 			<div className="w-full flex flex-col-reverse sm:flex-row items-start gap-4">
 				<div className="w-full grid grid-cols-1 gap-4">
@@ -167,12 +151,11 @@ const Receipt = ({ token }) => {
 					))}
 				</div>
 				<div className="w-full flex flex-col sm:min-w-[250px] sm:max-w-[300px]">
-					<div className="relative p-2 mb-4 bg-light-light rounded-[10px]">
+					<div className="p-2 mb-4 bg-light-light rounded-[10px]">
 						<Calculator amount={amount} />
 					</div>
-					<div className="relative p-2 bg-light-light rounded-[10px]">
-						<Preview selectedOrder={selectedOrder} componentRef={componentRef} />
-						<div style={{ width: `${dimensions.width}px`, height: `${dimensions.height + 20}px` }}></div>
+					<div className="p-2 bg-light-light rounded-[10px]">
+						<Preview selectedOrder={selectedOrder} />
 					</div>
 				</div>
 			</div>

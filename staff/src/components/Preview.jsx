@@ -1,21 +1,21 @@
 import { useState } from "react";
 import { currency } from "../App";
 
-const Preview = ({ selectedOrder, componentRef }) => {
+const Preview = ({ selectedOrder }) => {
 	const [dashLine, setDashLine] = useState("-".repeat(500));
 
 	if (!selectedOrder) {
 		return (
-			<div ref={componentRef} className="absolute top-0 left-0 w-full flex flex-col text-sm gap-4 p-4">
+			<div className="w-full flex flex-col text-sm gap-4 p-4">
 				<div className="flex flex-col items-center">
 					<b className="text-lg">BossDShop</b>
 					<p className="text-base">Point Of Sale System</p>
 				</div>
 				<div className="flex flex-col items-center overflow-hidden">
-						<p className="whitespace-nowrap">{dashLine}</p>
+						<p className="overflow-hidden whitespace-nowrap text-clip">{dashLine}</p>
 						<p>No Receipt Selected</p>
 						<p>Select One From History</p>
-						<p className="whitespace-nowrap">{dashLine}</p>
+						<p className="overflow-hidden whitespace-nowrap text-clip">{dashLine}</p>
 				</div>
 				<div className="flex flex-col items-center">
 					<p>Thank You For Purchasing</p>
@@ -28,16 +28,16 @@ const Preview = ({ selectedOrder, componentRef }) => {
 	const { _id, date, items, amount } = selectedOrder;
 
 	return (
-		<div ref={componentRef} className="absolute top-0 left-0 w-full flex flex-col text-sm gap-4 p-4">
+		<div className="w-full flex flex-col text-sm gap-4 p-4">
 				<div className="flex flex-col items-center">
 						<b className="text-lg">BossDShop</b>
 						<p className="text-base">Point Of Sale System</p>
 				</div>
 				<div className="flex flex-col items-center overflow-hidden">
-						<p className="whitespace-nowrap">{dashLine}</p>
+						<p className="overflow-hidden whitespace-nowrap text-clip">{dashLine}</p>
 						<p>Receipt #{_id.substring(0, 6) + '-' + _id.substring(_id.length - 6)}</p>
 						<p>{new Date(date).toLocaleDateString()}, {new Date(date).toLocaleTimeString('en-US', { hour12: true })}</p>
-						<p className="whitespace-nowrap">{dashLine}</p>
+						<p className="overflow-hidden whitespace-nowrap text-clip">{dashLine}</p>
 				</div>
 				<div className="flex flex-col items-center gap-2">
 						{items.map((item, index) => (
