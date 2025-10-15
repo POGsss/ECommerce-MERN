@@ -1,4 +1,4 @@
-import logo from "./Logomark.svg";
+import logo from "./logo.svg";
 import analytics_icon from "./analytics_icon.png";
 import add_icon from "./add_icon.png";
 import list_icon from "./list_icon.png";

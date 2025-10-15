@@ -64,6 +64,14 @@ const VirtualTryOn = ({ image }) => {
 		}
 	};
 
+	// Handle Demo Based on Available Services
+	const handleDemo = async () => {
+		if (!personImage || !garmentImage) {
+			toast("This feature is disabled in demo.");
+			return;
+		}
+	};
+
 	// Download Result Image
 	const handleDownload = async (url, filename = "resultImage.png") => {
 		const res = await fetch(url);
@@ -163,7 +171,7 @@ const VirtualTryOn = ({ image }) => {
 					{/* Footer */}
 					<div className="w-full flex bg-light-light gap-2 p-4">
             			<input value={prompt} onChange={(e) => setPrompt(e.target.value)} type="text" placeholder="Optional prompt..." className="w-full px-4 py-2 bg-light-dark rounded-[5px]" />
-						<button onClick={handleGenerateFashn} className="font-text md:text-base px-4 py-2 bg-primary rounded-[5px] cursor-pointer hover:bg-primary">Generate</button>
+						<button onClick={handleDemo} className="font-text md:text-base px-4 py-2 bg-primary rounded-[5px] cursor-pointer hover:bg-primary">Generate</button>
 					</div>
 				</div>
 			)}

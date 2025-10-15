@@ -1,4 +1,4 @@
-import logo from "./Logomark.svg";
+import logo from "./logo.svg";
 import products_icon from "./products_icon.png";
 import receipt_icon from "./receipt_icon.png";
 import signout_icon from "./signout_icon.png";

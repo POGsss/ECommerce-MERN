@@ -45,9 +45,9 @@ const Navbar = () => {
 
                 {/* Icons */}
                 <div className="flex items-center gap-2 xs:gap-4">
-                    <img onClick={() => setShowSearch(!showSearch)} src={assets.search_icon} className="w-5 min-w-5 cursor-pointer" alt="" />
+                    <img onClick={() => setShowSearch(!showSearch)} src={assets.search_icon} className="invert w-5 min-w-5 cursor-pointer" alt="" />
                     <div className="group relative">
-                        <img onClick={() => token ? null : navigate("/signin")} src={assets.profile_icon} className="w-5 min-w-5 cursor-pointer" alt="" />
+                        <img onClick={() => token ? null : navigate("/signin")} src={assets.profile_icon} className="invert w-5 min-w-5 cursor-pointer" alt="" />
                         {token && <div className="group-hover:block hidden absolute dropdown-menu right-0 pt-4">
                             <div className="flex flex-col gap-2 w-36 py-3 px-5 bg-light-light text-gray-500 rounded-[10px] shadow-lg">
                                 <p className="cursor-pointer hover:text-black">Profile</p>
@@ -57,7 +57,7 @@ const Navbar = () => {
                         </div>}
                     </div>
                     <Link to="/cart" className="relative">
-                        <img src={assets.cart_icon_white} className="w-5 min-w-5 cursor-pointer" alt="" />
+                        <img src={assets.cart_icon} className="invert w-5 min-w-5 cursor-pointer" alt="" />
                         <p className="absolute right-[-5px] bottom-[-5px] w-4 text-center leading-4 bg-primary text-black aspect-square rounded-full text-[8px]">{getCartCount()}</p>
                     </Link>
                     <img onClick={()=>setVisible(true)} src={assets.menu_icon} className="w-5 cursor-pointer sm:hidden" alt="" />
