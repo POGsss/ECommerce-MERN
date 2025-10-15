@@ -66,10 +66,8 @@ const VirtualTryOn = ({ image }) => {
 
 	// Handle Demo Based on Available Services
 	const handleDemo = async () => {
-		if (!personImage || !garmentImage) {
-			toast("This feature is disabled in demo.");
-			return;
-		}
+		toast("This feature is disabled in demo.");
+		return;
 	};
 
 	// Download Result Image
