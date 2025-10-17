@@ -22,9 +22,9 @@ const Verify = () => {
 			// Checking Response And Sending Window Post Message
 			if (response.data.success) {
 				setCartItems({});
-				window.opener?.postMessage({ type: "PAYMENT_RESULT", status: "success" }, "*");
+				window.opener?.postMessage({ type: "PAYMENT_RESULT", status: "success", orderId }, "*");
 			} else {
-				window.opener?.postMessage({ type: "PAYMENT_RESULT", status: "fail" }, "*");
+				window.opener?.postMessage({ type: "PAYMENT_RESULT", status: "fail", orderId }, "*");
 			}
 			
 			// Closing Opened window

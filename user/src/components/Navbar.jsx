@@ -27,19 +27,19 @@ const Navbar = () => {
                 <ul className="hidden sm:flex gap-4 text-sm text-white">
                     <NavLink to="/" className="flex flex-col items-center gap-1">
                         <p className="font-text">HOME</p>
-                        <hr className="w-2/4 border-none h-[1.5px] bg-white" hidden/>
+                        <hr className="w-2/4 border-none h-[1.5px] bg-white" hidden />
                     </NavLink>
                     <NavLink to="/collection" className="flex flex-col items-center gap-1">
                         <p className="font-text">COLLECTION</p>
-                        <hr className="w-2/4 border-none h-[1.5px] bg-white" hidden/>
+                        <hr className="w-2/4 border-none h-[1.5px] bg-white" hidden />
                     </NavLink>
                     <NavLink to="/about" className="flex flex-col items-center gap-1">
                         <p className="font-text">ABOUT</p>
-                        <hr className="w-2/4 border-none h-[1.5px] bg-white" hidden/>
+                        <hr className="w-2/4 border-none h-[1.5px] bg-white" hidden />
                     </NavLink>
                     <NavLink to="/contact" className="flex flex-col items-center gap-1">
                         <p className="font-text">CONTACT</p>
-                        <hr className="w-2/4 border-none h-[1.5px] bg-white" hidden/>
+                        <hr className="w-2/4 border-none h-[1.5px] bg-white" hidden />
                     </NavLink>
                 </ul>
 
@@ -60,20 +60,20 @@ const Navbar = () => {
                         <img src={assets.cart_icon} className="invert w-5 min-w-5 cursor-pointer" alt="" />
                         <p className="absolute right-[-5px] bottom-[-5px] w-4 text-center leading-4 bg-primary text-black aspect-square rounded-full text-[8px]">{getCartCount()}</p>
                     </Link>
-                    <img onClick={()=>setVisible(true)} src={assets.menu_icon} className="w-5 cursor-pointer sm:hidden" alt="" />
+                    <img onClick={() => setVisible(true)} src={assets.menu_icon} className="invert w-5 cursor-pointer sm:hidden" alt="" />
                 </div>
 
                 {/* Mobile Menu */}
                 <div className={`fixed top-0 right-0 bottom-0 overflow-hidden bg-light-light transition-all ${visible ? "w-full" : "w-0"}`}>
-                    <div className="flex flex-col text-black">
-                        <div onClick={()=>setVisible(false)} className="flex items-center gap-2 p-8 cursor-pointer">
+                    <div id="navList" className="flex flex-col text-black ">
+                        <div onClick={() => setVisible(false)} className="flex items-center gap-2 p-8 cursor-pointer">
                             <img className="w-5 rotate-90" src={assets.dropdown_icon} alt="" />
                             <p>Back</p>
                         </div>
-                        <NavLink onClick={()=>setVisible(false)} to="/" className="py-6 pl-6 border">HOME</NavLink>
-                        <NavLink onClick={()=>setVisible(false)} to="/collection" className="py-6 pl-6 border">COLLECTION</NavLink>
-                        <NavLink onClick={()=>setVisible(false)} to="/about" className="py-6 pl-6 border">ABOUT</NavLink>
-                        <NavLink onClick={()=>setVisible(false)} to="/contact" className="py-6 pl-6 border">CONTACT</NavLink>
+                        <NavLink onClick={() => setVisible(false)} to="/" className="py-6 pl-6 border-t border-black">HOME</NavLink>
+                        <NavLink onClick={() => setVisible(false)} to="/collection" className="py-6 pl-6 border-t border-black">COLLECTION</NavLink>
+                        <NavLink onClick={() => setVisible(false)} to="/about" className="py-6 pl-6 border-t border-black">ABOUT</NavLink>
+                        <NavLink onClick={() => setVisible(false)} to="/contact" className="py-6 pl-6 border-t border-b border-black">CONTACT</NavLink>
                     </div>
                 </div>
             </div>

@@ -58,7 +58,7 @@ const ShopContextProvider = (props) => {
             } catch (error) {
                 // Logging Error
                 console.error(error);
-                toast(error.message);
+                toast("Please Try Again");
             }
         }
     }
@@ -76,7 +76,7 @@ const ShopContextProvider = (props) => {
                 } catch (error) {
                     // Logging Error
                     console.error(error);
-                    toast(error.message);
+                    toast("Please Try Again");
                 }
             }
         }
@@ -99,7 +99,7 @@ const ShopContextProvider = (props) => {
                 } catch (error) {
                     // Logging Error
                     console.error(error);
-                    toast(error.message);
+                    toast("Please Try Again");
                 }
             }
         }
@@ -119,7 +119,7 @@ const ShopContextProvider = (props) => {
         } catch (error) {
             // Logging Error
             console.error(error);
-            toast(error.message);
+            toast("Please Try Again");
         }
     }
 
@@ -139,7 +139,7 @@ const ShopContextProvider = (props) => {
             } catch (error) {
                 // Logging Error
                 console.error(error);
-                toast(error.message);
+                toast("Please Try Again");
             }
         }
     }
@@ -157,7 +157,7 @@ const ShopContextProvider = (props) => {
             } catch (error) {
                 // Logging Error
                 console.error(error);
-                toast(error.message);
+                toast("Please Try Again");
             }
         }
     }
