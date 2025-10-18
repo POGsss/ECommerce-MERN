@@ -127,6 +127,10 @@ select {
   background: var(--bg-light-dark);
 }
 
+#invoiceList tr:nth-child(odd) {
+  background: var(--bg-light-dark);
+}
+
 /* Component Styling */
 /* Media Query */
 

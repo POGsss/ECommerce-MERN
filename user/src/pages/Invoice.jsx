@@ -7,7 +7,6 @@ import Title from "../components/Title";
 
 const Invoice = () => {
     const [order, setOrder] = useState(null);
-    const { cartItems, setCartItems } = useContext(ShopContext);
     const { orderId } = useParams();
 
     // Cleaning Up Cart Items on Unmount
@@ -19,15 +18,11 @@ const Invoice = () => {
         if (savedOrder) {
             setOrder(JSON.parse(savedOrder));
         }
-
-        return () => {
-            setCartItems({});
-        }
     }, []);
 
     return (
         <div className="flex flex-col items-center max-w-[640px] mx-auto my-10 gap-4 bg-light-light p-4 sm:p-8 rounded-[20px]">
-            <div className="font-subtitle text-2xl pb-4">
+            <div className="text-center text-2xl pb-4">
                 <Title text1={"ORDER"} text2={"COMPLETE"} />
             </div>
             {order ? (
