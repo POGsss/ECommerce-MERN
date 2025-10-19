@@ -63,7 +63,7 @@ const PlaceOrder = () => {
 					if (response.data.success) {
 						setCartItems({});
 						localStorage.setItem("latestOrder", JSON.stringify(orderData));
-						navigate("/invoice/" + response.data.orderId);
+						navigate("/orders");
 					} else {
 						toast(response.data.message);
 					}
@@ -95,7 +95,7 @@ const PlaceOrder = () => {
 								}
 								window.location.reload();
 							}
-						}, 1000);
+						}, 500);
 					} else {
 						toast(response.data.message);
 					}
@@ -118,7 +118,7 @@ const PlaceOrder = () => {
 			if (event.data?.type === "PAYMENT_RESULT") {
 				if (event.data.status === "success") {
 					paymentCancelled.current = false;
-					navigate("/invoice/" + event.data.orderId);
+					navigate("/orders");
 				} else {
 					paymentCancelled.current = true;
 					navigate("/cart");

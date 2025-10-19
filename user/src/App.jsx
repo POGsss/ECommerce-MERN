@@ -44,7 +44,7 @@ const App = () => {
           <Route path="/signin" element={<Login />} />
           <Route path="/place-order" element={<PlaceOrder />} />
           <Route path="/orders" element={<Orders />} />
-          <Route path="/invoice/:orderId" element={<Invoice />} />
+          <Route path="/invoice" element={<Invoice />} />
           <Route path="/verify" element={<Verify />} />
         </Routes>
       </main>

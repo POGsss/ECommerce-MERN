@@ -81,7 +81,7 @@ const Orders = () => {
                 <p className="text-base sm:text-lg font-subtitle">{item.name}</p>
                   <div className="flex items-center gap-2">
                     <p className="text-sm sm:text-base">{currency}{item.price}</p>
-                    <p className="text-sm sm:text-base">Quantity: {item.quantity}</p>
+                    <p className="text-sm sm:text-base">Qty: {item.quantity}</p>
                     <p className="text-sm sm:text-base">Size: {item.size}</p>
                   </div>
                   <p>Date: <span className="text-sm sm:text-base text-gray-500">{new Date(item.date).toDateString()}</span></p>

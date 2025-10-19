@@ -1,39 +1,68 @@
 import { useContext, useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
 import { ShopContext } from "../context/ShopContext";
 import { toast } from "react-toastify";
-import Preview from "../components/Preview";
+import { assets } from "../assets/assets";
+import axios from "axios";
 import Title from "../components/Title";
+import Preview from "../components/Preview";
 
 const Invoice = () => {
-    const [order, setOrder] = useState(null);
-    const { orderId } = useParams();
+    const [ invoiceData, setInvoiceData ] = useState([]);
+    const [ selectedInvoice, setSelectedInvoice ] = useState(null);
+    const { backendUrl, token, currency } = useContext(ShopContext);
 
-    // Cleaning Up Cart Items on Unmount
-    useEffect(() => {
-        const savedOrder = localStorage.getItem("latestOrder");
+    const fetchOrders = async () => {
+        try {
+            // Checking If User Logged In
+            if (!token) {
+                return null;
+            }
 
-        console.log("Saved Order:", savedOrder);
+            // Sending Request To Backend
+            const response = await axios.post(backendUrl + "/api/order/user", {}, { headers: { token } });
+            console.log(response.data.orders);
 
-        if (savedOrder) {
-            setOrder(JSON.parse(savedOrder));
+            // Creating Invoice Data
+            if (response.data.success) {
+                setInvoiceData(response.data.orders.reverse());
+            } else {
+                toast(response.data.message);
+            }
+        } catch (error) {
+            // Logging Error
+            console.log(error);
+            toast(error.message);
         }
-    }, []);
+    }
+
+    useEffect(() => {
+        fetchOrders();
+    }, [token]);
 
     return (
-        <div className="flex flex-col items-center max-w-[640px] mx-auto my-10 gap-4 bg-light-light p-4 sm:p-8 rounded-[20px]">
-            <div className="text-center text-2xl pb-4">
-                <Title text1={"ORDER"} text2={"COMPLETE"} />
+        <div className="max-w-[1280px] mx-auto my-10">
+            <div className="font-subtitle text-2xl pb-4">
+                <Title text1={"YOUR"} text2={"INVOICE"} />
             </div>
-            {order ? (
-                <Preview order={order} orderId={orderId} />
-            ) : (
-                <p>Loading order details...</p>
-            )}
-            <div className="w-full flex flex-col sm:flex-row items-center gap-2 mt-4">
-                <button type="button" className="w-full font-text md:text-base px-8 py-4 bg-secondary rounded-[10px] text-white cursor-pointer">MY ORDERS</button>
-                <button type="button" className="w-full font-text md:text-base px-8 py-4 bg-secondary rounded-[10px] text-white cursor-pointer">DOWNLOAD</button>
+            <div>
+                {invoiceData.map((invoice, index) => (
+                    <div key={index} id="invoiceList" className="p-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 rounded-[10px]">
+                        <div className="flex items-center gap-6 text-sm">
+                            <img className="w-16 sm:w-20 bg-light-dark rounded-[5px] p-2 field" src={assets.invoice_icon} alt="" />
+                            <div className="overflow-hidden">
+                                <p className="text-base sm:text-lg font-subtitle w-full overflow-hidden whitespace-nowrap text-ellipsis">Invoice {invoice._id.substring(0, 8) + '-' + invoice._id.substring(invoice._id.length - 8)}</p>
+                                <div className="flex items-center gap-2">
+                                    <p>Items: <span className="text-sm sm:text-base text-gray-500">{invoice.items.length}</span></p>
+                                    <p>Total: <span className="text-sm sm:text-base text-gray-500">{currency}{invoice.amount}</span></p>
+                                </div>
+                                <p>Date: <span className="text-sm sm:text-base text-gray-500">{new Date(invoice.date).toDateString()}</span></p>
+                            </div>
+                        </div>
+                        <button onClick={() => setSelectedInvoice(invoice)} className="field rounded-[5px] px-4 py-2 text-sm">Print</button>
+                    </div>
+                ))}
             </div>
+            <Preview selectedInvoice={selectedInvoice} />
         </div>
     )
 }

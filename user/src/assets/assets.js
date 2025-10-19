@@ -1,5 +1,6 @@
 // Import General Images
 import logo from "./logo.svg";
+import icon from "./icon.svg"
 import hero_img from "./hero_img.png";
 import cart_icon from "./cart_icon.png";
 import bin_icon from "./bin_icon.png";
@@ -22,10 +23,12 @@ import garment_area from "./garment_area.png";
 import result_area from "./result_area.png";
 import download_icon from "./download_icon.png";
 import zoom_icon from "./zoom_icon.png";
+import invoice_icon from "./invoice_icon.png";
 
 // Export Images
 export const assets = {
     logo,
+    icon,
     hero_img,
     cart_icon,
     dropdown_icon,
@@ -48,4 +51,5 @@ export const assets = {
     result_area,
     download_icon,
     zoom_icon,
+    invoice_icon,
 }

@@ -127,7 +127,19 @@ select {
   background: var(--bg-light-dark);
 }
 
-#invoiceList tr:nth-child(odd) {
+#invoiceList:nth-child(odd) {
+  background: var(--bg-light-light);
+}
+
+#invoiceList:nth-child(even) .field {
+  background: var(--bg-light-light);
+}
+
+#invoiceList:nth-child(odd) .field {
+  background: var(--bg-light-dark);
+}
+
+#invoiceList tr:nth-child(even) {
   background: var(--bg-light-dark);
 }
 

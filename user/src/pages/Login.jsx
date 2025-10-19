@@ -51,9 +51,6 @@ const Login = () => {
         // Getting User Info Using Access Token
         const userInfo = await axios.get("https://www.googleapis.com/oauth2/v3/userinfo", {headers: { Authorization: `Bearer ${response.access_token}` }});
 
-        // Print User Info
-        console.log("User Info:", userInfo.data);
-
         // Sending User Info To Backend
         const backendResponse = await axios.post(backendUrl + "/api/user/google", { name: userInfo.data.name, email: userInfo.data.email });
 
