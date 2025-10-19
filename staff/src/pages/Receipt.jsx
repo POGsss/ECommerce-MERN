@@ -90,7 +90,7 @@ const Receipt = ({ token }) => {
 	const handlePrint = (order) => {
 		// Creating Style Element
 		const style = document.createElement("style");
-		style.innerHTML = `@media print { body * { visibility: hidden !important; overflow: hidden; width: } #print-root * { visibility: visible !important; }}`;
+		style.innerHTML = `@media print { body * { visibility: hidden !important; overflow: hidden; } #print-root * { visibility: visible !important; }}`;
 
 		// Creating Print Area Element
 		const printArea = document.createElement("div");

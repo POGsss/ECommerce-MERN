@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { ShopContext } from "../context/ShopContext";
 import { toast } from "react-toastify";
 import { assets } from "../assets/assets";
+import ReactDOM from "react-dom/client";
 import axios from "axios";
 import Title from "../components/Title";
 import Preview from "../components/Preview";
@@ -34,10 +35,49 @@ const Invoice = () => {
             toast(error.message);
         }
     }
-
+    
     useEffect(() => {
         fetchOrders();
     }, [token]);
+
+    // Print Functionality
+    const handlePrint = (invoice) => {
+		// Creating Style Element
+		const style = document.createElement("style");
+		style.innerHTML = `@media print { body * { visibility: hidden !important; overflow: hidden; } #print-root * { visibility: visible !important; }}`;
+
+		// Creating Print Area Element
+		const printArea = document.createElement("div");
+		printArea.id = "print-root";
+		printArea.style.position = "fixed";
+		printArea.style.visibility = "hidden";
+		printArea.style.top = "0";
+		printArea.style.left = "50%";
+		printArea.style.transform = "translateX(-50%)";
+		printArea.style.width = "100%";
+		printArea.style.padding = "20px";
+		printArea.style.background = "white";
+		printArea.style.zIndex = "9999";
+
+		// Creating Component To Render
+		const root = ReactDOM.createRoot(printArea);
+		root.render(<Preview selectedInvoice={invoice} />);
+
+		// Appending All Element To Html
+		document.head.appendChild(style);
+		document.body.appendChild(printArea);
+
+		// Timer For Printing
+		setTimeout(() => {
+			// Running Print Method
+			window.print();
+			root.unmount();
+
+			// Unmounting The Style And Print Area
+			document.head.removeChild(style);
+			document.body.removeChild(printArea);
+		}, 500);
+	};
 
     return (
         <div className="max-w-[1280px] mx-auto my-10">
@@ -58,11 +98,10 @@ const Invoice = () => {
                                 <p>Date: <span className="text-sm sm:text-base text-gray-500">{new Date(invoice.date).toDateString()}</span></p>
                             </div>
                         </div>
-                        <button onClick={() => setSelectedInvoice(invoice)} className="field rounded-[5px] px-4 py-2 text-sm">Print</button>
+                        <button onClick={() => {setSelectedInvoice(invoice); handlePrint(invoice)}} className="field rounded-[5px] px-4 py-2 text-sm">Print</button>
                     </div>
                 ))}
             </div>
-            <Preview selectedInvoice={selectedInvoice} />
         </div>
     )
 }

@@ -1,9 +1,8 @@
-import { useContext, useEffect } from "react";
-import { ShopContext } from "../context/ShopContext";
 import { assets } from "../assets/assets";
 
 const Preview = ({ selectedInvoice }) => {
-    const { currency, deliveryFee } = useContext(ShopContext);
+    const currency = "₱";
+    const deliveryFee = 30;
 
     if (!selectedInvoice) {
         return (
@@ -19,7 +18,7 @@ const Preview = ({ selectedInvoice }) => {
                 <img className="w-14 h-14" src={assets.icon} alt="" srcset="" />
                 <div className="flex flex-col justify-center items-end">
                     <h1 className="font-title text-4xl text-primary">INVOICE</h1>
-                    <p className="text-sm">{_id.substring(0, 6) + "-" + _id.substring(_id.length - 6)}</p>
+                    <p className="text-sm">{_id.substring(0, 8) + "-" + _id.substring(_id.length - 8)}</p>
                 </div>
             </div>
             <div className="flex flex-col sm:flex-row justify-start gap-4 items-center">
