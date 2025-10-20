@@ -44,6 +44,11 @@ const Login = () => {
     }
   }
 
+  // Facebook Login
+  const loginWithFacebook = async () => {
+    toast("Please Try Another Method");
+  }
+
   // Google Login
   const loginWithGoogle = useGoogleLogin({
     onSuccess: async (response) => {
@@ -103,7 +108,7 @@ const Login = () => {
         <button type="submit" className="w-full font-text md:text-base px-8 py-4 bg-secondary rounded-[10px] text-white cursor-pointer">{currentState === "SIGN IN" ? "SIGN IN" : "SIGN UP"}</button>
         <p>or</p>
         <div className="w-full flex flex-col sm:flex-row gap-4">
-          <button type="button" className="w-full font-text md:text-base px-8 py-4 bg-secondary rounded-[10px] text-white cursor-pointer">FACEBOOK {currentState}</button>
+          <button onClick={() => loginWithFacebook()} type="button" className="w-full font-text md:text-base px-8 py-4 bg-secondary rounded-[10px] text-white cursor-pointer">FACEBOOK {currentState}</button>
           <button onClick={() => loginWithGoogle()} type="button" className="w-full font-text md:text-base px-8 py-4 bg-secondary rounded-[10px] text-white cursor-pointer">GOOGLE {currentState}</button>
         </div>
       </div>

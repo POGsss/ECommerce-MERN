@@ -101,7 +101,7 @@ const List = ({ token }) => {
         </div>
         {/* List Data */}
         {paginatedList.map((item, index) => (
-          <div className="relative grid lg:grid-cols-[100px_5fr_2fr_1fr_50px] items-center gap-2 p-2 bg-light-light rounded-[10px] text-sm" key={index}>
+          <div className="relative grid lg:grid-cols-[100px_5fr_2fr_1fr_50px] items-start lg:items-center gap-2 p-2 bg-light-light rounded-[10px] text-sm" key={index}>
             <img className="w-full bg-light-light rounded-[5px]" src={item.image[0]} alt="" />
             <p>{item.name}</p>
             <p>{item.category}</p>

@@ -51,7 +51,7 @@ const Products = ({ token }) => {
 			<div  className="w-full flex flex-col-reverse sm:flex-row items-start gap-4">
 				<div className="w-full grid grid-cols-[repeat(auto-fit,minmax(150px,1fr))] gap-4">
 					{list.map((item, index) => (
-						<div onClick={() => handleAddOrder(item)} className="relative grid items-center gap-2 p-2 bg-light-light rounded-[10px] text-sm cursor-pointer" key={index}>
+						<div onClick={() => handleAddOrder(item)} className="relative grid items-start gap-2 p-2 bg-light-light rounded-[10px] text-sm cursor-pointer" key={index}>
 							<img className="w-full bg-light-light rounded-[10px]" src={item.image[0]} alt="" />
 							<p>{item.name}</p>
 							<p>{currency}{item.price}</p>
