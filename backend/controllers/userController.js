@@ -116,7 +116,7 @@ const adminSignIn = async (req, res) => {
 
         // Validating Admin Credentials
         if (email === process.env.ADMIN_EMAIL && password === process.env.ADMIN_PASSWORD) {
-            const token = jwt.sign(email+password, process.env.JWT_SECRET, { expiresIn: "7d" });
+            const token = jwt.sign(email+password, process.env.JWT_SECRET);
             res.json({success: true, token});
         } else {
             res.json({success: false, message: "Invalid Credentials"});
@@ -136,7 +136,7 @@ const staffSignIn = async (req, res) => {
 
         // Validating Admin Credentials
         if (email === process.env.STAFF_EMAIL && password === process.env.STAFF_PASSWORD) {
-            const token = jwt.sign(email+password, process.env.JWT_SECRET, { expiresIn: "7d" });
+            const token = jwt.sign(email+password, process.env.JWT_SECRET);
             res.json({success: true, token});
         } else {
             res.json({success: false, message: "Invalid Credentials"});
