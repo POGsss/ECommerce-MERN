@@ -12,7 +12,7 @@ const authAdmin = async (req, res, next) => {
 
         // Decoding Token
         const decodedToken = jwt.verify(token, process.env.JWT_SECRET);
-        if (decodedToken !== process.env.ADMIN_EMAIL + process.env.ADMIN_PASSWORD) {
+        if (decodedToken.email !== process.env.ADMIN_EMAIL || decodedToken.password !== process.env.ADMIN_PASSWORD) {
             return res.json({ success: false, message: "Invalid Credentials" });
         }
 
