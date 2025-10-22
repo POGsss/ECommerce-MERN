@@ -40,12 +40,15 @@ const Preview = ({ selectedInvoice }) => {
                 </div>
             </div>
             <table id="invoiceList" className="w-full text-sm">
-                <tr className="bg-primary font-title">
-                    <td className="text-left p-2">ITEM</td>
-                    <td className="text-end p-2 w-[20%]">SIZE</td>
-                    <td className="text-end p-2 w-[20%]">QTY</td>
-                    <td className="text-end p-2 w-[20%]">PRICE</td>
-                </tr>
+                <thead>
+                    <tr className="bg-primary font-title">
+                        <td className="text-left p-2">ITEM</td>
+                        <td className="text-end p-2 w-[20%]">SIZE</td>
+                        <td className="text-end p-2 w-[20%]">QTY</td>
+                        <td className="text-end p-2 w-[20%]">PRICE</td>
+                    </tr>
+                </thead>
+                <tbody>
                 {(() => {
                     const rows = [];
                     const totalRows = Math.max(items.length, 5);
@@ -71,6 +74,7 @@ const Preview = ({ selectedInvoice }) => {
                     }
                     return rows;
                 })()}
+                </tbody>
             </table>
             <div className="flex flex-row justify-between items-end">
                 <div className="flex flex-col justify-center items-start w-full">

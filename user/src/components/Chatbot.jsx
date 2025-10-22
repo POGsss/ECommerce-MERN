@@ -45,7 +45,7 @@ const Chatbot = () => {
           {/* Messages */}
           <div className="flex-1 p-3 overflow-y-auto space-y-2">
             {messages.map((msg, index) => (
-              <div key={index} className={`p-2 rounded-[5px] max-w-[80%] ${ msg.sender === "user" ? "bg-primary self-end text-right ml-auto" : "bg-white self-start text-left mr-auto"}`}>
+              <div key={index} className={`p-2 rounded-[5px] max-w-[80%] ${ msg.sender === "user" ? "bg-primary self-start text-left ml-auto" : "bg-white self-start text-left mr-auto"}`}>
                 {msg.text}
               </div>
             ))}
@@ -53,7 +53,7 @@ const Chatbot = () => {
 
           {/* Input */}
           <div className="p-4 bg-light-light flex gap-2">
-            <input value={input} onChange={(e) => setInput(e.target.value)} type="text" placeholder="Ask anything..." className="w-full px-4 py-2 bg-light-dark rounded-[5px]" />
+            <input value={input} onChange={(e) => setInput(e.target.value)} type="text" placeholder="Ask anything..." className="w-full px-4 py-2 bg-light-dark rounded-[5px] outline-none" />
             <button onClick={handleSubmit} className="w-[50px] rounded-[5px] bg-primary flex items-center justify-center">
               <img className="" src={assets.send_icon} alt="" />
             </button>

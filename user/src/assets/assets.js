@@ -24,6 +24,7 @@ import result_area from "./result_area.png";
 import download_icon from "./download_icon.png";
 import zoom_icon from "./zoom_icon.png";
 import invoice_icon from "./invoice_icon.png";
+import user_icon from "./user_icon.png";
 
 // Export Images
 export const assets = {
@@ -52,4 +53,5 @@ export const assets = {
     download_icon,
     zoom_icon,
     invoice_icon,
+    user_icon,
 }

@@ -4,8 +4,8 @@ import validator from "validator";
 import userModel from "../models/userModel.js";
 
 // Create Token Function
-const createToken = (id) => {
-    return jwt.sign({id}, process.env.JWT_SECRET);
+const createToken = (user) => {
+    return jwt.sign({id: user._id, name: user.name, email: user.email}, process.env.JWT_SECRET, { expiresIn: "7d" });
 }
 
 // Sign In Function
@@ -23,7 +23,7 @@ const userSignIn = async (req, res) => {
         // Checking If Password Match
         const isMatch = await bcrypt.compare(password, user.password);
         if (isMatch) {
-            const token = createToken(user._id);
+            const token = createToken(user);
             res.json({success: true, token});
         } else {
             res.json({success: false, message: "Invalid credentials"});
@@ -66,7 +66,7 @@ const userSignUp = async (req, res) => {
             password:hashedPassword
         });
         const user = await newUser.save();
-        const token = createToken(user._id);
+        const token = createToken(user);
 
         // Returning Success Response
         res.json({success: true, token});
@@ -97,7 +97,7 @@ const userGoogleSignIn = async (req, res) => {
             });
             await googleUser.save();
         }
-        const token = createToken(googleUser._id);
+        const token = createToken(googleUser);
 
         // Returning Success Response
         res.json({success: true, token});
@@ -116,7 +116,7 @@ const adminSignIn = async (req, res) => {
 
         // Validating Admin Credentials
         if (email === process.env.ADMIN_EMAIL && password === process.env.ADMIN_PASSWORD) {
-            const token = jwt.sign(email+password, process.env.JWT_SECRET);
+            const token = jwt.sign(email+password, process.env.JWT_SECRET, { expiresIn: "7d" });
             res.json({success: true, token});
         } else {
             res.json({success: false, message: "Invalid Credentials"});
@@ -136,7 +136,7 @@ const staffSignIn = async (req, res) => {
 
         // Validating Admin Credentials
         if (email === process.env.STAFF_EMAIL && password === process.env.STAFF_PASSWORD) {
-            const token = jwt.sign(email+password, process.env.JWT_SECRET);
+            const token = jwt.sign(email+password, process.env.JWT_SECRET, { expiresIn: "7d" });
             res.json({success: true, token});
         } else {
             res.json({success: false, message: "Invalid Credentials"});

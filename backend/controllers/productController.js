@@ -106,4 +106,50 @@ const productAdd = async (req, res) => {
     }
 }
 
-export { productList, productSingle, productRemove, productAdd };
+// Product Review Function
+const productReview = async (req, res) => {
+    try {
+        // Getting User Input
+        const { productId, rating, comment } = req.body;
+        const userId = req.body.userId;
+        const name = req.body.name;
+        const email = req.body.email;
+
+        // Check Proper Rating
+        if (!rating || rating < 1 || rating > 5) {
+            return res.status(400).json({ success: false, message: "Rating must be between 1 and 5" });
+        }
+
+        // Check If Product Exists
+        const product = await productModel.findById(productId);
+        if (!product) {
+            return res.status(404).json({ success: false, message: "Product not found" });
+        }
+
+        // Check If User Has Already Reviewed
+        const alreadyReviewed = product.reviews.find(r => r.userId.toString() === userId.toString());
+        if (alreadyReviewed) {
+            return res.status(400).json({ success: false, message: "You already reviewed this product" });
+        }
+
+        // Creating Review Object
+        const review = {
+            userId,
+            name,
+            email,
+            rating: Number(rating),
+            comment,
+            date: Date.now()
+        };
+
+        // Adding Review To Product
+        await productModel.findByIdAndUpdate(productId, { $push: { reviews: review } });
+        res.json({success: true, message: "Review Added Successfully"});
+    } catch (error) {
+        // Logging Error
+        console.log(error);
+        res.json({success: false, message: error.message});
+    }
+}
+
+export { productList, productSingle, productRemove, productAdd, productReview };

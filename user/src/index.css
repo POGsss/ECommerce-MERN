@@ -81,9 +81,18 @@ a.active hr {
   display: block;
 }
 
+textarea {
+  outline: none;
+}
+
+input {
+  outline: none;
+}
+
 select {
   -webkit-appearance: none;
   -moz-appearance: none;
+  outline: none;
 
   background-color: var(--bg-light-light);
   background-image:

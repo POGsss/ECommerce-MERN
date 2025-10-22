@@ -13,6 +13,8 @@ const authUser = async (req, res, next) => {
         // Decoding Token
         const decodedToken = jwt.verify(token, process.env.JWT_SECRET);
         req.body.userId = decodedToken.id;
+        req.body.name = decodedToken.name;
+        req.body.email = decodedToken.email;
 
         // Calling Callback Function
         next();

@@ -91,6 +91,14 @@ a.active img {
   filter: invert(100%);
 }
 
+textarea {
+  outline: none;
+}
+
+input {
+  outline: none;
+}
+
 input[type="checkbox"] {
   accent-color: #000000;
 }

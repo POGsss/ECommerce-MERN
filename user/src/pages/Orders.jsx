@@ -2,11 +2,52 @@ import { useContext, useState, useEffect } from 'react';
 import { ShopContext } from '../context/ShopContext.jsx';
 import { toast } from 'react-toastify';
 import Title from '../components/Title.jsx';
+import Dialog from '../components/Dialog.jsx';
 import axios from 'axios';
 
 const Orders = () => {
   const { backendUrl, token, currency } = useContext(ShopContext);
   const [ orderData, setOrderData ] = useState([]);
+  const [ showDialog, setShowDialog ] = useState(false);
+  const [ productId, setProductId ] = useState(null);
+  const [ rating, setRating ] = useState(0);
+  const [ comment, setComment ] = useState("");
+
+  const handleReviewItem = async (_id) => {
+    setProductId(_id);
+    setShowDialog(true);
+  };
+
+  const handleCancelReview = () => {
+    setShowDialog(false);
+  }
+
+  const handleConfirmReview = () => {
+    submitReview();
+    setShowDialog(false);
+  }
+
+  const submitReview = async () => {
+    try {
+      // Checking If User Logged In
+      if (!token) {
+        return null;
+      }
+
+      // Sending Request To Backend
+      const response = await axios.post(backendUrl + "/api/product/review", { productId, rating, comment }, { headers: { token } });
+      if (response.data.success) {
+        toast(response.data.message);
+        setRating(0);
+        setComment("");
+      }
+
+    } catch (error) {
+      // Logging Error
+      console.log(error);
+      toast(error.response.data.message);
+    }
+  };
 
   const handleReceiveItem = async (orderId) => {
     try {
@@ -14,7 +55,7 @@ const Orders = () => {
       if (!token) {
         return null;
       }
-      console.log(orderId);
+
       // Sending Request To Backend
       const response = await axios.post(backendUrl + "/api/order/receive", { orderId, status: "Completed", payment: true }, { headers: { token } });
 
@@ -68,6 +109,16 @@ const Orders = () => {
 
   return (
     <div className="max-w-[1280px] mx-auto my-10">
+      <Dialog
+        rating={rating}
+        comment={comment}
+        setRating={setRating}
+        setComment={setComment}
+        visible={showDialog}
+        onCancel={handleCancelReview}
+        onConfirm={handleConfirmReview}
+      />
+
       <div className="font-subtitle text-2xl pb-4">
         <Title text1={"YOUR"} text2={"ORDERS"} />
       </div>
@@ -95,6 +146,8 @@ const Orders = () => {
               </div>
               {item.status === "Delivered" ? (
                 <button onClick={() => handleReceiveItem(item.orderId)} className="field rounded-[5px] px-4 py-2 text-sm">Receive Order</button>
+              ) : item.status === "Completed" ? (
+                <button onClick={() => handleReviewItem(item._id)} className="field rounded-[5px] px-4 py-2 text-sm">Review Order</button>
               ) : (
                 <button onClick={fetchOrders} className="field rounded-[5px] px-4 py-2 text-sm">Track Order</button>
               )}

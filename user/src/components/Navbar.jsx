@@ -66,14 +66,14 @@ const Navbar = () => {
                 {/* Mobile Menu */}
                 <div className={`fixed top-0 right-0 bottom-0 overflow-hidden bg-light-light transition-all ${visible ? "w-full" : "w-0"}`}>
                     <div id="navList" className="flex flex-col text-black ">
-                        <div onClick={() => setVisible(false)} className="flex items-center gap-2 p-8 cursor-pointer">
-                            <img className="w-5 rotate-90" src={assets.dropdown_icon} alt="" />
+                        <div onClick={() => setVisible(false)} className="flex items-center gap-2 p-8 cursor-pointer text-white bg-secondary h-[104px]">
+                            <img className="w-5 rotate-90 invert" src={assets.dropdown_icon} alt="" />
                             <p>Back</p>
                         </div>
-                        <NavLink onClick={() => setVisible(false)} to="/" className="py-6 pl-6 border-t border-black">HOME</NavLink>
-                        <NavLink onClick={() => setVisible(false)} to="/collection" className="py-6 pl-6 border-t border-black">COLLECTION</NavLink>
-                        <NavLink onClick={() => setVisible(false)} to="/about" className="py-6 pl-6 border-t border-black">ABOUT</NavLink>
-                        <NavLink onClick={() => setVisible(false)} to="/contact" className="py-6 pl-6 border-t border-b border-black">CONTACT</NavLink>
+                        <NavLink onClick={() => setVisible(false)} to="/" className="py-6 pl-6">HOME</NavLink>
+                        <NavLink onClick={() => setVisible(false)} to="/collection" className="py-6 pl-6">COLLECTION</NavLink>
+                        <NavLink onClick={() => setVisible(false)} to="/about" className="py-6 pl-6">ABOUT</NavLink>
+                        <NavLink onClick={() => setVisible(false)} to="/contact" className="py-6 pl-6">CONTACT</NavLink>
                     </div>
                 </div>
             </div>

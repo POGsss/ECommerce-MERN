@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useContext, useState } from "react";
 import { ShopContext } from "../context/ShopContext.jsx";
+import { assets } from "../assets/assets";
 import axios from "axios";
 import VirtualTryOn from "../components/VirtualTryOn.jsx";
 import RelatedProducts from "../components/RelatedProducts.jsx";
@@ -13,12 +14,15 @@ const Product = () => {
   const [ image, setImage ] = useState("");
   const [ convertedImage, setConvertedImage ] = useState(null);
   const [ size, setSize ] = useState("");
+  const [activeTab, setActiveTab] = useState("guide");
+  const [reviews, setReviews] = useState([]);
 
   const fetchProductData = async () => {
     products.map((item) => {
       if (item._id === productId) {
         setProductData(item);
         setImage(item.image[0]);
+        setReviews(item.reviews);
         
         return null;
       }
@@ -92,11 +96,79 @@ const Product = () => {
       {/* Description Section */}
       <div className="mt-20">
         <div className="flex">
-          <p className="font-subtitle bg-light-light rounded-t-[10px] px-6 py-3 text-sm">Product Policy</p>
+          <p onClick={() => setActiveTab("guide")} className={`font-subtitle rounded-t-[10px] px-6 py-3 text-sm cursor-pointer ${activeTab === "guide" ? "bg-light-light" : "bg-light-dark text-gray-600"}`}><span className="hidden sm:inline">Product</span> Guide</p>
+          <p onClick={() => setActiveTab("review")} className={`font-subtitle rounded-t-[10px] px-6 py-3 text-sm cursor-pointer ${activeTab === "review" ? "bg-light-light" : "bg-light-dark text-gray-600"}`}><span className="hidden sm:inline">Product</span> Review</p>
         </div>
-        <div className="flex flex-col gap-4 bg-light-light rounded-[10px] rounded-tl-none p-9 text-sm text-gray-500">
-          <p>Lorem ipsum dolor sit amet consectetur adipiscing elit Ut et massa mi. Aliquam in hendrerit urna. Pellentesque sit amet sapien fringilla, mattis ligula consectetur, ultrices mauris. Maecenas vitae mattis tellus. Nullam quis imperdiet augue. Vestibulum auctor ornare leo, non suscipit magna interdum eu. Curabitur pellentesque nibh nibh, at maximus ante.</p>
-          <p>Lorem ipsum dolor sit amet consectetur adipiscing elit Ut et massa mi. Aliquam in hendrerit urna. Pellentesque sit amet sapien fringilla, mattis ligula consectetur, ultrices mauris. Maecenas vitae mattis tellus.</p>
+
+        {/* Tab Content */}
+        <div className={`flex flex-col gap-4 bg-light-light rounded-[10px]  ${activeTab === "guide" ? "rounded-tl-none" : ""} p-6 text-sm text-gray-500`}>
+          {activeTab === "guide" ? (
+            <>
+              <p> Choosing the right size ensures both comfort and confidence in every wear. Below is our detailed product size chart designed to help you find your perfect fit. Please note that measurements may vary slightly depending on the product type and material.</p>
+              <div className="w-full overflow-y-scroll rounded-[5px]">
+                <table className="w-full min-w-[700px] text-sm">
+                  <thead>
+                    <tr className="bg-primary font-title text-black">
+                      <th className="text-left p-2 w-[calc(100% - 500px)]">Product</th>
+                      <th className="text-center p-2 w-[100px]">S</th>
+                      <th className="text-center p-2 w-[100px]">M</th>
+                      <th className="text-center p-2 w-[100px]">L</th>
+                      <th className="text-center p-2 w-[100px]">XL</th>
+                      <th className="text-center p-2 w-[100px]">XXL</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr className="bg-light-dark">
+                      <td className="text-left p-2">Cap</td>
+                      <td className="text-center p-2">1/8</td>
+                      <td className="text-center p-2">2/8</td>
+                      <td className="text-center p-2">3/8</td>
+                      <td className="text-center p-2">4/8</td>
+                      <td className="text-center p-2">5/8</td>
+                    </tr>
+                    <tr className="bg-light-light">
+                      <td className="text-left p-2">Shoes</td>
+                      <td className="text-center p-2">36</td>
+                      <td className="text-center p-2">38</td>
+                      <td className="text-center p-2">40</td>
+                      <td className="text-center p-2">42</td>
+                      <td className="text-center p-2">44</td>
+                    </tr>
+                    <tr className="bg-light-dark">
+                      <td className="text-left p-2">Clothing</td>
+                      <td className="text-center p-2">04</td>
+                      <td className="text-center p-2">06</td>
+                      <td className="text-center p-2">08</td>
+                      <td className="text-center p-2">10</td>
+                      <td className="text-center p-2">12</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </>
+          ) : (
+            <>
+              <div className="flex flex-col gap-4">
+                {reviews && reviews.length > 0 ? (
+                  reviews.map((review, index) => (
+                    <div key={index} className="flex flex-col text-sm p-2 gap-2">
+                      <div className="relative flex flex-row justify-start items-center gap-2">
+                        <img className="w-[75px] rounded-[100%] p-2 bg-light-dark" src={assets.user_icon} alt="" srcset="" />
+                        <div className="w-full overflow-hidden">
+                          <p className="font-subtitle text-black">{review.name}</p>
+                          <p className="text-ellipsis overflow-hidden whitespace-nowrap">{review.email}</p>
+                          <p className="relative text-lg sm:absolute sm:text-2xl top-0 right-0 text-primary">{"★".repeat(review.rating)}</p>
+                        </div>
+                      </div>
+                      <p className="bg-light-dark p-4 rounded-[5px]">{review.comment}</p>
+                    </div>
+                  ))
+                ) : (
+                  <p className="text-center text-gray-400">No Review Available</p>
+                )}
+              </div>
+            </>
+          )}
         </div>
       </div>
 
