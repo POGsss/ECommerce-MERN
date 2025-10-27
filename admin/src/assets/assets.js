@@ -7,6 +7,9 @@ import upload_area from "./upload_area.png";
 import parcel_icon from "./parcel_icon.png";
 import signout_icon from "./signout_icon.png";
 import bin_icon from "./bin_icon.png";
+import eye_icon from "./eye_icon.png";
+import eye_closed_icon from "./eye_closed_icon.png";
+import email_icon from "./email_icon.png";
 
 export const assets = {
     logo,
@@ -18,5 +21,8 @@ export const assets = {
     parcel_icon,
     signout_icon,
     bin_icon,
+    eye_icon,
+    eye_closed_icon,
+    email_icon
 }
 

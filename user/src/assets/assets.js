@@ -25,6 +25,9 @@ import download_icon from "./download_icon.png";
 import zoom_icon from "./zoom_icon.png";
 import invoice_icon from "./invoice_icon.png";
 import user_icon from "./user_icon.png";
+import eye_icon from "./eye_icon.png";
+import eye_closed_icon from "./eye_closed_icon.png";
+import email_icon from "./email_icon.png";
 
 // Export Images
 export const assets = {
@@ -54,4 +57,7 @@ export const assets = {
     zoom_icon,
     invoice_icon,
     user_icon,
+    eye_icon,
+    eye_closed_icon,
+    email_icon
 }

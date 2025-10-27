@@ -8,6 +8,7 @@ import Title from "./Title";
 const Login = ({ setToken }) => {
 	const [ email, setEmail ] = useState("");
 	const [ password, setPassword ] = useState("");
+	const [ showPassword, setShowPassword ] = useState(false);
 
 	const onSubmitHandler = async (e) => {
     	e.preventDefault();
@@ -43,8 +44,14 @@ const Login = ({ setToken }) => {
 					<Title text1={"SIGN IN AS ADMIN"} text2={""} />
 				</div>
 
-				<input onChange={(e) => setEmail(e.target.value)} value={email} type="text" className="w-full px-4 py-2 bg-light-dark rounded-[10px]" placeholder="Email" required />
-				<input onChange={(e) => setPassword(e.target.value)} value={password} type="password" className="w-full px-4 py-2 bg-light-dark rounded-[10px]" placeholder="Password" required />
+				<div className="relative w-full">
+					<input onChange={(e) => setEmail(e.target.value)} value={email} type="text" className="w-full px-4 py-2 bg-light-dark rounded-[10px]" placeholder="Email" required />
+					<img src={assets.email_icon} alt="" className="absolute right-3 opacity-50 top-1/2 -translate-y-1/2 w-6 h-6"/>
+				</div>
+				<div className="relative w-full">
+					<input onChange={(e) => setPassword(e.target.value)} value={password} type={showPassword ? "text" : "password"} className="w-full px-4 py-2 bg-light-dark rounded-[10px]" placeholder="Password" required />
+					<img src={showPassword ? assets.eye_icon : assets.eye_closed_icon} alt="Toggle Password" onClick={() => setShowPassword(!showPassword)} className="absolute right-3 opacity-50 top-1/2 -translate-y-1/2 w-6 h-6 cursor-pointer"/>
+				</div>
 
 				<div className="w-full flex flex-col items-center gap-2 mt-4">
 					<button type="submit" className="w-full font-text md:text-base px-8 py-4 bg-secondary rounded-[10px] text-white cursor-pointer">SIGN IN</button>

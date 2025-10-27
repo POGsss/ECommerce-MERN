@@ -2,6 +2,7 @@ import { useState, useContext, useEffect } from "react";
 import { ShopContext } from "../context/ShopContext.jsx";
 import { toast } from "react-toastify";
 import { useGoogleLogin } from "@react-oauth/google";
+import { assets } from "../assets/assets";
 import Title from "../components/Title.jsx";
 import axios from "axios";
 
@@ -10,6 +11,9 @@ const Login = () => {
   const [ name, setName ] = useState("");
   const [ email, setEmail ] = useState("");
   const [ password, setPassword ] = useState("");
+  const [ confirmPassword, setConfirmPassword ] = useState("");
+  const [ showPassword, setShowPassword ] = useState(false);
+  const [ showConfirmPassword, setShowConfirmPassword ] = useState(false);
   const { token, setToken, navigate, backendUrl } = useContext(ShopContext);
 
   // Form Login
@@ -19,6 +23,11 @@ const Login = () => {
     try {
       // Checking The Sign Up Or Sign In State
       if (currentState === "SIGN UP") {
+        if (password !== confirmPassword) {
+          toast("Passwords do not match");
+          return;
+        }
+
         const response = await axios.post(backendUrl + "/api/user/signup", {name, email, password});
         if (response.data.success) {
           // Saving Token To Local Storage
@@ -92,14 +101,33 @@ const Login = () => {
         <Title text1={currentState.split(" ")[0]} text2={currentState.split(" ")[1]} />
       </div>
 
-      {currentState === "SIGN IN" ? "" : <input onChange={(e) => setName(e.target.value)} value={name} type="text" className="w-full px-4 py-2 bg-light-dark rounded-[10px]" placeholder="Username" required/> }
-      <input onChange={(e) => setEmail(e.target.value)} value={email} type="text" className="w-full px-4 py-2 bg-light-dark rounded-[10px]" placeholder="Email" required/>
-      <input onChange={(e) => setPassword(e.target.value)} value={password} type="password" className="w-full px-4 py-2 bg-light-dark rounded-[10px]" placeholder="Password" required/>
+      {currentState === "SIGN IN" ? "" : 
+        <div className="relative w-full">
+          <input onChange={(e) => setName(e.target.value)} value={name} type="text" className="w-full px-4 py-2 bg-light-dark rounded-[10px]" placeholder="Username" required/>
+          <img src={assets.profile_icon} alt="" className="absolute right-3 opacity-50 top-1/2 -translate-y-1/2 w-6 h-6"/>
+        </div>
+      }
+      <div className="relative w-full">
+        <input onChange={(e) => setEmail(e.target.value)} value={email} type="text" className="w-full px-4 py-2 bg-light-dark rounded-[10px]" placeholder="Email" required/>
+        <img src={assets.email_icon} alt="" className="absolute right-3 opacity-50 top-1/2 -translate-y-1/2 w-6 h-6"/>
+      </div>
+      <div className="flex flex-row w-full gap-4">
+        <div className="relative w-full">
+          <input onChange={(e) => setPassword(e.target.value)} value={password} type={showPassword ? "text" : "password"} className="w-full px-4 py-2 bg-light-dark rounded-[10px] pr-10" placeholder="Password" required/>
+          <img src={showPassword ? assets.eye_icon : assets.eye_closed_icon} alt="Toggle Password" onClick={() => setShowPassword(!showPassword)} className="absolute right-3 opacity-50 top-1/2 -translate-y-1/2 w-6 h-6 cursor-pointer"/>
+        </div>
+        {currentState === "SIGN IN" ? "" : 
+          <div className="relative w-full">
+            <input onChange={(e) => setConfirmPassword(e.target.value)} value={confirmPassword} type={showConfirmPassword ? "text" : "password"} className="w-full px-4 py-2 bg-light-dark rounded-[10px]" placeholder="Confirm Password" required/>
+            <img src={showConfirmPassword ? assets.eye_icon : assets.eye_closed_icon} alt="Toggle Password" onClick={() => setShowConfirmPassword(!showConfirmPassword)} className="absolute right-3 opacity-50 top-1/2 -translate-y-1/2 w-6 h-6 cursor-pointer"/>
+          </div>
+        }
+      </div>
 
       <div className="w-full flex items-center justify-between text-sm">
-        <p className="cursor-pointer">Forgot your password?</p>
+        <p className="cursor-pointer">{currentState === "SIGN UP" ? "Already have an account?" : "Don't have an account?"}</p>
         { currentState === "SIGN IN" 
-          ? <p onClick={() => setCurrentState("SIGN UP")} className="cursor-pointer">Create account</p>
+          ? <p onClick={() => setCurrentState("SIGN UP")} className="cursor-pointer">Sign Up here</p>
           : <p onClick={() => setCurrentState("SIGN IN")} className="cursor-pointer">Sign In here</p>
         }
       </div>
