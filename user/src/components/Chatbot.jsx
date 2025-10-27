@@ -29,8 +29,9 @@ const Chatbot = () => {
   return (
     <div>
       {/* Floating Button */}
-      <button onClick={toggleChat} className="fixed bottom-5 right-5 z-9 bg-primary rounded-[10px] p-4 shadow-lg">
+      <button onClick={toggleChat} id="floatingButton" className="flex flex-row items-center gap-4 fixed overflow-hidden w-auto transition-all bottom-5 right-5 z-9 bg-primary rounded-[10px] p-4 shadow-lg animate-pulse">
         <img src={assets.chat_icon} alt="Chat Icon" />
+        <h1 className="font-subtitle text-sm text-nowrap">Chatbot</h1>
       </button>
 
       {/* Chatbox */}

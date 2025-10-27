@@ -97,8 +97,9 @@ const VirtualTryOn = ({ image }) => {
 	return (
 		<div>
 			{/* Floating Button */}
-			<button onClick={toggleTryOn} className="fixed bottom-5 right-5 z-9 bg-primary rounded-[10px] p-4 shadow-lg">
+			<button onClick={toggleTryOn} className="flex flex-row items-center gap-4 fixed overflow-hidden w-auto transition-all bottom-5 right-5 z-9 bg-primary rounded-[10px] p-4 shadow-lg animate-pulse1">
 				<img src={assets.tryon_icon} alt="Chat Icon" />
+				<h1 className="font-subtitle text-sm text-nowrap">Virtual Try On</h1>
 			</button>
 
 			{/* Popup Container */}

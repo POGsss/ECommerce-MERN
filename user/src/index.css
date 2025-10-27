@@ -164,3 +164,32 @@ select {
 }
 
 /* Media Query */
+/* Animation */
+
+@keyframes widthShrink {
+  0% { width: 56px; }
+  20% { width: 140px; }
+  40% { width: 140px; }
+  60% { width: 140px; }
+  80% { width: 56px; }
+  100% { width: 56px; }
+}
+
+@keyframes widthShrink1 {
+  0% { width: 56px; }
+  20% { width: 186px; }
+  40% { width: 186px; }
+  60% { width: 186px; }
+  80% { width: 56px; }
+  100% { width: 56px; }
+}
+
+.animate-pulse {
+  animation: widthShrink 6s ease-in-out infinite;
+}
+
+.animate-pulse1 {
+  animation: widthShrink1 6s ease-in-out infinite;
+}
+
+/* Animation */

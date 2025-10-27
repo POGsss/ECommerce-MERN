@@ -102,24 +102,28 @@ const Login = () => {
       </div>
 
       {currentState === "SIGN IN" ? "" : 
-        <div className="relative w-full">
-          <input onChange={(e) => setName(e.target.value)} value={name} type="text" className="w-full px-4 py-2 bg-light-dark rounded-[10px]" placeholder="Username" required/>
-          <img src={assets.profile_icon} alt="" className="absolute right-3 opacity-50 top-1/2 -translate-y-1/2 w-6 h-6"/>
+        <div className="relative w-full flex flex-col gap-2">
+          <label className="text-sm">Username</label>
+          <input onChange={(e) => setName(e.target.value)} value={name} type="text" className="w-full px-4 py-2 bg-light-dark rounded-[10px]" placeholder="John Doe" required/>
+          <img src={assets.profile_icon} alt="" className="absolute right-2 opacity-50 bottom-2 w-6 h-6"/>
         </div>
       }
-      <div className="relative w-full">
-        <input onChange={(e) => setEmail(e.target.value)} value={email} type="text" className="w-full px-4 py-2 bg-light-dark rounded-[10px]" placeholder="Email" required/>
-        <img src={assets.email_icon} alt="" className="absolute right-3 opacity-50 top-1/2 -translate-y-1/2 w-6 h-6"/>
+      <div className="relative w-full flex flex-col gap-2">
+        <label className="text-sm">Email</label>
+        <input onChange={(e) => setEmail(e.target.value)} value={email} type="text" className="w-full px-4 py-2 bg-light-dark rounded-[10px]" placeholder="johndoe@gmail.com" required/>
+        <img src={assets.email_icon} alt="" className="absolute right-2 opacity-50 bottom-2 w-6 h-6"/>
       </div>
-      <div className="flex flex-row w-full gap-4">
-        <div className="relative w-full">
-          <input onChange={(e) => setPassword(e.target.value)} value={password} type={showPassword ? "text" : "password"} className="w-full px-4 py-2 bg-light-dark rounded-[10px] pr-10" placeholder="Password" required/>
-          <img src={showPassword ? assets.eye_icon : assets.eye_closed_icon} alt="Toggle Password" onClick={() => setShowPassword(!showPassword)} className="absolute right-3 opacity-50 top-1/2 -translate-y-1/2 w-6 h-6 cursor-pointer"/>
+      <div className="flex flex-col sm:flex-row w-full gap-4">
+        <div className="relative w-full flex flex-col gap-2">
+          <label className="text-sm">Password</label>
+          <input onChange={(e) => setPassword(e.target.value)} value={password} type={showPassword ? "text" : "password"} className="w-full px-4 py-2 bg-light-dark rounded-[10px] pr-10" placeholder="loremipsum" required/>
+          <img src={showPassword ? assets.eye_icon : assets.eye_closed_icon} alt="Toggle Password" onClick={() => setShowPassword(!showPassword)} className="absolute right-2 opacity-50 bottom-2 w-6 h-6 cursor-pointer"/>
         </div>
         {currentState === "SIGN IN" ? "" : 
-          <div className="relative w-full">
-            <input onChange={(e) => setConfirmPassword(e.target.value)} value={confirmPassword} type={showConfirmPassword ? "text" : "password"} className="w-full px-4 py-2 bg-light-dark rounded-[10px]" placeholder="Confirm Password" required/>
-            <img src={showConfirmPassword ? assets.eye_icon : assets.eye_closed_icon} alt="Toggle Password" onClick={() => setShowConfirmPassword(!showConfirmPassword)} className="absolute right-3 opacity-50 top-1/2 -translate-y-1/2 w-6 h-6 cursor-pointer"/>
+          <div className="relative w-full flex flex-col gap-2">
+            <label className="text-sm">Confirm Password</label>
+            <input onChange={(e) => setConfirmPassword(e.target.value)} value={confirmPassword} type={showConfirmPassword ? "text" : "password"} className="w-full px-4 py-2 bg-light-dark rounded-[10px]" placeholder="loremipsum" required/>
+            <img src={showConfirmPassword ? assets.eye_icon : assets.eye_closed_icon} alt="Toggle Password" onClick={() => setShowConfirmPassword(!showConfirmPassword)} className="absolute right-2 opacity-50 bottom-2 w-6 h-6 cursor-pointer"/>
           </div>
         }
       </div>
