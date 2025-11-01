@@ -203,7 +203,6 @@ const PlaceOrder = () => {
 						<div className="relative w-full flex flex-col gap-2">
 							<label className="text-sm">Country</label>
 							<select name="country" onChange={handleCountryChange} value={formData.country} className="bg-light-dark rounded-[10px] px-4 py-2 w-full" required >
-							<option value="" className="text-gray-500">None</option>
 								{countries.countries.map((country, i) => (
 									<option key={i} value={country.name}>{country.name}</option>
 								))}
@@ -212,7 +211,6 @@ const PlaceOrder = () => {
 						<div className="relative w-full flex flex-col gap-2">
 							<label className="text-sm">Province</label>
 							<select name="state" onChange={handleStateChange} value={formData.state} className="bg-light-dark rounded-[10px] px-4 py-2 w-full" required >
-								<option value="" className="text-gray-500">None</option>
 								{states.map((state, i) => (
 									<option key={i} value={state.name}>{state.name}</option>
 								))}
@@ -223,7 +221,6 @@ const PlaceOrder = () => {
 						<div className="relative w-full flex flex-col gap-2">
 							<label className="text-sm">City</label>
 							<select name="city" onChange={handleCityChange} value={formData.city} className="bg-light-dark rounded-[10px] px-4 py-2 w-full" required >
-								<option value="" className="text-gray-500">None</option>
 								{cities.map((city, i) => (
 									<option key={i} value={city}>{city}</option>
 								))}

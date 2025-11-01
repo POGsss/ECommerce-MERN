@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { assets } from "../assets/assets"; 
 import { generateChat } from "../lib/Gemini.jsx";
 
@@ -25,6 +25,17 @@ const Chatbot = () => {
   const toggleChat = () => {
     setIsOpen((prev) => !prev);
   };
+
+  useEffect(() => {
+    const storedMessages = localStorage.getItem("chatMessages");
+    if (storedMessages) {
+      setMessages(JSON.parse(storedMessages));
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("chatMessages", JSON.stringify(messages));
+  }, [messages]);
 
   return (
     <div>

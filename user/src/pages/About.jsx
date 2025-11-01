@@ -1,6 +1,7 @@
 import { assets } from "../assets/assets";
 import NewsLetterBox from "../components/NewsLetterBox";
 import Title from "../components/Title";
+import Chatbot from "../components/Chatbot";
 
 const About = () => {
   return (
@@ -38,6 +39,7 @@ const About = () => {
       </div>
 
       <NewsLetterBox />
+			<Chatbot />
     </div>
   )
 }

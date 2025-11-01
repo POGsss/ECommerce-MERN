@@ -3,7 +3,7 @@ import { ShopContext } from "../context/ShopContext.jsx";
 import { assets } from "../assets/assets.js";
 import Title from "../components/Title.jsx";
 import ProductItem from "../components/ProductItem.jsx";
-import VirtualTryOn from "../components/VirtualTryOn.jsx";
+import Chatbot from "../components/Chatbot";
 
 const Collection = () => {
 	const { products, search, showSearch } = useContext(ShopContext);
@@ -137,8 +137,7 @@ const Collection = () => {
 				</div>
 			</div>
 
-			{/* Virtual Try-On Component */}
-			<VirtualTryOn />
+			<Chatbot />
 		</div>
 	)
 }

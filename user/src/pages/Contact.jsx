@@ -1,6 +1,7 @@
 import { assets } from "../assets/assets";
 import NewsLetterBox from "../components/NewsLetterBox";
 import Title from "../components/Title";
+import Chatbot from "../components/Chatbot";
 
 const Contact = () => {
   return (
@@ -19,6 +20,7 @@ const Contact = () => {
         <img className="w-full sm:max-w-full md:max-w-[450px] bg-primary rounded-[20px]" src={assets.contact_img} alt="" />
       </div>
       <NewsLetterBox />
+			<Chatbot />
     </div>
   )
 }
