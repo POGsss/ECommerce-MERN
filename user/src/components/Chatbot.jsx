@@ -6,7 +6,7 @@ const Chatbot = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [input, setInput] = useState("");
   const [messages, setMessages] = useState([
-    { sender: "bot", text: "Hi! I'm here to help all your inquiries about Boss D Apparel." }
+    { sender: "bot", text: "Hi! how can I help you?" }
   ]);
 
   const handleSubmit = async (e) => {

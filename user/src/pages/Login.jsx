@@ -110,7 +110,7 @@ const Login = () => {
       }
       <div className="relative w-full flex flex-col gap-2">
         <label className="text-sm">Email</label>
-        <input onChange={(e) => setEmail(e.target.value)} value={email} type="text" className="w-full px-4 py-2 bg-light-dark rounded-[10px]" placeholder="johndoe@gmail.com" required/>
+        <input onChange={(e) => setEmail(e.target.value)} value={email} type="text" className="w-full px-4 py-2 bg-light-dark rounded-[10px]" placeholder="johndoe@example.com" required/>
         <img src={assets.email_icon} alt="" className="absolute right-2 opacity-50 bottom-2 w-6 h-6"/>
       </div>
       <div className="flex flex-col sm:flex-row w-full gap-4">

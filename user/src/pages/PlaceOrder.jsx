@@ -5,10 +5,13 @@ import { toast } from "react-toastify";
 import CartTotal from "../components/CartTotal";
 import Title from "../components/Title";
 import axios from "axios";
+import countries from "../assets/countries.json";
 
 const PlaceOrder = () => {
 	const { navigate, backendUrl, token, cartItems, setCartItems, getCartAmount, deliveryFee, products } = useContext(ShopContext);
 	const [method, setMethod] = useState("cod");
+	const [states, setStates] = useState([]);
+  	const [cities, setCities] = useState([]);
 	const [formData, setFormData] = useState({
 		firstName: "",
 		lastName: "",
@@ -112,6 +115,45 @@ const PlaceOrder = () => {
 		}
 	};
 
+	// Handling Country Change
+	const handleCountryChange = (e) => {
+		const selectedCountry = e.target.value;
+		const country = countries.countries.find((c) => c.name === selectedCountry);
+
+		setFormData((data) => ({
+			...data,
+			country: selectedCountry,
+			state: "",
+			city: "",
+		}));
+
+		setStates(country ? country.state : []);
+		setCities([]);
+	};
+
+	// Handling State Change
+	const handleStateChange = (e) => {
+		const selectedState = e.target.value;
+		const state = states.find((p) => p.name === selectedState);
+
+		setFormData((data) => ({
+			...data,
+			state: selectedState,
+			city: "",
+		}));
+
+		setCities(state ? state.cities : []);
+	};
+
+	// Handling City Change
+	const handleCityChange = (e) => {
+		const selectedCity = e.target.value;
+		setFormData((data) => ({
+			...data,
+			city: selectedCity,
+		}));
+	};
+
 	// Handling Message From Opening Mini Window
 	useEffect(() => {
 		const handleMessage = (event) => {
@@ -140,20 +182,62 @@ const PlaceOrder = () => {
 				{/* Left Side */}
 				<div className="flex flex-col gap-4 w-full sm:w-3/5 bg-light-light p-4 sm:p-8 rounded-[20px]">
 					<div className="flex gap-3">
-						<input onChange={onChangeHandler} name="firstName" value={formData.firstName} className="bg-light-dark rounded-[10px] px-4 py-2 w-full" type="text" placeholder="First Name" required />
-						<input onChange={onChangeHandler} name="lastName" value={formData.lastName} className="bg-light-dark rounded-[10px] px-4 py-2 w-full" type="text" placeholder="Last Name" required />
+						<div className="relative w-full flex flex-col gap-2">
+							<label className="text-sm">First Name</label>
+							<input onChange={onChangeHandler} name="firstName" value={formData.firstName} className="bg-light-dark rounded-[10px] px-4 py-2 w-full" type="text" placeholder="John" required />
+						</div>
+						<div className="relative w-full flex flex-col gap-2">
+							<label className="text-sm">Last Name</label>
+							<input onChange={onChangeHandler} name="lastName" value={formData.lastName} className="bg-light-dark rounded-[10px] px-4 py-2 w-full" type="text" placeholder="Doe" required />
+						</div>
 					</div>
-					<input onChange={onChangeHandler} name="email" value={formData.email} className="bg-light-dark rounded-[10px] px-4 py-2 w-full" type="email" placeholder="Email Address" required />
-					<input onChange={onChangeHandler} name="street" value={formData.street} className="bg-light-dark rounded-[10px] px-4 py-2 w-full" type="text" placeholder="Street" required />
+					<div className="relative w-full flex flex-col gap-2">
+						<label className="text-sm">Email Address</label>
+						<input onChange={onChangeHandler} name="email" value={formData.email} className="bg-light-dark rounded-[10px] px-4 py-2 w-full" type="email" placeholder="johndoe@example.com" required />
+					</div>
+					<div className="relative w-full flex flex-col gap-2">
+						<label className="text-sm">Street</label>
+						<input onChange={onChangeHandler} name="street" value={formData.street} className="bg-light-dark rounded-[10px] px-4 py-2 w-full" type="text" placeholder="Lorem Ipsum Dolor Street" required />
+					</div>
 					<div className="flex gap-3">
-						<input onChange={onChangeHandler} name="city" value={formData.city} className="bg-light-dark rounded-[10px] px-4 py-2 w-full" type="text" placeholder="City" required />
-						<input onChange={onChangeHandler} name="state" value={formData.state} className="bg-light-dark rounded-[10px] px-4 py-2 w-full" type="text" placeholder="State" required />
+						<div className="relative w-full flex flex-col gap-2">
+							<label className="text-sm">Country</label>
+							<select name="country" onChange={handleCountryChange} value={formData.country} className="bg-light-dark rounded-[10px] px-4 py-2 w-full" required >
+							<option value="" className="text-gray-500">None</option>
+								{countries.countries.map((country, i) => (
+									<option key={i} value={country.name}>{country.name}</option>
+								))}
+							</select>
+						</div>
+						<div className="relative w-full flex flex-col gap-2">
+							<label className="text-sm">Province</label>
+							<select name="state" onChange={handleStateChange} value={formData.state} className="bg-light-dark rounded-[10px] px-4 py-2 w-full" required >
+								<option value="" className="text-gray-500">None</option>
+								{states.map((state, i) => (
+									<option key={i} value={state.name}>{state.name}</option>
+								))}
+							</select>
+						</div>
 					</div>
 					<div className="flex gap-3">
-						<input onChange={onChangeHandler} name="zipCode" value={formData.zipCode} className="bg-light-dark rounded-[10px] px-4 py-2 w-full" type="number" placeholder="Zip Code" required />
-						<input onChange={onChangeHandler} name="country" value={formData.country} className="bg-light-dark rounded-[10px] px-4 py-2 w-full" type="text" placeholder="Country" required />
+						<div className="relative w-full flex flex-col gap-2">
+							<label className="text-sm">City</label>
+							<select name="city" onChange={handleCityChange} value={formData.city} className="bg-light-dark rounded-[10px] px-4 py-2 w-full" required >
+								<option value="" className="text-gray-500">None</option>
+								{cities.map((city, i) => (
+									<option key={i} value={city}>{city}</option>
+								))}
+							</select>
+						</div>
+						<div className="relative w-full flex flex-col gap-2">
+							<label className="text-sm">Zip Code</label>
+							<input onChange={onChangeHandler} name="zipCode" value={formData.zipCode} className="bg-light-dark rounded-[10px] px-4 py-2 w-full" type="number" placeholder="1234" required />
+						</div>
 					</div>
-					<input onChange={onChangeHandler} name="phoneNumber" value={formData.phoneNumber} className="bg-light-dark rounded-[10px] px-4 py-2 w-full" type="number" placeholder="Phone Number" required />
+					<div className="relative w-full flex flex-col gap-2">
+						<label className="text-sm">Phone Number</label>
+						<input onChange={onChangeHandler} name="phoneNumber" value={formData.phoneNumber} className="bg-light-dark rounded-[10px] px-4 py-2 w-full" type="number" placeholder="0987654321" required />
+					</div>
 				</div>
 
 				{/* Right Side */}

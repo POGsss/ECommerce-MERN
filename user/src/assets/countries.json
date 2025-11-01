@@ -1,0 +1,139 @@
+{
+  "countries": [
+    {
+      "name": "Philippines",
+      "state": [
+        {
+          "name": "Cebu",
+          "cities": ["Cebu City", "Mandaue", "Lapu-Lapu", "Talisay", "Toledo", "Danao", "Naga", "Carcar", "Bogo", "Consolacion"]
+        },
+        {
+          "name": "Batangas",
+          "cities": ["Batangas City", "Lipa", "Tanauan", "Nasugbu", "Taal", "San Juan", "Lemery", "Calaca", "Balayan", "Mabini"]
+        },
+        {
+          "name": "Pampanga",
+          "cities": ["Angeles", "San Fernando", "Mabalacat", "Mexico", "Lubao", "Guagua", "Arayat", "Floridablanca", "Porac", "Macabebe"]
+        },
+        {
+          "name": "Laguna",
+          "cities": ["Calamba", "San Pablo", "Santa Rosa", "Biñan", "Cabuyao", "Los Baños", "Bay", "Alaminos", "Pagsanjan", "Siniloan"]
+        },
+        {
+          "name": "Bulacan",
+          "cities": ["Malolos", "Meycauayan", "San Jose del Monte", "Bocaue", "Marilao", "Baliuag", "Plaridel", "Obando", "Guiguinto", "Angat"]
+        },
+        {
+          "name": "Iloilo",
+          "cities": ["Iloilo City", "Oton", "Santa Barbara", "Pavia", "Miagao", "San Miguel", "Cabatuan", "Dumangas", "Passi", "Guimbal"]
+        },
+        {
+          "name": "Davao del Sur",
+          "cities": ["Davao City", "Digos", "Bansalan", "Matanao", "Magsaysay", "Santa Cruz", "Padada", "Sulop", "Kiblawan", "Hagonoy"]
+        },
+        {
+          "name": "Negros Occidental",
+          "cities": ["Bacolod", "Talisay", "Silay", "Bago", "La Carlota", "Victorias", "Kabankalan", "Sagay", "San Carlos", "Cadiz"]
+        },
+        {
+          "name": "Benguet",
+          "cities": ["La Trinidad", "Baguio", "Itogon", "Tuba", "Sablan", "Kapangan", "Bakun", "Buguias", "Kibungan", "Atok"]
+        },
+        {
+          "name": "Palawan",
+          "cities": ["Puerto Princesa", "Coron", "El Nido", "Roxas", "Taytay", "Aborlan", "Narra", "Brooke’s Point", "Bataraza", "Cuyo"]
+        }
+      ]
+    },
+    {
+      "name": "Malaysia",
+      "state": [
+        {
+          "name": "Selangor",
+          "cities": ["Shah Alam", "Petaling Jaya", "Subang Jaya", "Klang", "Kajang", "Rawang", "Selayang", "Ampang", "Puchong", "Banting"]
+        },
+        {
+          "name": "Johor",
+          "cities": ["Johor Bahru", "Batu Pahat", "Muar", "Kluang", "Pontian", "Kota Tinggi", "Segamat", "Mersing", "Simpang Renggam", "Labis"]
+        },
+        {
+          "name": "Penang",
+          "cities": ["George Town", "Bayan Lepas", "Balik Pulau", "Butterworth", "Bukit Mertajam", "Perai", "Nibong Tebal", "Tasek Gelugor", "Kepala Batas", "Sungai Dua"]
+        },
+        {
+          "name": "Perak",
+          "cities": ["Ipoh", "Taiping", "Teluk Intan", "Sitiawan", "Batu Gajah", "Kampar", "Kuala Kangsar", "Tapah", "Parit Buntar", "Lumut"]
+        },
+        {
+          "name": "Sabah",
+          "cities": ["Kota Kinabalu", "Sandakan", "Tawau", "Lahad Datu", "Keningau", "Beaufort", "Kota Belud", "Semporna", "Ranau", "Papar"]
+        },
+        {
+          "name": "Sarawak",
+          "cities": ["Kuching", "Miri", "Sibu", "Bintulu", "Limbang", "Sri Aman", "Kapit", "Mukah", "Serian", "Marudi"]
+        },
+        {
+          "name": "Pahang",
+          "cities": ["Kuantan", "Temerloh", "Bentong", "Raub", "Jerantut", "Maran", "Pekan", "Kuala Lipis", "Cameron Highlands", "Rompin"]
+        },
+        {
+          "name": "Kedah",
+          "cities": ["Alor Setar", "Sungai Petani", "Kulim", "Langkawi", "Baling", "Jitra", "Pendang", "Kuala Nerang", "Yan", "Pokok Sena"]
+        },
+        {
+          "name": "Negeri Sembilan",
+          "cities": ["Seremban", "Port Dickson", "Bahau", "Tampin", "Nilai", "Rembau", "Kuala Pilah", "Gemas", "Johol", "Linggi"]
+        },
+        {
+          "name": "Kelantan",
+          "cities": ["Kota Bharu", "Tanah Merah", "Machang", "Pasir Mas", "Tumpat", "Gua Musang", "Kuala Krai", "Pasir Puteh", "Bachok", "Jeli"]
+        }
+      ]
+    },
+    {
+      "name": "Vietnam",
+      "state": [
+        {
+          "name": "Hanoi",
+          "cities": ["Ba Dinh", "Hoan Kiem", "Tay Ho", "Long Bien", "Cau Giay", "Dong Da", "Hai Ba Trung", "Hoang Mai", "Thanh Xuan", "Gia Lam"]
+        },
+        {
+          "name": "Ho Chi Minh City",
+          "cities": ["District 1", "District 2", "District 3", "District 4", "District 5", "Binh Thanh", "Phu Nhuan", "Go Vap", "Tan Binh", "Thu Duc"]
+        },
+        {
+          "name": "Da Nang",
+          "cities": ["Hai Chau", "Thanh Khe", "Lien Chieu", "Cam Le", "Ngu Hanh Son", "Son Tra", "Hoa Vang", "Hoa Chau", "Hoa Khuong", "Hoa Phong"]
+        },
+        {
+          "name": "Haiphong",
+          "cities": ["Hong Bang", "Le Chan", "Ngo Quyen", "Kien An", "Do Son", "Thuy Nguyen", "An Duong", "Tien Lang", "Vinh Bao", "Cat Hai"]
+        },
+        {
+          "name": "Can Tho",
+          "cities": ["Ninh Kieu", "Binh Thuy", "Cai Rang", "O Mon", "Thot Not", "Phong Dien", "Co Do", "Vinh Thanh", "Thoi Lai", "Trung An"]
+        },
+        {
+          "name": "Hue",
+          "cities": ["Phu Hoi", "Thuan Hoa", "Vy Da", "Phu Nhuan", "An Cuu", "Huong Thuy", "Huong Tra", "Phong Dien", "Phu Loc", "Quang Dien"]
+        },
+        {
+          "name": "Quang Ninh",
+          "cities": ["Ha Long", "Cam Pha", "Uong Bi", "Mong Cai", "Dong Trieu", "Tien Yen", "Ba Che", "Binh Lieu", "Hoanh Bo", "Van Don"]
+        },
+        {
+          "name": "Nghe An",
+          "cities": ["Vinh", "Cua Lo", "Hoang Mai", "Quynh Luu", "Dien Chau", "Yen Thanh", "Nam Dan", "Hung Nguyen", "Nghi Loc", "Anh Son"]
+        },
+        {
+          "name": "Binh Duong",
+          "cities": ["Thu Dau Mot", "Di An", "Thuan An", "Ben Cat", "Tan Uyen", "Bau Bang", "Bac Tan Uyen", "Phu Giao", "Dau Tieng", "Tan Dinh"]
+        },
+        {
+          "name": "Dong Nai",
+          "cities": ["Bien Hoa", "Long Khanh", "Trang Bom", "Nhon Trach", "Vinh Cuu", "Xuan Loc", "Long Thanh", "Cam My", "Tan Phu", "Dinh Quan"]
+        }
+      ]
+    }
+  ]
+}
