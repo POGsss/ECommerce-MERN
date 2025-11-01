@@ -3,7 +3,7 @@ import { useContext } from "react";
 import { ShopContext } from "../context/ShopContext";
 import { assets } from "../assets/assets";
 
-const ProductItem = ({id, image, name, price}) => {
+const ProductItem = ({id, image, name, rating, price}) => {
     const {currency} = useContext(ShopContext)
 
     return (
@@ -13,7 +13,7 @@ const ProductItem = ({id, image, name, price}) => {
             </div>
             <div className="p-4 flex flex-col gap-1">
                 <p className="text-sm font-subtitle">{name}</p>
-                <p className="text-sm">0+ sold</p>
+                <p className="text-sm">Rating: {rating}</p>
                 <p className="text-lg font-subtitle">{currency}{price}</p>
             </div>
             <div className="absolute top-2 right-2 p-2 bg-light-light rounded-full flex items-center justify-center">

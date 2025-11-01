@@ -7,11 +7,11 @@ import Chatbot from "../components/Chatbot";
 
 const Collection = () => {
 	const { products, search, showSearch } = useContext(ShopContext);
-	const [showFilter, setShowFilter] = useState(false);
-	const [filterProducts, setFilterProducts] = useState([]);
-	const [category, setCategory] = useState([]);
-	const [subCategory, setSubCategory] = useState([]);
-	const [sortType, setSortType] = useState("relevant");
+	const [ showFilter, setShowFilter ] = useState(false);
+	const [ filterProducts, setFilterProducts ] = useState([]);
+	const [ category, setCategory ] = useState([]);
+	const [ subCategory, setSubCategory ] = useState([]);
+	const [ sortType, setSortType ] = useState("relevant");
 
 	const toggleCategory = (e) => {
 		const value = e.target.value;
@@ -119,7 +119,7 @@ const Collection = () => {
 					{/* Product Sort */}
 					<div className="flex flex-row items-center justify-between gap-2 sm:gap-4">
 						<select className="w-full rounded-[10px] text-sm px-4 py-2 pr-10" onChange={(e) => setSortType(e.target.value)}>
-							<option value="relevant"className="bg-light-dark outline-none">Relevant</option>
+							<option value="relevant" className="bg-light-dark outline-none">Relevant</option>
 							<option value="low-high" className="bg-light-dark outline-none">Low-High</option>
 							<option value="high-low" className="bg-light-dark outline-none">High-Low</option>
 						</select>
@@ -131,7 +131,7 @@ const Collection = () => {
 				<div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 gap-y-6">
 					{
 						filterProducts.map((item, index) => (
-							<ProductItem key={index} id={item._id} image={item.image} name={item.name} price={item.price} />
+							<ProductItem key={index} id={item._id} image={item.image} name={item.name} rating={item.reviews?.length ? (item.reviews.reduce((a, r) => a + r.rating, 0) / item.reviews.length).toFixed(1) : 0} price={item.price} />
 						))
 					}
 				</div>
