@@ -66,14 +66,21 @@ const Orders = ({ token }) => {
     <div>
       <p className="mb-2 font-title text-black">Order Page</p>
       <div>
+        <div className="flex flex-row justify-items-center bg-light-light rounded-[5px] text-sm gap-2 mb-4">
+          <b className="">Order Placed</b>
+          <b className="">Packing</b>
+          <b className="">To Shipped</b>
+          <b className="">Out For Delivery</b>
+          <b className="text-center">Delivered</b>
+        </div>
         {orders.map((order, index) => (
           <div className="relative grid grid-cols-1 sm:grid-cols-[75px_2fr_1fr] lg:grid-cols-[75px_2fr_1fr_0.5fr_200px] gap-4 items-start bg-light-light rounded-[10px] p-4 mb-4 text-sm" key={index} >
             <img onClick={() => handleImageClick(order.items)} className="w-full xs:absolute xs:w-[100px] xs:bottom-[70px] xs:right-4 sm:relative sm:right-0 sm:bottom-0 bg-light-dark rounded-[5px] p-2 cursor-pointer" src={assets.parcel_icon} alt="" />
-            <div>
+            <div className="w-full overflow-hidden">
               <p className="font-subtitle">{order.address.firstName + " " + order.address.lastName}</p>
               <p className="break-all">{order._id.substring(0, 8) + '-' + order._id.substring(order._id.length - 8)}</p>
               <div>
-                <p>{order.address.street + ", " + order.address.city + ", " + order.address.state + ", " + order.address.zipCode}</p>
+                <p className="w-full overflow-hidden whitespace-nowrap hover:whitespace-normal text-ellipsis">{order.address.street + ", " + order.address.city + ", " + order.address.state + ", " + order.address.zipCode}</p>
               </div>
               <p>{order.address.phoneNumber}</p>
             </div>

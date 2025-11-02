@@ -4,10 +4,13 @@ import { backendUrl, currency } from "../App";
 import { toast } from "react-toastify";
 import { assets } from "../assets/assets";
 import Dialog from "../components/Dialog";
+import EditDialog from "../components/EditDialog";
 
 const List = ({ token }) => {
   const [ list, setList ] = useState([]);
   const [ showDialog, setShowDialog ] = useState(false);
+  const [ showEditDialog, setShowEditDialog ] = useState(false);
+  const [ productToEdit, setProductToEdit ] = useState(null);
   const [ productToDelete, setProductToDelete ] = useState(null);
   const [ currentPage, setCurrentPage ] = useState(1);
   const itemsPerPage = 10;
@@ -30,6 +33,27 @@ const List = ({ token }) => {
 			toast(error.message);
     }
   }
+
+  const updateProduct = async (updatedData) => {
+    try {
+      // Sending Post Request
+      const response = await axios.post(backendUrl + "/api/product/update", { productId: productToEdit._id, ...updatedData }, { headers: { token } });
+
+      // Checking If Response Is Successful
+      if (response.data.success) {
+        toast("Product updated successfully!");
+        await fetchList();
+        setShowEditDialog(false);
+        setProductToEdit(null);
+      } else {
+        toast(response.data.message);
+      }
+    } catch (error) {
+			// Logging Error
+      console.log(error);
+      toast(error.message);
+    }
+  };
 
   const removeProduct = async (id) => {
     try {
@@ -54,7 +78,12 @@ const List = ({ token }) => {
     fetchList();
   }, []);
 
-  // Dialog Confirmation
+  const handleEditClick = (id) => {
+    const product = list.find(item => item._id === id);
+    setProductToEdit(product);
+    setShowEditDialog(true);
+  };
+  
   const handleDeleteClick = (id) => {
     setProductToDelete(id);
     setShowDialog(true);
@@ -88,11 +117,23 @@ const List = ({ token }) => {
         onConfirm={handleConfirmDelete}
       />
 
+      {/* Edit Dialog Component */}
+      <EditDialog
+        visible={showEditDialog}
+        product={productToEdit}
+        onCancel={() => {
+          setShowEditDialog(false);
+          setProductToEdit(null);
+        }}
+        onSave={updateProduct}
+      />
+
+
       {/* List Header */}
       <p className="mb-2 font-title text-black">All Product List</p>
       <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-3 lg:flex md:flex-col gap-4">
         {/* List Header */}
-        <div className="hidden lg:grid grid-cols-[100px_5fr_2fr_1fr_50px] items-center py-1 px-2 bg-light-light rounded-[5px] text-sm gap-2">
+        <div className="hidden lg:grid grid-cols-[100px_5fr_2fr_1fr_100px] items-center py-1 px-2 bg-light-light rounded-[5px] text-sm gap-2">
           <b className="">Image</b>
           <b className="">Name</b>
           <b className="">Category</b>
@@ -101,12 +142,15 @@ const List = ({ token }) => {
         </div>
         {/* List Data */}
         {paginatedList.map((item, index) => (
-          <div className="relative grid lg:grid-cols-[100px_5fr_2fr_1fr_50px] items-start lg:items-center gap-2 p-2 bg-light-light rounded-[10px] text-sm" key={index}>
+          <div className="relative grid lg:grid-cols-[100px_5fr_2fr_1fr_100px] items-start lg:items-center gap-2 p-2 bg-light-light rounded-[10px] text-sm" key={index}>
             <img className="w-full bg-light-light rounded-[5px]" src={item.image[0]} alt="" />
             <p>{item.name}</p>
             <p>{item.category}</p>
             <p>{currency}{item.price}</p>
-            <img onClick={() => handleDeleteClick(item._id)} className="absolute right-2 bottom-2 w-5 p-0 lg:relative lg:right-0 lg:bottom-0 lg:w-full lg:p-[14px] cursor-pointer" src={assets.bin_icon} alt="" />
+            <div className="absolute right-2 bottom-2 lg:relative lg:right-0 lg:bottom-0 flex flex-row justify-center items-center gap-2">
+              <img onClick={() => handleEditClick(item._id)} className="w-5 p-0 cursor-pointer" src={assets.edit_icon} alt="" />
+              <img onClick={() => handleDeleteClick(item._id)} className="w-5 p-0 cursor-pointer" src={assets.bin_icon} alt="" />
+            </div>
           </div>
         ))}
       </div>

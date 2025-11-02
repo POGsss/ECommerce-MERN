@@ -60,6 +60,22 @@ const productRemove = async (req, res) => {
     }
 }
 
+// Product Update Function
+const productUpdate = async (req, res) => {
+    try {
+        // Getting User Input
+        const { productId, name, description, price, category, subCategory, sizes } = req.body;
+
+        // Updating Product Data
+        await productModel.findByIdAndUpdate(productId, { name, description, price, category, subCategory, sizes: JSON.parse(sizes) });
+        res.json({success: true, message: "Product Updated Successfully"});
+    } catch (error) {
+        // Logging Error
+        console.log(error);
+        res.json({success: false, message: error.message});
+    }
+}
+
 // Product Add Function
 const productAdd = async (req, res) => {
     try {
@@ -152,4 +168,4 @@ const productReview = async (req, res) => {
     }
 }
 
-export { productList, productSingle, productRemove, productAdd, productReview };
+export { productList, productSingle, productRemove, productUpdate, productAdd, productReview };
