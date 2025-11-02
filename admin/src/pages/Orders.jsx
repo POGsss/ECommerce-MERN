@@ -8,11 +8,17 @@ const Orders = ({ token }) => {
   const [ showItemDialog, setShowItemDialog ] = useState(false);
   const [ selectedItems, setSelectedItems ] = useState([]);
   const [ orders, setOrders ] = useState([]);
+  const [ filterStatus, setFilterStatus ] = useState("All");
 
   const handleImageClick = (items) => {
     setSelectedItems(items);
     setShowItemDialog(true);
   };
+
+  const handleFilterClick = (status) => {
+    setFilterStatus(status);
+  };
+
 
   const fetchAllOrders = async () => {
     if (!token) {
@@ -62,18 +68,20 @@ const Orders = ({ token }) => {
     fetchAllOrders();
   }, [token]);
 
+  const filteredOrders = filterStatus === "All" ? orders : orders.filter(order => order.status === filterStatus);
+
   return (
     <div>
       <p className="mb-2 font-title text-black">Order Page</p>
       <div>
-        <div className="flex flex-row justify-items-center bg-light-light rounded-[5px] text-sm gap-2 mb-4">
-          <b className="">Order Placed</b>
-          <b className="">Packing</b>
-          <b className="">To Shipped</b>
-          <b className="">Out For Delivery</b>
-          <b className="text-center">Delivered</b>
+        <div className="flex flex-wrap items-stretch content-stretch rounded-[5px] text-sm gap-2 mb-4">
+          {["All", "Order Placed", "Packing", "To Shipped", "Out For Delivery", "Delivered", "Completed"].map((status) => (
+            <b key={status} onClick={() => handleFilterClick(status)} className={`cursor-pointer py-1 px-2 rounded-[5px] text-center ${filterStatus === status ? "bg-secondary text-white" : "bg-light-light text-black hover:bg-light-dark"}`}>
+              {status}
+            </b>
+          ))}
         </div>
-        {orders.map((order, index) => (
+        {filteredOrders.map((order, index) => (
           <div className="relative grid grid-cols-1 sm:grid-cols-[75px_2fr_1fr] lg:grid-cols-[75px_2fr_1fr_0.5fr_200px] gap-4 items-start bg-light-light rounded-[10px] p-4 mb-4 text-sm" key={index} >
             <img onClick={() => handleImageClick(order.items)} className="w-full xs:absolute xs:w-[100px] xs:bottom-[70px] xs:right-4 sm:relative sm:right-0 sm:bottom-0 bg-light-dark rounded-[5px] p-2 cursor-pointer" src={assets.parcel_icon} alt="" />
             <div className="w-full overflow-hidden">
@@ -91,10 +99,10 @@ const Orders = ({ token }) => {
               <p>Date: {new Date(order.date).toLocaleDateString()}</p>
             </div>
             <p className="font-subtitle">{currency}{order.amount}</p>
-            <select onChange={(e) => statusHandler(e, order._id)} value={order.status} className="col-span-1 sm:col-span-2 lg:col-span-1 w-full px-4 py-2 bg-light-dark rounded-[5px]">
+            <select onChange={(e) => statusHandler(e, order._id)} value={order.status} className={`col-span-1 sm:col-span-2 lg:col-span-1 w-full px-4 py-2 bg-light-dark rounded-[5px] ${order.status === "Completed" ? "cursor-not-allowed" : "cursor-pointer"}`} disabled={order.status === "Completed"}>
               <option value="Order Placed">Order Placed</option>
               <option value="Packing">Packing</option>
-              <option value="Shipped">Shipped</option>
+              <option value="Shipped">To Shipped</option>
               <option value="Out For Delivery">Out For Delivery</option>
               <option value="Delivered">Delivered</option>
               <option value="Completed" className="hidden">Completed</option>

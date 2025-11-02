@@ -48,29 +48,29 @@ const EditDialog = ({ visible, product, onCancel, onSave }) => {
         <h1 className="font-title text-xl">Edit Product</h1>
         <div className="flex flex-col gap-2">
             <label className="text-sm">Name</label>
-            <input  type="text" name="name" value={formData.name} onChange={handleChange} className="border rounded-[8px] p-2"/>
+            <input  type="text" name="name" value={formData.name} onChange={handleChange} className="bg-light-dark rounded-[10px] p-2"/>
         </div>
         <div className="flex flex-col gap-2">
             <label className="text-sm">Description</label>
-            <textarea name="description" type="text" rows="4" value={formData.description} onChange={handleChange} className="border rounded-[8px] p-2"/>
+            <textarea name="description" type="text" rows="4" value={formData.description} onChange={handleChange} className="bg-light-dark rounded-[10px] p-2"/>
         </div>
         <div className="flex flex-row justify-between items-center w-full gap-4">
             <div className="flex flex-col gap-2 w-[calc(50%-10px)]">
                 <label className="text-sm">Price</label>
-                <input  type="number" name="price" value={formData.price} onChange={handleChange} className="border rounded-[8px] p-2"/>
+                <input  type="number" name="price" value={formData.price} onChange={handleChange} className="bg-light-dark rounded-[10px] p-2"/>
             </div>
             <div className="flex flex-col gap-2 w-[calc(50%-10px)]">
                 <label className="text-sm">Category</label>
-                <input  type="text" name="category" value={formData.category} onChange={handleChange} className="border rounded-[8px] p-2"/>
+                <input  type="text" name="category" value={formData.category} onChange={handleChange} className="bg-light-dark rounded-[10px] p-2"/>
             </div>
         </div>
         <div className="flex flex-col gap-2">
             <label className="text-sm">Sub-Category</label>
-            <input  type="text" name="subCategory" value={formData.subCategory} onChange={handleChange} className="border rounded-[8px] p-2"/>
+            <input  type="text" name="subCategory" value={formData.subCategory} onChange={handleChange} className="bg-light-dark rounded-[10px] p-2"/>
         </div>
         <div className="flex flex-col gap-2">
             <label className="text-sm">Sizes</label>
-            <input  type="text" name="sizes" value={formData.sizes} onChange={handleChange} className="border rounded-[8px] p-2"/>
+            <input  type="text" name="sizes" value={formData.sizes} onChange={handleChange} className="bg-light-dark rounded-[10px] p-2"/>
         </div>
         <div className="flex flex-col xs:flex-row gap-2 mt-2">
           <button onClick={onCancel} className="flex-1 w-full font-text md:text-base px-8 py-4 bg-secondary rounded-[10px] text-white cursor-pointer active:bg-primary active:text-black">CANCEL</button>
