@@ -1,5 +1,5 @@
 import express from 'express';
-import { placeOrderCOD, placeOrderStripe, verifyStripe, cancelStripe, receiveOrder, userOrders, adminOrders, recentOrders, salesCount, revenueTotal, updateStatus, staffOrders, placeOrderPOS } from '../controllers/orderController.js';
+import { placeOrderCOD, placeOrderStripe, verifyStripe, cancelStripe, receiveOrder, userOrders, adminOrders, recentOrders, ordersCount, revenueTotal, updateStatus, staffOrders, placeOrderPOS } from '../controllers/orderController.js';
 import authUser from '../middleware/authUser.js';
 import authAdmin from '../middleware/authAdmin.js';
 import authStaff from "../middleware/authStaff.js";
@@ -17,7 +17,7 @@ orderRouter.post("/receive", authUser, receiveOrder);
 // Admin Routes
 orderRouter.post("/admin", authAdmin, adminOrders);
 orderRouter.post("/recent", authAdmin, recentOrders);
-orderRouter.post("/sales", authAdmin, salesCount);
+orderRouter.post("/orders", authAdmin, ordersCount);
 orderRouter.post("/revenue", authAdmin, revenueTotal);
 orderRouter.post("/status", authAdmin, updateStatus);
 

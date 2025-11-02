@@ -47,7 +47,7 @@ const Chatbot = () => {
 
       {/* Chatbox */}
       {isOpen && (
-        <div className="fixed flex flex-col z-50 bottom-[20px] right-[20px] w-[calc(100%-40px)] min-h-[400px] overflow-hidden max-h-[500px] bg-light-dark rounded-[10px] xs:w-[300px] shadow-lg">
+        <div className="fixed flex flex-col z-50 bottom-[20px] right-[20px] w-[calc(100%-40px)] min-h-[450px] overflow-hidden max-h-[550px] bg-light-dark rounded-[10px] xs:w-[350px] shadow-lg">
           {/* Header */}
           <div className="p-4 flex flex-row items-center justify-between bg-light-light">
             <p className="text-xl font-subtitle">BossD Chat</p>

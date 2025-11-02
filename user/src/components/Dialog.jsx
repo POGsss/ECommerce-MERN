@@ -12,7 +12,7 @@ const Dialog = ({ rating, setRating, comment, setComment, onCancel, onConfirm, v
                         {[1, 2, 3, 4, 5].map((star) => (<span key={star} onClick={() => setRating(star)} className={`cursor-pointer text-2xl ${star <= rating ? "text-primary" : "text-light-dark"}`}>★</span>))}
                     </div>
                 </div>
-                <textarea className="w-full bg-light-dark outline-none rounded-[10px] p-2 text-sm resize-none" rows="5" placeholder="Write your feedback..." value={comment} onChange={(e) => setComment(e.target.value)}/>
+                <textarea className="w-full bg-light-dark outline-none rounded-[10px] p-2 resize-none" rows="5" placeholder="Write your feedback..." value={comment} onChange={(e) => setComment(e.target.value)}/>
                 <div className="flex flex-col xs:flex-row gap-2">
                     <button onClick={onCancel} className="flex-1 w-full font-text md:text-base px-8 py-4 bg-secondary rounded-[10px] text-white cursor-pointer active:bg-primary active:text-black">CANCEL</button>
                     <button onClick={onConfirm} className="flex-1 w-full font-text md:text-base px-8 py-4 bg-primary rounded-[10px] text-black cursor-pointer active:bg-secondary active:text-white">CONFIRM</button>

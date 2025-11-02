@@ -217,16 +217,16 @@ const recentOrders = async (req, res) => {
 }
 
 // Getting Sales Count
-const salesCount = async (req, res) => {
+const ordersCount = async (req, res) => {
     try {
         // Getting Individual Count For Each
-        const totalSales = await orderModel.countDocuments({ payment: true });
-        const onlineSales = await orderModel.countDocuments({ payment: true, source: "online" });
-        const storeSales = await orderModel.countDocuments({ payment: true, source: "store" });
-        const pendingSales = await orderModel.countDocuments({ payment: false });
+        const totalOrders = await orderModel.countDocuments({ payment: true });
+        const onlineOrders = await orderModel.countDocuments({ payment: true, source: "online" });
+        const storeOrders = await orderModel.countDocuments({ payment: true, source: "store" });
+        const pendingOrders = await orderModel.countDocuments({ payment: false });
 
         // Sending Back Results
-        res.json({ success: true, totalSales, onlineSales, storeSales, pendingSales });
+        res.json({ success: true, totalOrders, onlineOrders, storeOrders, pendingOrders });
     } catch (error) {
         // Logging Error
         console.log(error);
@@ -331,4 +331,4 @@ const placeOrderPOS = async (req, res) => {
     }
 }
 
-export { placeOrderCOD, placeOrderStripe, verifyStripe, cancelStripe, receiveOrder, userOrders, adminOrders, recentOrders, salesCount, revenueTotal, updateStatus, staffOrders, placeOrderPOS };
+export { placeOrderCOD, placeOrderStripe, verifyStripe, cancelStripe, receiveOrder, userOrders, adminOrders, recentOrders, ordersCount, revenueTotal, updateStatus, staffOrders, placeOrderPOS };

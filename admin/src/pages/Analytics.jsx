@@ -290,8 +290,6 @@ const Analytics = ({ token }) => {
     XLSX.writeFile(wb, "BossDApparel.xlsx");
   };
 
-
-
   useEffect(() => {
     fetchAllOrders();
     fetchRecentOrders();
