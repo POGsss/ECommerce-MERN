@@ -131,7 +131,7 @@ const Receipt = ({ token }) => {
 			<div className="w-full flex flex-col-reverse sm:flex-row items-start gap-4">
 				<div className="w-full grid grid-cols-1 gap-4">
 					{orders.map((order, index) => (
-						<div onClick={() => { setAmount(order.amount); setSelectedOrder(order); }} className="flex flex-wrap items-center justify-end gap-2 bg-light-light rounded-[10px] p-4 text-sm cursor-pointer" key={index} >
+						<div onClick={() => { setAmount(order.amount); setSelectedOrder(order); }} className={`flex flex-wrap items-center justify-end gap-2 bg-light-light rounded-[10px] p-4 text-sm cursor-pointer ${selectedOrder?._id === order._id ? "border-l-[5px] border-secondary" : "border-l-[5px] border-transparent"}`} key={index} >
 							<div className="flex flex-col grow basis-[200px]">
 								<p className="break-all font-subtitle">Receipt #{order._id.substring(0, 6) + "-" + order._id.substring(order._id.length - 6)}</p>
 								<p>{new Date(order.date).toLocaleDateString()}, {new Date(order.date).toLocaleTimeString("en-US", { hour12: true })}</p>
