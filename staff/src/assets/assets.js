@@ -10,6 +10,7 @@ import bin_icon from "./bin_icon.png";
 import eye_icon from "./eye_icon.png";
 import eye_closed_icon from "./eye_closed_icon.png";
 import email_icon from "./email_icon.png";
+import stocks_icon from "./stocks_icon.png";
 
 export const assets = {
     logo,
@@ -23,6 +24,7 @@ export const assets = {
     bin_icon,
     eye_icon,
     eye_closed_icon,
-    email_icon
+    email_icon,
+    stocks_icon
 }
 

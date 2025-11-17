@@ -10,6 +10,7 @@ const productSchema = new mongoose.Schema({
     sizes: { type: Array, required: true },
     bestseller: { type: Boolean },
     date: { type: Number, required: true },
+    available: { type:Boolean, required: true },
     reviews: {
         type: [
         {

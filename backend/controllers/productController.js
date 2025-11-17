@@ -107,7 +107,8 @@ const productAdd = async (req, res) => {
             sizes: JSON.parse(sizes),
             bestseller: bestseller === "true" ? true : false,
             image: imagesUrl,
-            date: Date.now()
+            date: Date.now(),
+            available: true
         }
         const product = new productModel(productData);
         await product.save();
@@ -168,4 +169,23 @@ const productReview = async (req, res) => {
     }
 }
 
-export { productList, productSingle, productRemove, productUpdate, productAdd, productReview };
+// Product Availability Update Function
+const productAvailability = async (req, res) => {
+    try {
+        const { productId, available } = req.body;
+
+        // Validate fields
+        if (typeof available !== "boolean") {
+            return res.json({ success: false, message: "Must only be True or False" });
+        }
+
+        await productModel.findByIdAndUpdate(productId, { available });
+
+        res.json({ success: true, message: "Availability updated successfully" });
+    } catch (error) {
+        console.log(error);
+        res.json({ success: false, message: error.message });
+    }
+};
+
+export { productList, productSingle, productRemove, productUpdate, productAdd, productReview, productAvailability };

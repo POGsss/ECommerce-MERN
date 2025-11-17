@@ -92,7 +92,7 @@ const Product = () => {
               }
             </div>
           </div>
-          <button onClick={() => addToCart(productData._id, size)} className="font-text md:text-base px-8 py-4 bg-secondary text-white cursor-pointer active:bg-primary active:text-black rounded-[10px]">ADD TO CART</button>
+          <button onClick={() => addToCart(productData._id, size)} className="font-text md:text-base px-8 py-4 bg-secondary text-white cursor-pointer active:bg-primary active:text-black rounded-[10px] disabled:active:bg-dark-dark disabled:active:text-white disabled:bg-dark-dark" disabled={!productData.available}>{productData.available ? `ADD TO CART` : `SOLD OUT`}</button>
           <hr className="mt-8 sm:w-full h-[2px] bg-gray-700" />
           <div className="text-sm mt-6 text-gray-500 flex flex-col gap-1">
             <p>Cash On Delivery</p>

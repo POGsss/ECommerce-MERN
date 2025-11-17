@@ -13,6 +13,10 @@ const Sidebar = () => {
 					<img className="w-6 h-6" src={assets.receipt_icon} alt="" />
 					<p className="hidden md:block">Receipt</p>
 				</NavLink>
+				<NavLink className="flex items-center gap-3 bg-light-light hover:bg-light-dark rounded-[10px] px-4 py-2" to="/stocks">
+					<img className="w-6 h-6" src={assets.stocks_icon} alt="" />
+					<p className="hidden md:block">Item Stocks</p>
+				</NavLink>
 			</div>
 		</div>
 	)

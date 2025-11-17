@@ -131,7 +131,7 @@ const Collection = () => {
 				<div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 gap-y-6">
 					{
 						filterProducts.map((item, index) => (
-							<ProductItem key={index} id={item._id} image={item.image} name={item.name} rating={item.reviews?.length ? (item.reviews.reduce((a, r) => a + r.rating, 0) / item.reviews.length).toFixed(1) : 0} price={item.price} />
+							<ProductItem key={index} id={item._id} image={item.image} name={item.name} rating={item.reviews?.length ? (item.reviews.reduce((a, r) => a + r.rating, 0) / item.reviews.length).toFixed(1) : 0} price={item.price} available={item.available}/>
 						))
 					}
 				</div>

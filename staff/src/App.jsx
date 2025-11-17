@@ -7,6 +7,7 @@ import Footer from "./components/Footer.jsx";
 import Login from "./components/Login.jsx";
 import Products from "./pages/Products.jsx";
 import Receipt from "./pages/Receipt.jsx";
+import Stocks from "./pages/Stocks.jsx";
 
 export const backendUrl = import.meta.env.VITE_BACKEND_URL;
 export const currency = "₱";
@@ -42,6 +43,7 @@ const App = () => {
             <Routes>
               <Route path="/products" element={<Products token={token} />} />
               <Route path="/receipt" element={<Receipt token={token} />} />
+              <Route path="/stocks" element={<Stocks token={token} />} />
             </Routes>
           </div>
         </div>
