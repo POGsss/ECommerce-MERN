@@ -245,7 +245,7 @@ const PlaceOrder = () => {
 						<div className="flex flex-col lg:flex-row gap-3 mt-4">
 							<div onClick={() => setMethod("stripe")} className="flex items-center gap-3 rounded-[10px] bg-light-light px-4 py-2 cursor-pointer">
 								<p className={`min-w-4 min-h-4 border border-black rounded-full ${method === "stripe" ? "bg-black" : ""}`}></p>
-								<p className="text-sm font-subtitle">Bank Transfer</p>
+								<p className="text-sm font-subtitle">Online Payment</p>
 							</div>
 							<div onClick={() => setMethod("cod")} className="flex items-center gap-3 rounded-[10px] bg-light-light px-4 py-2 cursor-pointer">
 								<p className={`min-w-4 min-h-4 border border-black rounded-full ${method === "cod" ? "bg-black" : ""}`}></p>
