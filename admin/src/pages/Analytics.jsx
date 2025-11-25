@@ -358,12 +358,12 @@ const Analytics = ({ token }) => {
           <div className="flex flex-col gap-4">
             <div className="relative col-span-1 p-4 bg-light-light rounded-[10px] text-sm">
               <b>Total Revenue</b>
-              <p className="">Total Orders All Time</p>
+              <p className="">Total Sales All Time</p>
               <p className="text-xl">{currency}{totalRevenue.toLocaleString()}</p>
             </div>
             <div className="relative col-span-1 p-4 bg-light-light rounded-[10px] text-sm">
               <b>Monthly Revenue</b>
-              <p className="">Total Orders This Month</p>
+              <p className="">Total Sales This Month</p>
               <p className="text-xl">{currency}{monthlyRevenue.toLocaleString()}</p>
             </div>
           </div>
